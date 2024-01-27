@@ -2,7 +2,7 @@
 package main;
 
 import edd.ListaDoble;
-import gui.GUI1;
+import gui.WelcomeGUI;
 
 public class Main {
 
@@ -12,7 +12,7 @@ public class Main {
     
     
     public static void main(String[] args) {
-       GUI1 interfaz1 = new GUI1();
+       WelcomeGUI interfaz1 = new WelcomeGUI();
        interfaz1.setVisible(true);
        interfaz1.setLocationRelativeTo(null);
     }
