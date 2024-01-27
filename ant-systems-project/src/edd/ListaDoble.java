@@ -1,20 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package edd;
 
-/**
- *
- * @author Sofia
- */
+
 public class ListaDoble implements ILista{
     private int size; 
-    private Nodo head, tail; 
-    
+    private NodoDoble head, tail;
+
     public ListaDoble() {
-        this.size = 0; 
-        this.head = this.tail = null;        
+        this.size = 0;
+        this.head = this.tail = null;
     }
 
     public int getSize() {
@@ -25,25 +19,25 @@ public class ListaDoble implements ILista{
         this.size = size;
     }
 
-    public Nodo getHead() {
+    public NodoDoble getHead() {
         return head;
     }
 
-    public void setHead(Nodo head) {
+    public void setHead(NodoDoble head) {
         this.head = head;
     }
 
-    public Nodo getTail() {
+    public NodoDoble getTail() {
         return tail;
     }
 
-    public void setTail(Nodo tail) {
+    public void setTail(NodoDoble tail) {
         this.tail = tail;
     }
-  
+    
     @Override
     public void insertBegin(Object element) {
-        Nodo newNodo = new Nodo(element);
+        NodoDoble newNodo = new NodoDoble(element);
         if (isEmpty()) {
             setHead(newNodo); 
             setTail(newNodo); 
@@ -53,12 +47,11 @@ public class ListaDoble implements ILista{
             setHead(newNodo); 
         }
         size++;
-        
     }
 
     @Override
     public void insertFinal(Object element) {
-        Nodo newNodo = new Nodo(element);
+        NodoDoble newNodo = new NodoDoble(element);
         if (isEmpty()) {
             setHead(newNodo); 
             setTail(newNodo); 
@@ -68,12 +61,11 @@ public class ListaDoble implements ILista{
             setTail(newNodo);
         }
         size++;
-
     }
 
     @Override
-    public void insertinIndex(Object element, int index) {
-        Nodo newNodo = new Nodo(element);
+    public void insertInIndex(Object element, int index) {
+        NodoDoble newNodo = new NodoDoble(element);
         if (isEmpty()) {
             setHead(newNodo); 
             setTail(newNodo); 
@@ -87,25 +79,25 @@ public class ListaDoble implements ILista{
             System.out.println("Index Error");
         else {
             if (index > (int) getSize()/2) {
-                Nodo pointer = getTail(); 
+                NodoDoble pointer = getTail(); 
                 for (int end = size-index; end >1 ; end--) {
                     pointer = pointer.getPrevious(); 
                     
                 }
-                Nodo previous = pointer.getPrevious();
+                NodoDoble previous = pointer.getPrevious();
                 newNodo.setNext(pointer);
                 newNodo.setPrevious(previous);
                 previous.setNext(newNodo);
                 pointer.setPrevious(newNodo); 
             }
             else {
-                Nodo pointer = getHead();
+                NodoDoble pointer = getHead();
                 for (int i = 1; i < index; i++) {
                     pointer = pointer.getNext(); 
                     
                 }
                 
-                Nodo nodoNext = pointer.getNext(); 
+                NodoDoble nodoNext = pointer.getNext(); 
                 newNodo.setNext(nodoNext);
                 newNodo.setPrevious(pointer);
                 pointer.setNext(newNodo);
@@ -115,13 +107,14 @@ public class ListaDoble implements ILista{
         }
     }
 
+
     @Override
     public Object deleteFinal() {
         if (isEmpty()) {
             System.out.println("Delete Error, empty list.");; 
         }else {
-            Nodo newTail = getTail().getPrevious();
-            Nodo eliminated = getTail(); 
+            NodoDoble newTail = getTail().getPrevious();
+            NodoDoble eliminated = getTail(); 
             newTail.setNext(null);
             getTail().setPrevious(null);
             setTail(newTail); 
@@ -139,8 +132,8 @@ public class ListaDoble implements ILista{
         if (isEmpty()) {
             System.out.println("Delete Error, empty list.");; 
         }else {
-            Nodo newHead = getHead().getNext();
-            Nodo eliminated = getHead(); 
+            NodoDoble newHead = getHead().getNext();
+            NodoDoble eliminated = getHead(); 
             newHead.setPrevious(null);
             getHead().setNext(null);
             setHead(newHead); 
@@ -153,7 +146,7 @@ public class ListaDoble implements ILista{
     }
 
     @Override
-    public Object deleteinIndex(int index) {
+    public Object deleteInIndex(int index) {
         if (isEmpty()) {
             System.out.println("Delete Error, list empty.");
         }else if (index >= size) {
@@ -167,12 +160,12 @@ public class ListaDoble implements ILista{
         else {
             
             if (index > (int) getSize()/2) {
-                Nodo pointer = getTail(); 
+                NodoDoble pointer = getTail(); 
                 for (int end = size-index; end >1 ; end--) {
                     pointer = pointer.getPrevious();   
                 }
 
-                Nodo deleted = pointer.getPrevious(); 
+                NodoDoble deleted = pointer.getPrevious(); 
                 pointer.setPrevious(deleted.getPrevious());
                 deleted.getPrevious().setNext(pointer);
                 deleted.setNext(null);
@@ -183,12 +176,12 @@ public class ListaDoble implements ILista{
                 
             }
             else {
-                Nodo pointer = getHead();
+                NodoDoble pointer = getHead();
                 for (int i = 1; i < index; i++) {
                     pointer = pointer.getNext(); 
                     
                 }
-                Nodo deleted = pointer.getNext(); 
+                NodoDoble deleted = pointer.getNext(); 
                 pointer.setNext(deleted.getNext());
                 deleted.getNext().setPrevious(pointer);
                 deleted.setNext(null);
@@ -207,19 +200,14 @@ public class ListaDoble implements ILista{
     }
 
     @Override
-    public String print() {
-       Nodo pointer = getHead();
-       String list = "- "; 
-       while (pointer != null) {
-           list = list + pointer.getElement() + " - "; 
-           pointer = pointer.getNext(); 
-            
-       }
-        return list;
-       
+    public void print() {
+        NodoDoble pointer = getHead();
+        int aux = 0;
+        while(pointer != null){
+            System.out.println(aux + "._ [" + pointer.getElement() + "]");
+            aux ++;
+            pointer = pointer.getNext();
+        }
     }
 
-
-
-    
 }
