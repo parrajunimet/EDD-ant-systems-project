@@ -1,9 +1,9 @@
 
 package gui;
 
-public class GUI1 extends javax.swing.JFrame {
+public class WelcomeGUI extends javax.swing.JFrame {
 
-    public GUI1() {
+    public WelcomeGUI() {
         initComponents();
     }
 
@@ -78,7 +78,7 @@ public class GUI1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        GUI2 interfaz2 = new GUI2(this);
+        EditorTxtGUI interfaz2 = new EditorTxtGUI(this);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -86,13 +86,13 @@ public class GUI1 extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        GUI1 interfaz1 = new GUI1();
+        WelcomeGUI interfaz1 = new WelcomeGUI();
         interfaz1.setVisible(true);
         interfaz1.setLocationRelativeTo(null);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUI1().setVisible(true);
+                new WelcomeGUI().setVisible(true);
             }
         });
     }
