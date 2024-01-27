@@ -164,14 +164,15 @@ public class ListaDoble implements ILista{
                 for (int end = size-index; end >1 ; end--) {
                     pointer = pointer.getPrevious();   
                 }
-
-                NodoDoble deleted = pointer.getPrevious(); 
-                pointer.setPrevious(deleted.getPrevious());
-                deleted.getPrevious().setNext(pointer);
-                deleted.setNext(null);
-                deleted.setPrevious(null);
+                
+                pointer.getNext().setPrevious(pointer.getPrevious());
+                pointer.getPrevious().setNext(pointer.getNext());
+                pointer.setNext(null);
+                pointer.setPrevious(null);
                 size--;
-                return deleted.getElement(); 
+                
+                return pointer.getElement(); 
+               
                 
                 
             }
@@ -181,6 +182,7 @@ public class ListaDoble implements ILista{
                     pointer = pointer.getNext(); 
                     
                 }
+                
                 NodoDoble deleted = pointer.getNext(); 
                 pointer.setNext(deleted.getNext());
                 deleted.getNext().setPrevious(pointer);
@@ -188,6 +190,7 @@ public class ListaDoble implements ILista{
                 deleted.setPrevious(null);
                 size--;
                 return deleted.getElement();
+
             } 
         }
         return null;
@@ -209,5 +212,15 @@ public class ListaDoble implements ILista{
             pointer = pointer.getNext();
         }
     }
-
+    
+    public String printString() {
+        NodoDoble pointer = getHead();
+        String list = "- "; 
+        while (pointer != null) {
+            list = list + pointer.getElement() + " - "; 
+            pointer = pointer.getNext(); 
+            
+       }    
+       return list;
+    }
 }
