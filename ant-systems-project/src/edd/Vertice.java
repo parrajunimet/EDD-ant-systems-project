@@ -1,8 +1,8 @@
 package edd;
 
 public class Vertice {
-    String nombre;
-    int numVertice;
+    private String nombre;
+    private int numVertice;
 
     public Vertice(String nombre) {
         this.nombre = nombre;
