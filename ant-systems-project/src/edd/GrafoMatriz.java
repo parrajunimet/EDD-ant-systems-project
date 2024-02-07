@@ -1,10 +1,10 @@
 package edd;
 
 public class GrafoMatriz {
-    int numVerts;
-    static int MaxVerts = 20;
-    Vertice verts[];
-    double [][] matAd;
+    private int numVerts;
+    private static int MaxVerts = 20;
+    private Vertice verts[];
+    private double [][] matAd;
 
     public GrafoMatriz() {
         matAd = new double [MaxVerts][MaxVerts];
@@ -24,6 +24,10 @@ public class GrafoMatriz {
             verts[numVerts++] = v;
             System.out.println(numVerts);
         }
+    }
+    
+    public String vertName(int i){
+        return verts[i].getNombre();
     }
     
     public void eliminarVertice (String nom){
@@ -53,7 +57,7 @@ public class GrafoMatriz {
         }
     }
     
-    private int numVertice(String vs){
+    public int numVertice(String vs){
         Vertice v = new Vertice(vs);
         boolean encontrado = false;
         int i = 0;
@@ -73,6 +77,10 @@ public class GrafoMatriz {
         if(va < 0 || vb <0)throw new Exception ("Vertice no existe");
         matAd[va][vb] = d;
         matAd[vb][va] = d;
+    }
+
+    public int getNumVerts() {
+        return numVerts;
     }
     
     public boolean adyacente(String a, String b)throws Exception{
@@ -101,14 +109,14 @@ public class GrafoMatriz {
         
         for (int y=0; y < verts.length; y++) {
           if (verts[y] != null){
-              System.out.print (verts[y].nombre);          
+              System.out.print (verts[y].getNombre());          
           }
           if (y!=19) System.out.print("\t");
         }
         System.out.println("|");
         for (int x=0; x < matAd.length; x++) {
             if (verts[x] != null){
-                System.out.print (verts[x].nombre);          
+                System.out.print (verts[x].getNombre());          
             }
             System.out.print("|");
             for (int y=0; y < matAd[x].length; y++) {
