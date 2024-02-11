@@ -1,6 +1,15 @@
 
 package gui;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 public class EditorTxtGUI extends javax.swing.JFrame {
     
@@ -28,10 +37,54 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        crear_txt = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        route = new javax.swing.JTextField();
+        abrir_archivo = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Contenido = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
+        jLabel1.setText("Archivo TXT");
+
+        jLabel2.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
+        jLabel2.setText("Crear nuevo archivo TXT:");
+
+        crear_txt.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        crear_txt.setText("Crear nuevo");
+        crear_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crear_txtActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
+        jLabel3.setText("Subir un archivo TXT:");
+
+        route.setEditable(false);
+        route.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                routeActionPerformed(evt);
+            }
+        });
+
+        abrir_archivo.setText("Abrir archivo");
+        abrir_archivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abrir_archivoActionPerformed(evt);
+            }
+        });
+
+        Contenido.setEditable(false);
+        Contenido.setColumns(20);
+        Contenido.setRows(5);
+        jScrollPane1.setViewportView(Contenido);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -39,17 +92,100 @@ public class EditorTxtGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 400, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(route, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addComponent(abrir_archivo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(crear_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 300, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(abrir_archivo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(route, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(crear_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void crear_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_txtActionPerformed
+        //
+    }//GEN-LAST:event_crear_txtActionPerformed
+
+    private void abrir_archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrir_archivoActionPerformed
+        JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de Texto. csv","txt", "csv");
+        fc.setFileFilter(filtro);
+        
+        int res = fc.showOpenDialog(this);
+        if (res != JFileChooser.CANCEL_OPTION){
+            File name = fc.getSelectedFile();
+            
+            if (name == null || name.getName().equals("")){
+                JOptionPane.showMessageDialog(this, "Error al abrir el archivo");
+            }else {
+                route.setText(name.getAbsolutePath());
+                showTxt(name.getAbsolutePath());
+                showTxt(name.getAbsolutePath());
+            }
+        }
+    }//GEN-LAST:event_abrir_archivoActionPerformed
+
+    public void showTxt(String archivo) {
+        String linea = "";
+        FileReader f = null;
+        try {
+            f = new FileReader(archivo);
+        } catch (FileNotFoundException ex) {
+            java.util.logging.Logger.getLogger(EditorTxtGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        BufferedReader b = new BufferedReader(f);
+        do{
+            try {
+                linea = b.readLine();
+            } catch (IOException ex) {
+                java.util.logging.Logger.getLogger(EditorTxtGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            Contenido.setText(Contenido.getText() + linea + "\n");
+        }while(linea != null);
+           
+    }
+    
+    private void routeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_routeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -88,6 +224,14 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Contenido;
+    private javax.swing.JButton abrir_archivo;
+    private javax.swing.JButton crear_txt;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField route;
     // End of variables declaration//GEN-END:variables
 }
