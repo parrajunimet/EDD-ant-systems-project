@@ -215,12 +215,24 @@ public class ListaDoble implements ILista{
     
     public String printString() {
         NodoDoble pointer = getHead();
-        String list = "- "; 
+        String list = ""; 
         while (pointer != null) {
-            list = list + pointer.getElement() + " - "; 
+            list = list + pointer.getElement() + " -> "; 
             pointer = pointer.getNext(); 
             
        }    
        return list;
+    }
+    
+    
+    public boolean isIn(Object element) {
+        NodoDoble pointer = getHead(); 
+        while (pointer != null){
+            if (pointer.getElement() == element) {
+                return true;
+            }
+            pointer = pointer.getNext();
+        }
+        return false; 
     }
 }

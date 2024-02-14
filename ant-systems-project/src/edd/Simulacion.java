@@ -1,0 +1,244 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package edd;
+
+/**
+ *
+ * @author Sofia
+ */
+
+public class Simulacion {
+    private GrafoMatriz feromonas; 
+    private GrafoMatriz ciudades; 
+    private String ciudadi; 
+    private String ciudadf; 
+    private int cycles, antn, a, b;
+    private double p; 
+    private Ant[] ants; 
+    ListaDoble optimepaths = new ListaDoble(); 
+    
+    //Valores iniciales de la simulacion 
+    public Simulacion(GrafoMatriz feromonas, GrafoMatriz ciudades, String ciudadi, String ciudadf, int cycles, int antn, int a, int b, double p) {
+        this.feromonas = feromonas;
+        this.ciudades = ciudades;
+        this.ciudadi = ciudadi;
+        this.ciudadf = ciudadf;
+        this.cycles = cycles;
+        this.antn = antn;
+        this.a = a;
+        this.b = b;
+        this.ants = new Ant[antn];
+        this.p = p;
+        
+    }
+    
+    public void creadoHormigas(){
+        for (int i = 0; i < antn; i++) {
+            Ant ant = new Ant(0);
+            ant.addCity(this.ciudadi, this.ciudadf);
+            this.ants[i] = ant; 
+        }
+    }
+    
+    public void Simulation() throws Exception {
+        for (int i = 0; i < cycles; i++) {
+            Cycle();
+        } 
+        int x, y; 
+        float optimedistance =0, distance = 0; 
+        String path = String.valueOf(optimepaths.getHead().getElement()), aux;    
+        for (int i = 0; i < path.length()-1; i++) {
+            x=getCiudades().numVertice(String.valueOf(path.charAt(i)));
+            y=getCiudades().numVertice(String.valueOf(path.charAt(i+1)));
+            optimedistance += getCiudades().getMatAd()[x][y]; 
+        }
+        NodoDoble pointer = optimepaths.getHead().getNext();
+        while (pointer != null){
+            aux = String.valueOf(pointer.getElement()); 
+            for (int i = 0; i < aux.length()-1; i++) {
+                x=getCiudades().numVertice(String.valueOf(aux.charAt(i)));
+                y=getCiudades().numVertice(String.valueOf(aux.charAt(i+1)));
+                distance += getCiudades().getMatAd()[x][y]; 
+            }
+            if (distance < optimedistance) {
+                distance = optimedistance; 
+                path = String.valueOf(pointer.getElement()); 
+            }
+            
+            pointer = pointer.getNext(); 
+        }
+        
+        String result = "El camino mas optimo fue: "; 
+        for (int i = 0; i < path.length(); i++) {
+            result+= path.charAt(i) + " --> "; 
+        }
+        result += "\n Distancia: " + optimedistance + "m"; 
+        
+    }
+    public void Cycle() throws Exception {
+        while (!endofCycle()) {
+            for (Ant ant : ants) {
+                if (ant.getState() == 0) {
+                    String a = String.valueOf(ant.getCiudades().getTail().getElement());
+                    String camino = chooseCity(a, ant); 
+                    ant.addCity(camino, this.ciudadf);   
+                }       
+            }
+         
+        } 
+        feromonesUptade();
+        double mindistance; 
+        String results = ""; 
+        NodoDoble pointer;
+        int x, y, index=0; 
+        double [] distances = new double[this.antn]; 
+        for (int i = 0; i < ants.length; i++) { 
+            distances[i]=0; 
+            pointer = ants[i].getCiudades().getHead(); 
+            while (pointer.getNext() != null) {
+                x= getCiudades().numVertice(String.valueOf(pointer.getElement()));
+                y=getCiudades().numVertice(String.valueOf(pointer.getNext().getElement()));
+                distances[i] += getCiudades().getMatAd()[x][y]; 
+                pointer = pointer.getNext(); 
+            }
+        }
+        mindistance = distances[0];
+        for (int i = 1; i < distances.length; i++) {
+            if (distances[i] < mindistance) {
+               mindistance = distances[i]; 
+               index = i; 
+            }
+        }
+        this.optimepaths.insertBegin(ants[index].getCiudades().printString().replace(" -> ", ""));
+        this.optimepaths.print();
+        //System.out.println("\n\n");
+        results += "El camino mas optimo fue:\n\nRecorrido               Distancia\n"; 
+        results += ants[index].getCiudades().printString() + "           "+ mindistance +"m";
+        results += "\nRecorrido por hormiga: \n\nHormiga                 Recorrido               Distancia\n";
+        for (int i = 0; i < ants.length; i++) {
+            results += "Hormiga "+ i +":              " + ants[i].getCiudades().printString()+ "              " + distances[i] + " m\n";
+            
+        }
+        //System.out.println(results);
+        
+    }
+        
+    public void feromonesUptade() throws Exception{
+        int xA, yB; 
+        for (Ant ant: ants) {
+            if (ant.getState() != 1) {
+                ListaDoble camino = ant.getCiudades();
+                NodoDoble ciudad = camino.getHead(); 
+                while (ciudad.getNext() != null){
+                    xA= getCiudades().numVertice(String.valueOf(ciudad.getElement()));
+                    yB = getCiudades().numVertice(String.valueOf(ciudad.getNext().getElement()));
+                    double add = 1/(getCiudades().getMatAd()[xA][yB]);
+                    getFeromonas().getMatAd()[yB][xA] += add;
+                    getFeromonas().getMatAd()[xA][yB] += add;
+                    ciudad = ciudad.getNext(); 
+                }
+            }
+        }
+        int numVerts = this.getCiudades().getNumVerts();
+        double factor = 1- this.p, v1, v2;
+        for (int x=0; x < numVerts; x++) {
+            String sx = this.getCiudades().vertName(x);
+            for (int y=0; y < numVerts; y++) {
+                String sy = this.getCiudades().vertName(y);
+                if(this.getCiudades().adyacente(sx, sy)){
+                    v1 = getFeromonas().getMatAd()[y][x]; 
+                    v1 *= factor; 
+                    getFeromonas().getMatAd()[y][x] = v1;
+                }
+            }
+        
+           }   
+
+        
+    }
+    
+    public String [] possibleCitys(String a, Ant ant) throws Exception{
+        String[] ciudadesAd = ciudades.verticesAd(a);
+        ListaDoble visitadas = ant.getCiudades(); 
+        int x=0; 
+        for (int i = 0; i < ciudadesAd.length; i++) {
+            if (visitadas.isIn(ciudadesAd[i])) x++; 
+        }if (x< ciudadesAd.length) {
+            String [] cities = new String[ciudadesAd.length-x];
+            x =0; 
+            for (String ciudad: ciudadesAd) {
+                if (!visitadas.isIn(ciudad)) {
+                    cities[x] = ciudad; 
+                    x++;
+                }
+            }  return cities; 
+        } return null;
+    }
+    
+    
+    
+    public String chooseCity(String a, Ant ant) throws Exception{ 
+        int xA = getCiudades().numVertice(a);
+        String cityB = ""; 
+        int y;
+        double d, t, n, sumatoria =0; 
+        String[] ciudadesAd = possibleCitys(a, ant);
+        if (ciudadesAd != null) {
+            for (String i: ciudadesAd) {
+                y = getCiudades().numVertice(i);
+                t = getFeromonas().getMatAd()[xA][y];
+                d = getCiudades().getMatAd()[xA][y];
+                n = 1/d; 
+                sumatoria += Math.pow(t, this.a)* Math.pow(n, b); 
+            }
+            double[] acomulated = new double[ciudadesAd.length];
+            double[] probabilities = new double[ciudadesAd.length];
+            double probacomulation = 0;
+            for (int i = 0; i < acomulated.length; i++) {
+                y = getCiudades().numVertice(ciudadesAd[i]);
+                t = getFeromonas().getMatAd()[xA][y];
+                d = getCiudades().getMatAd()[xA][y];
+                n = 1/d; 
+                probabilities [i] =  (Math.pow(t, this.a)*Math.pow(n, this.b))/sumatoria; 
+                probacomulation += probabilities[i] ; 
+                acomulated[i] = probacomulation; 
+            }
+            Double random =  Math.random(); 
+            for (int i = 0; i < acomulated.length; i++) {
+                if (acomulated[i] >  random) {
+                    return ciudadesAd[i]; 
+                }        
+            }
+        }else {
+            ant.setState(1);
+        }   
+       return null;
+    }
+    
+    
+    public boolean endofCycle() {
+        boolean end = true; 
+        for (Ant ant : ants) {
+            if (ant.getState() == 0) {
+                end = false; 
+            }
+        } 
+        return end; 
+    }
+
+    public GrafoMatriz getFeromonas() {
+        return feromonas;
+    }
+
+    public GrafoMatriz getCiudades() {
+        return ciudades;
+    }
+    
+    
+    
+    
+    
+    
+}
