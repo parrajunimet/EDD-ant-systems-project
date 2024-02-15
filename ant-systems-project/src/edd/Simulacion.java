@@ -45,6 +45,7 @@ public class Simulacion {
     }
     
     public void Simulation() throws Exception {
+        creadoHormigas(); 
         for (int i = 0; i < cycles; i++) {
             Cycle();
         } 
@@ -118,7 +119,10 @@ public class Simulacion {
             
         }
         System.out.println(results);
-        
+        for (Ant ant : ants) {
+            ant.getCiudades().emptyButHead();
+            ant.setState(0);
+        }
     }
         
         

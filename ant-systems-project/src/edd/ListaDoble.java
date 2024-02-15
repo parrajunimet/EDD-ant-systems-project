@@ -114,15 +114,19 @@ public class ListaDoble implements ILista{
             System.out.println("Delete Error, empty list.");; 
         }else {
             NodoDoble newTail = getTail().getPrevious();
-            NodoDoble eliminated = getTail(); 
-            newTail.setNext(null);
-            getTail().setPrevious(null);
-            setTail(newTail); 
-            size--;
-            return eliminated.getElement(); 
-           
+            if (newTail == null){
+                setHead(null);
+                setTail(null); 
+                size--;
+            }else {
+                NodoDoble eliminated = getTail(); 
+                newTail.setNext(null);
+                getTail().setPrevious(null);
+                setTail(newTail);
+                size--; 
+                return eliminated.getElement(); 
+            }
         }
-       
         return null;
         
     }
@@ -211,6 +215,9 @@ public class ListaDoble implements ILista{
             aux ++;
             pointer = pointer.getNext();
         }
+        if (getHead() == null){
+            System.out.println("Empty List");
+        }
     }
     
     public String printString() {
@@ -234,5 +241,14 @@ public class ListaDoble implements ILista{
             pointer = pointer.getNext();
         }
         return false; 
+    }
+    
+    
+    public void emptyButHead() {
+        if (!isEmpty()){
+            while(getHead().getNext() != null){
+                deleteFinal(); 
+            }
+        }
     }
 }
