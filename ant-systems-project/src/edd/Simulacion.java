@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package edd;
-
 /**
  *
  * @author Sofia
@@ -17,7 +16,8 @@ public class Simulacion {
     private int cycles, antn, a, b;
     private double p; 
     private Ant[] ants; 
-    ListaDoble optimepaths = new ListaDoble(); 
+    private String optimepath;
+    private double optimedistance;
     
     //Valores iniciales de la simulacion 
     public Simulacion(GrafoMatriz feromonas, GrafoMatriz ciudades, String ciudadi, String ciudadf, int cycles, int antn, int a, int b, double p) {
@@ -31,6 +31,8 @@ public class Simulacion {
         this.b = b;
         this.ants = new Ant[antn];
         this.p = p;
+        this.optimepath = ""; 
+        this.optimedistance = 0; 
         
     }
     
@@ -46,35 +48,14 @@ public class Simulacion {
         for (int i = 0; i < cycles; i++) {
             Cycle();
         } 
-        int x, y; 
-        float optimedistance =0, distance = 0; 
-        String path = String.valueOf(optimepaths.getHead().getElement()), aux;    
-        for (int i = 0; i < path.length()-1; i++) {
-            x=getCiudades().numVertice(String.valueOf(path.charAt(i)));
-            y=getCiudades().numVertice(String.valueOf(path.charAt(i+1)));
-            optimedistance += getCiudades().getMatAd()[x][y]; 
+        String result = "El camino mas optimo en los " + this.cycles + " ciclos fue:\n        "; 
+        for (int i = 0; i < this.optimepath.length(); i++) {
+            result+=  this.optimepath.charAt(i) + " --> "; 
         }
-        NodoDoble pointer = optimepaths.getHead().getNext();
-        while (pointer != null){
-            aux = String.valueOf(pointer.getElement()); 
-            for (int i = 0; i < aux.length()-1; i++) {
-                x=getCiudades().numVertice(String.valueOf(aux.charAt(i)));
-                y=getCiudades().numVertice(String.valueOf(aux.charAt(i+1)));
-                distance += getCiudades().getMatAd()[x][y]; 
-            }
-            if (distance < optimedistance) {
-                distance = optimedistance; 
-                path = String.valueOf(pointer.getElement()); 
-            }
-            
-            pointer = pointer.getNext(); 
-        }
+        result += "\nDistancia: " + this.optimedistance + "m"; 
         
-        String result = "El camino mas optimo fue: "; 
-        for (int i = 0; i < path.length(); i++) {
-            result+= path.charAt(i) + " --> "; 
-        }
-        result += "\n Distancia: " + optimedistance + "m"; 
+        System.out.println(result);
+        
         
     }
     public void Cycle() throws Exception {
@@ -111,8 +92,23 @@ public class Simulacion {
                index = i; 
             }
         }
-        this.optimepaths.insertBegin(ants[index].getCiudades().printString().replace(" -> ", ""));
-        this.optimepaths.print();
+        
+        if (this.optimepath == "") {
+            this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ""); 
+            this.optimedistance =  mindistance; 
+        } else {
+            int optdistance = 0; 
+            for (int i = 0; i < this.optimepath.length()-1; i++) {
+                x=getCiudades().numVertice(String.valueOf(this.optimepath.charAt(i)));
+                y=getCiudades().numVertice(String.valueOf(this.optimepath.charAt(i+1)));
+                optdistance += getCiudades().getMatAd()[x][y]; 
+                }
+            if (optdistance < mindistance) {
+                this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ""); 
+            }
+            
+        }
+        
         //System.out.println("\n\n");
         results += "El camino mas optimo fue:\n\nRecorrido               Distancia\n"; 
         results += ants[index].getCiudades().printString() + "           "+ mindistance +"m";
@@ -121,9 +117,10 @@ public class Simulacion {
             results += "Hormiga "+ i +":              " + ants[i].getCiudades().printString()+ "              " + distances[i] + " m\n";
             
         }
-        //System.out.println(results);
+        System.out.println(results);
         
     }
+        
         
     public void feromonesUptade() throws Exception{
         int xA, yB; 

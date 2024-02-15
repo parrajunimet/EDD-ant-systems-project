@@ -25,31 +25,24 @@ public class Probando {
             grafos.nuevoVertice(array[i]);
         }
         
-        grafos.nuevaDistancia("a","b", 2);
-        grafos.nuevaDistancia("a","c", 3);
-        grafos.nuevaDistancia("b","d", 5);
-        grafos.nuevaDistancia("c","f", 3);
-        grafos.nuevaDistancia("d","f", 4);
-        grafos.nuevaDistancia("f","h", 1);
-        grafos.nuevaDistancia("c","g", 8);
-        grafos.nuevaDistancia("g","h", 2);
-        grafos.nuevaDistancia("g","i", 2);
+        grafos.nuevaDistancia("a","b", 20);
+        grafos.nuevaDistancia("b","c", 10);
+        grafos.nuevaDistancia("a","d", 10);
+        grafos.nuevaDistancia("d","c", 7);
+        grafos.nuevaDistancia("d","b", 1);
+      
         
         
         
         System.out.println("\n\n\n");
         grafos.feromonasIniciales();
-        grafos.getMatrizFeromonas().print();
-        
         
 
-        Simulacion prueba = new Simulacion(grafos.getMatrizFeromonas(), grafos.getMatrizDistancias(), "a", "d", 3, 8, 1, 2, 0.5);
-
+        Simulacion prueba = new Simulacion(grafos.getMatrizFeromonas(), grafos.getMatrizDistancias(), "a", "c", 20, 8, 1, 2, 0.5);
         prueba.creadoHormigas();
-        prueba.Cycle();
         System.out.println("\n\n\n");
-        grafos.getMatrizDistancias().print();
+        prueba.Simulation();
         System.out.println("\n\n\n");
-        grafos.getMatrizFeromonas().print();
+
     }
 }
