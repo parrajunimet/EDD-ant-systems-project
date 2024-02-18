@@ -64,22 +64,10 @@ public class Grafo {
             }
         }
     }
-
-    public GrafoMatriz getMatrizDistancias() {
-        return matrizDistancias;
-    }
-
-    public GrafoMatriz getMatrizFeromonas() {
-        return matrizFeromonas;
-    }
-    
-    
-    
-    
+        
     public int numVertice(String e){
         return this.matrizDistancias.numVertice(e);
     }
 
    
-    
 }

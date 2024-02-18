@@ -22,10 +22,6 @@ public class GrafoMatriz {
             Vertice v = new Vertice(nom);
             v.setNumVertice(numVerts);
             verts[numVerts++] = v;
-<<<<<<< HEAD
-=======
-            //System.out.println(numVerts);
->>>>>>> e80b6fab75575dcade5413875c5e1c921c88c6e9
         }
         
     }
@@ -131,8 +127,6 @@ public class GrafoMatriz {
         System.out.println("|");
 }
     }
-<<<<<<< HEAD
-    
     public String grafoString() {
         String grafo = "ciudad\n";
         for (int i = 0; i < verts.length; i++) {
@@ -156,18 +150,7 @@ public class GrafoMatriz {
         }
         return grafo;
     }
-=======
-    /*
-    public Vertice getVertice(String a) {
-        for (Vertice i: getVerts()) {
-            if (i.getNombre().equalsIgnoreCase(a)){
-                return i; 
-            }
-        }
-        return null; 
-    }
-    
-*/
+
     public String[] verticesAd(String a)throws Exception{
         int va, counter = 0;
         va = numVertice(a);     
@@ -197,8 +180,6 @@ public class GrafoMatriz {
     public double[][] getMatAd() {
         return matAd;
     }
-    
-    
->>>>>>> e80b6fab75575dcade5413875c5e1c921c88c6e9
+
 }
 

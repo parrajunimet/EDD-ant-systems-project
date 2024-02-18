@@ -2,6 +2,7 @@
 package functions;
 
 import edd.Grafo;
+import edd.Vertice;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -48,21 +49,19 @@ public class ArchivoTxt {
         String[] ciudades = ciudades_txt.split("\n");
         
         for (int i = 1; i < ciudades.length; i++) {
-            
-            grafo.nuevoVertice(ciudades[i]);
+            String salida = ciudades[i].replaceAll("\r", "");
+            grafo.nuevoVertice(salida);
         }
-        
-        
-        
+
         String aristas_txt = lines[2];
         String[] aristas = aristas_txt.split("\n");
         
         for (int i = 1; i < aristas.length; i++) {
             String[] partes = aristas[i].split(",");
-            String vertice = partes[0];
-            System.out.println("[" + vertice + "]");
-            System.out.println(grafo.numVertice(vertice));
-            //grafo.nuevaDistancia(partes[0], partes[1], Double.parseDouble(partes[2]));
+            String salida1 = partes[0].replaceAll("\r", "");
+            String salida2 = partes[1].replaceAll("\r", "");
+            String salida3 = partes[2].replaceAll("\r", "");
+            grafo.nuevaDistancia(salida1, salida2, Double.parseDouble(salida3));
         }
         
     }
