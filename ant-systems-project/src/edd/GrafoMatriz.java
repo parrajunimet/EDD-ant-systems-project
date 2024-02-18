@@ -2,7 +2,7 @@ package edd;
 
 public class GrafoMatriz {
     private int numVerts;
-    private static int MaxVerts = 20;
+    private static final int MaxVerts = 20;
     private Vertice verts[];
     private double [][] matAd;
 
@@ -22,7 +22,12 @@ public class GrafoMatriz {
             Vertice v = new Vertice(nom);
             v.setNumVertice(numVerts);
             verts[numVerts++] = v;
+<<<<<<< HEAD
+=======
+            //System.out.println(numVerts);
+>>>>>>> e80b6fab75575dcade5413875c5e1c921c88c6e9
         }
+        
     }
     
     public String vertName(int i){
@@ -126,6 +131,7 @@ public class GrafoMatriz {
         System.out.println("|");
 }
     }
+<<<<<<< HEAD
     
     public String grafoString() {
         String grafo = "ciudad\n";
@@ -150,5 +156,49 @@ public class GrafoMatriz {
         }
         return grafo;
     }
+=======
+    /*
+    public Vertice getVertice(String a) {
+        for (Vertice i: getVerts()) {
+            if (i.getNombre().equalsIgnoreCase(a)){
+                return i; 
+            }
+        }
+        return null; 
+    }
+    
+*/
+    public String[] verticesAd(String a)throws Exception{
+        int va, counter = 0;
+        va = numVertice(a);     
+        
+        if(va < 0)throw new Exception ("Vertice no existe");
+        for (int i = 0; i < MaxVerts; i++) {
+            if(matAd[va][i] != 0){
+                counter++;
+            }
+        }
+        String[] adyacentes = new String [counter];
+        counter = 0; 
+        for (int i = 0; i < MaxVerts; i++) {
+            if(matAd[va][i] != 0){
+                adyacentes[counter] = this.vertName(i); 
+                counter++;
+            }
+        }
+        return adyacentes;
+    }
+    
+    
+    public Vertice[] getVerts() {
+        return verts;
+    }
+
+    public double[][] getMatAd() {
+        return matAd;
+    }
+    
+    
+>>>>>>> e80b6fab75575dcade5413875c5e1c921c88c6e9
 }
 

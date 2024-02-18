@@ -51,19 +51,30 @@ public class Grafo {
         }
     }
     
-    public void feromonasIniciales(String a, String b, double d)throws Exception{
+    public void feromonasIniciales()throws Exception{
         int numVerts = this.matrizDistancias.getNumVerts();
-        int valorInicial = 1/numVerts;
+        double valorInicial = 1/(double) numVerts;
         for (int x=0; x < numVerts; x++) {
             String sx = this.matrizDistancias.vertName(x);
             for (int y=0; y < numVerts; y++) {
                 String sy = this.matrizDistancias.vertName(y);
                 if(this.matrizDistancias.adyacente(sx, sy)){
-                    this.matrizFeromonas.nuevoArco(a, b, valorInicial);
+                    this.matrizFeromonas.nuevoArco(sx, sy, valorInicial);
                 }
             }
         }
     }
+
+    public GrafoMatriz getMatrizDistancias() {
+        return matrizDistancias;
+    }
+
+    public GrafoMatriz getMatrizFeromonas() {
+        return matrizFeromonas;
+    }
+    
+    
+    
     
     public int numVertice(String e){
         return this.matrizDistancias.numVertice(e);
