@@ -22,7 +22,6 @@ public class GrafoMatriz {
             Vertice v = new Vertice(nom);
             v.setNumVertice(numVerts);
             verts[numVerts++] = v;
-            System.out.println(numVerts);
         }
     }
     
@@ -72,6 +71,7 @@ public class GrafoMatriz {
     
     public void nuevoArco(String a, String b, double d)throws Exception{
         int va, vb;
+        
         va = numVertice(a);
         vb = numVertice(b);
         if(va < 0 || vb <0)throw new Exception ("Vertice no existe");
@@ -125,6 +125,30 @@ public class GrafoMatriz {
             }
         System.out.println("|");
 }
+    }
+    
+    public String grafoString() {
+        String grafo = "ciudad\n";
+        for (int i = 0; i < verts.length; i++) {
+            if (verts[i] != null) {
+                grafo += verts[i] + "\n";
+            }
+        }
+        grafo += "arista\n";
+
+        for (int i = 0; i < matAd.length; i++) {
+            if (verts[i] != null) {
+                for (int j = 0; j < matAd[i].length; j++) {
+                    if (matAd[i][j] != 0) {
+                        String cadena = i + "," + j + "," + matAd[i][j] + "\n";
+                        grafo += cadena;
+                    }
+                }
+
+            }
+
+        }
+        return grafo;
     }
 }
 

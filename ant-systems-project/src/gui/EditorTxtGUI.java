@@ -1,19 +1,26 @@
 
 package gui;
 
+import edd.Grafo;
+import functions.ArchivoTxt;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
+
 public class EditorTxtGUI extends javax.swing.JFrame {
     
     public static WelcomeGUI interfaz1;
+    public static Grafo grafo = new Grafo();
     
     public EditorTxtGUI(WelcomeGUI interfaz1) {
         initComponents();
@@ -33,55 +40,31 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        crear_txt = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        route = new javax.swing.JTextField();
-        abrir_archivo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Contenido = new javax.swing.JTextArea();
         next = new javax.swing.JButton();
+        crear_txt = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        abrir_archivo = new javax.swing.JButton();
+        route = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 204, 153));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
-        jLabel1.setText("Archivo TXT");
-
-        jLabel2.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
-        jLabel2.setText("Crear nuevo archivo TXT:");
-
-        crear_txt.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
-        crear_txt.setText("Crear nuevo");
-        crear_txt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crear_txtActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
-        jLabel3.setText("Subir un archivo TXT:");
-
-        route.setEditable(false);
-        route.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                routeActionPerformed(evt);
-            }
-        });
-
-        abrir_archivo.setText("Abrir archivo");
-        abrir_archivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abrir_archivoActionPerformed(evt);
-            }
-        });
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 389, -1, -1));
 
         Contenido.setEditable(false);
         Contenido.setColumns(20);
         Contenido.setRows(5);
         jScrollPane1.setViewportView(Contenido);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 105, 512, 199));
 
         next.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
         next.setText("Continuar");
@@ -90,118 +73,120 @@ public class EditorTxtGUI extends javax.swing.JFrame {
                 nextActionPerformed(evt);
             }
         });
+        getContentPane().add(next, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(crear_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(next))
-                            .addComponent(jScrollPane1)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel1))
-                                    .addComponent(route, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                                .addComponent(abrir_archivo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(42, 42, 42))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(abrir_archivo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(route, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(crear_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(next))
-                .addGap(55, 55, 55))
-        );
+        crear_txt.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        crear_txt.setText("Crear nuevo");
+        crear_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crear_txtActionPerformed(evt);
+            }
+        });
+        getContentPane().add(crear_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 132, 31));
+
+        jLabel2.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Crear nuevo archivo TXT:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, 20));
+
+        abrir_archivo.setText("Abrir archivo");
+        abrir_archivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abrir_archivoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(abrir_archivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 116, 22));
+
+        route.setEditable(false);
+        route.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                routeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(route, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 70, 370, -1));
+
+        jLabel1.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Archivo TXT");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Subir un archivo TXT:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 1.01.31 PM (1) (2).jpg"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 0, 560, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
+        ValoresInicialesGUI interfaz3 = new ValoresInicialesGUI(this);
+    }//GEN-LAST:event_nextActionPerformed
+
     private void crear_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_txtActionPerformed
-        //
+
+        String txt = Contenido.getText();
+        ArchivoTxt func = new ArchivoTxt();
+
+        try {
+            func.cargar_txt(txt, grafo);
+        } catch (Exception ex) {
+            Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+                grafo.getMatrizDistancias().print();
+
     }//GEN-LAST:event_crear_txtActionPerformed
 
     private void abrir_archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrir_archivoActionPerformed
+        //Creo el Objeto JFileChooser
         JFileChooser fc = new JFileChooser();
-        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de Texto. csv","txt", "csv");
+
+        //Creo el filtro
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.TXT", "txt");
+
+        //Le indico el filtro
         fc.setFileFilter(filtro);
-        
-        int res = fc.showOpenDialog(this);
-        if (res != JFileChooser.CANCEL_OPTION){
-            File name = fc.getSelectedFile();
-            
-            if (name == null || name.getName().equals("")){
-                JOptionPane.showMessageDialog(this, "Error al abrir el archivo");
-            }else {
-                route.setText(name.getAbsolutePath());
-                showTxt(name.getAbsolutePath());
-                showTxt(name.getAbsolutePath());
+
+        //Abrimos la ventana, guardamos la op seleccionada por el usuario
+        int seleccion = fc.showOpenDialog(this);
+
+        //Si el usario presiona aceptar
+        if(seleccion == JFileChooser.APPROVE_OPTION){
+
+            //Selecciono el fichero
+            File fichero = fc.getSelectedFile();
+
+            //Escribir la ruta del fichero
+            this.route.setText(fichero.getAbsolutePath());
+
+            try(FileReader fr = new FileReader(fichero)){
+                String cadena = "";
+                int valor = fr.read();
+                while(valor != -1){
+                    cadena = cadena + (char) valor;
+                    valor = fr.read();
+                }
+                this.Contenido.setText(cadena);
+            }catch (IOException e1){
+                e1.printStackTrace();
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún archivo.");
         }
     }//GEN-LAST:event_abrir_archivoActionPerformed
 
-    public void showTxt(String archivo) {
-        String linea = "";
-        FileReader f = null;
-        try {
-            f = new FileReader(archivo);
-        } catch (FileNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditorTxtGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        BufferedReader b = new BufferedReader(f);
-        do{
-            try {
-                linea = b.readLine();
-            } catch (IOException ex) {
-                java.util.logging.Logger.getLogger(EditorTxtGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            }
-            Contenido.setText(Contenido.getText() + linea + "\n");
-        }while(linea != null);
-           
-    }
-    
     private void routeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_routeActionPerformed
 
-    private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
-        IniciarSimulacionGUI interfaz2 = new IniciarSimulacionGUI(this);
-    }//GEN-LAST:event_nextActionPerformed
-
+    
    
     public static void main(String args[]) {
         
@@ -219,7 +204,9 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton next;
     private javax.swing.JTextField route;
