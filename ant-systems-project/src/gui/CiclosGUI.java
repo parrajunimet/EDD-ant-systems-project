@@ -1,5 +1,11 @@
 package gui;
 
+import edd.Grafo;
+import edd.GrafoMatriz;
+import edd.Simulacion;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -10,12 +16,34 @@ package gui;
  * @author Sofia
  */
 public class CiclosGUI extends javax.swing.JFrame {
-
+    private Grafo grafos; 
+    private String ciudadi; 
+    private String ciudadf; 
+    private int cycles, antn, a, b, counter;
+    private double p; 
+    private Simulacion simulacion; 
+    private boolean done; 
+    
+    
     /**
      * Creates new form CiclosGUI
      */
-    public CiclosGUI() {
+    ///Preguntar 
+    public CiclosGUI(Grafo grafos, String ciudadi, String ciudadf, int cycles, int antn, int a, int b, double p) throws Exception {
         initComponents();
+        this.grafos = grafos; 
+        this.ciudadi = ciudadi;
+        this.ciudadf = ciudadf;
+        this.cycles = cycles;
+        this.antn = antn;
+        this.a = a;
+        this.b = b;
+        this.p = p;
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);this.
+        counter = 0;
+        this.done = false; 
+        this.start(); 
     }
 
     /**
@@ -29,12 +57,23 @@ public class CiclosGUI extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        ncycles = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        next = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        resultados = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        caminos = new javax.swing.JTextArea();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        distancias = new javax.swing.JTextArea();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        hormigas = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        optimo = new javax.swing.JTextArea();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -45,90 +84,164 @@ public class CiclosGUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("OCR A Extended", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 0, 0));
         jLabel1.setText("Distancia");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 110, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 60, 110, 30));
 
-        jLabel2.setFont(new java.awt.Font("OCR A Extended", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 0, 0));
-        jLabel2.setText("CICLO");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, 50));
+        ncycles.setFont(new java.awt.Font("OCR A Extended", 1, 36)); // NOI18N
+        ncycles.setForeground(new java.awt.Color(102, 0, 0));
+        ncycles.setText("1");
+        jPanel1.add(ncycles, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, 50));
 
         jLabel3.setFont(new java.awt.Font("OCR A Extended", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 0, 0));
-        jLabel3.setText("Hormiga ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 30));
+        jLabel3.setText("Resultados: ");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("OCR A Extended", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 0, 0));
         jLabel4.setText("Camino");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 90, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 90, 30));
 
-        jButton1.setText("Next Cycle");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        next.setBackground(new java.awt.Color(255, 153, 153));
+        next.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        next.setText("Continue");
+        next.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                nextActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
+        jPanel1.add(next, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 490, 130, 30));
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jLabel5.setFont(new java.awt.Font("OCR A Extended", 1, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 0, 0));
+        jLabel5.setText("CICLO");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, 50));
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 360, 170));
+        jLabel6.setFont(new java.awt.Font("OCR A Extended", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 0, 0));
+        jLabel6.setText("Hormiga ");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        resultados.setBackground(new java.awt.Color(255, 153, 153));
+        resultados.setColumns(20);
+        resultados.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
+        resultados.setRows(5);
+        jScrollPane1.setViewportView(resultados);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 900, 70));
+
+        caminos.setEditable(false);
+        caminos.setBackground(new java.awt.Color(255, 153, 153));
+        caminos.setColumns(20);
+        caminos.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        caminos.setRows(5);
+        jScrollPane4.setViewportView(caminos);
+
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 670, 180));
+
+        distancias.setEditable(false);
+        distancias.setBackground(new java.awt.Color(255, 153, 153));
+        distancias.setColumns(20);
+        distancias.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        distancias.setRows(5);
+        jScrollPane5.setViewportView(distancias);
+
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 100, 110, 180));
+
+        hormigas.setEditable(false);
+        hormigas.setBackground(new java.awt.Color(255, 153, 153));
+        hormigas.setColumns(20);
+        hormigas.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        hormigas.setRows(5);
+        jScrollPane6.setViewportView(hormigas);
+
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 80, 180));
+
+        optimo.setBackground(new java.awt.Color(255, 153, 153));
+        optimo.setColumns(20);
+        optimo.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        optimo.setRows(5);
+        jScrollPane2.setViewportView(optimo);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 900, 40));
+
+        jLabel7.setFont(new java.awt.Font("OCR A Extended", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(102, 0, 0));
+        jLabel7.setText("El camino óptimo fue: ");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
+        if (this.counter < this.cycles) {
+            counter++; 
+            try { 
+                this.simulacion.Cycle();
+                this.showCycle();
+            } catch (Exception ex) {
+                Logger.getLogger(CiclosGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else {
+            if (!done) {
+                try {
+                    String x = this.simulacion.simulationResults();
+                    this.resultados.setText(x);
+                    done = true; 
+                } catch (Exception ex) {
+                    Logger.getLogger(CiclosGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }   
+            }else {
+                
+            }
+        }
+    }//GEN-LAST:event_nextActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CiclosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CiclosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CiclosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CiclosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    
+    public void showCycle() throws Exception {
+        String[] results = simulacion.Cycle();
+        String x = ""; 
+        for (int i = 0; i < antn; i++) {
+            x += (i+1) + "\n\n";
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CiclosGUI().setVisible(true);
-            }
-        });
+        this.ncycles.setText(String.valueOf(counter));
+        this.hormigas.setText(x);
+        this.caminos.setText(results[1]);
+        this.distancias.setText(results[2]);
+        this.optimo.setText(results[0]);
+    }
+    
+    
+    public void start() throws Exception {
+        this.simulacion = new Simulacion (this.grafos, this.ciudadi, this.ciudadf, this.cycles, this.antn, this.a, this.b, this.p); 
+        this.simulacion.startData();
+        counter++; 
+        this.showCycle();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextArea caminos;
+    private javax.swing.JTextArea distancias;
+    private javax.swing.JTextArea hormigas;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JLabel ncycles;
+    private javax.swing.JButton next;
+    private javax.swing.JTextArea optimo;
+    private javax.swing.JTextArea resultados;
     // End of variables declaration//GEN-END:variables
 }
