@@ -7,11 +7,30 @@ public class Grafo {
     private GrafoMatriz matrizDistancias;
     private GrafoMatriz matrizFeromonas;
 
+    //Constructor
     public Grafo() {
         this.matrizDistancias = new GrafoMatriz();
         this.matrizFeromonas = new GrafoMatriz();
     }
     
+    //Getters  y Setters
+     public GrafoMatriz getMatrizDistancias() {
+        return matrizDistancias;
+    }
+
+    public void setMatrizDistancias(GrafoMatriz matrizDistancias) {
+        this.matrizDistancias = matrizDistancias;
+    }
+
+    public GrafoMatriz getMatrizFeromonas() {
+        return matrizFeromonas;
+    }
+
+    public void setMatrizFeromonas(GrafoMatriz matrizFeromonas) {
+        this.matrizFeromonas = matrizFeromonas;
+    }
+    
+    //Primitivas
     public void nuevoVertice (String nom){
         this.matrizDistancias.nuevoVertice(nom);
         this.matrizFeromonas.nuevoVertice(nom);
@@ -45,16 +64,10 @@ public class Grafo {
             }
         }
     }
-
-    public GrafoMatriz getMatrizDistancias() {
-        return matrizDistancias;
+        
+    public int numVertice(String e){
+        return this.matrizDistancias.numVertice(e);
     }
 
-    public GrafoMatriz getMatrizFeromonas() {
-        return matrizFeromonas;
-    }
-    
-    
-    
-    
+   
 }

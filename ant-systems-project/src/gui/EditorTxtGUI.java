@@ -1,15 +1,27 @@
 
 package gui;
 
+import edd.Grafo;
+import functions.ArchivoTxt;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+
 
 public class EditorTxtGUI extends javax.swing.JFrame {
     
     public static WelcomeGUI interfaz1;
+    public static Grafo grafo = new Grafo();
     
-
-    /**
-     * Creates new form GUI2
-     */
     public EditorTxtGUI(WelcomeGUI interfaz1) {
         initComponents();
         this.interfaz1 = interfaz1;
@@ -28,58 +40,156 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Contenido = new javax.swing.JTextArea();
+        next = new javax.swing.JButton();
+        crear_txt = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        abrir_archivo = new javax.swing.JButton();
+        route = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 204, 153));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 389, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 400, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 300, Short.MAX_VALUE))
-        );
+        Contenido.setEditable(false);
+        Contenido.setColumns(20);
+        Contenido.setRows(5);
+        jScrollPane1.setViewportView(Contenido);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 105, 512, 199));
+
+        next.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
+        next.setText("Continuar");
+        next.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextActionPerformed(evt);
+            }
+        });
+        getContentPane().add(next, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, -1, -1));
+
+        crear_txt.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        crear_txt.setText("Crear nuevo");
+        crear_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crear_txtActionPerformed(evt);
+            }
+        });
+        getContentPane().add(crear_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 132, 31));
+
+        jLabel2.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Crear nuevo archivo TXT:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, 20));
+
+        abrir_archivo.setText("Abrir archivo");
+        abrir_archivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abrir_archivoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(abrir_archivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 116, 22));
+
+        route.setEditable(false);
+        route.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                routeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(route, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 70, 370, -1));
+
+        jLabel1.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Archivo TXT");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Subir un archivo TXT:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 1.01.31 PM (1) (2).jpg"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 0, 560, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditorTxtGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditorTxtGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditorTxtGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditorTxtGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
+        ValoresInicialesGUI interfaz3 = new ValoresInicialesGUI(this);
+    }//GEN-LAST:event_nextActionPerformed
 
-        /* Create and display the form */
+    private void crear_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_txtActionPerformed
+
+        String txt = Contenido.getText();
+        ArchivoTxt func = new ArchivoTxt();
+
+        try {
+            func.cargar_txt(txt, grafo);
+        } catch (Exception ex) {
+            Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+                grafo.getMatrizDistancias().print();
+
+    }//GEN-LAST:event_crear_txtActionPerformed
+
+    private void abrir_archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrir_archivoActionPerformed
+        //Creo el Objeto JFileChooser
+        JFileChooser fc = new JFileChooser();
+
+        //Creo el filtro
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.TXT", "txt");
+
+        //Le indico el filtro
+        fc.setFileFilter(filtro);
+
+        //Abrimos la ventana, guardamos la op seleccionada por el usuario
+        int seleccion = fc.showOpenDialog(this);
+
+        //Si el usario presiona aceptar
+        if(seleccion == JFileChooser.APPROVE_OPTION){
+
+            //Selecciono el fichero
+            File fichero = fc.getSelectedFile();
+
+            //Escribir la ruta del fichero
+            this.route.setText(fichero.getAbsolutePath());
+
+            try(FileReader fr = new FileReader(fichero)){
+                String cadena = "";
+                int valor = fr.read();
+                while(valor != -1){
+                    cadena = cadena + (char) valor;
+                    valor = fr.read();
+                }
+                this.Contenido.setText(cadena);
+            }catch (IOException e1){
+                e1.printStackTrace();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún archivo.");
+        }
+    }//GEN-LAST:event_abrir_archivoActionPerformed
+
+    private void routeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_routeActionPerformed
+
+    
+   
+    public static void main(String args[]) {
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new EditorTxtGUI(interfaz1).setVisible(true);
@@ -88,6 +198,17 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Contenido;
+    private javax.swing.JButton abrir_archivo;
+    private javax.swing.JButton crear_txt;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton next;
+    private javax.swing.JTextField route;
     // End of variables declaration//GEN-END:variables
 }
