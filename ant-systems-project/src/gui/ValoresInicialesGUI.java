@@ -3,10 +3,14 @@ package gui;
 
 public class ValoresInicialesGUI extends javax.swing.JFrame {
 
-   
+    public static EditCuidadesGUI interfaz4;
     
-    public ValoresInicialesGUI() {
+    public ValoresInicialesGUI(EditCuidadesGUI interfaz4) {
         initComponents();
+        this.interfaz4 = interfaz4;
+        interfaz4.setVisible(false);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -182,7 +186,7 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextGUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextGUIActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_nextGUIActionPerformed
 
     private void RoValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoValueActionPerformed
@@ -248,7 +252,7 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ValoresInicialesGUI().setVisible(true);
+                new ValoresInicialesGUI(interfaz4).setVisible(true);
             }
         });
     }

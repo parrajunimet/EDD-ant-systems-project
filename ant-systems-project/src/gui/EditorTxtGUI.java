@@ -144,7 +144,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
-        EditGUI interfaz3= new  EditGUI(this);
+        EditCuidadesGUI interfaz3 = new EditCuidadesGUI(this);
         
     }//GEN-LAST:event_nextActionPerformed
 
