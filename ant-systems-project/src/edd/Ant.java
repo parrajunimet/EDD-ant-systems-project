@@ -21,12 +21,6 @@ public class Ant {
         return state;
     }
     
-    
-    
-    
-    
-    
-    
     public void addCity(String nom, String cityF) {
        if (nom != null) {
             if (nom == cityF) setState(2);
