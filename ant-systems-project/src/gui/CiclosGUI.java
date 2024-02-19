@@ -1,19 +1,7 @@
 package gui;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author Sofia
- */
 public class CiclosGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CiclosGUI
-     */
     public CiclosGUI() {
         initComponents();
     }

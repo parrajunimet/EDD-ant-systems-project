@@ -47,13 +47,13 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
         jLabel1.setText("Ciudades");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 19, -1, 20));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, 20));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 53, 390, 110));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 390, 110));
 
         valor.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         valor.addActionListener(new java.awt.event.ActionListener() {
@@ -75,11 +75,11 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
                 agregarciudadActionPerformed(evt);
             }
         });
-        getContentPane().add(agregarciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 100, -1));
+        getContentPane().add(agregarciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 100, -1));
 
         jButton1.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         jButton1.setText("Eliminar");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 100, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 100, -1));
 
         Continue.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         Continue.setText("Continuar>>");
