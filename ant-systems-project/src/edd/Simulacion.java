@@ -52,12 +52,13 @@ public class Simulacion {
         }
     }
     
+    
     public String simulationResults() throws Exception {
         String result = "El camino mas optimo en los " + this.cycles + " ciclos fue:\n        "; 
         for (int i = 0; i < this.optimepath.length(); i++) {
             result+=  this.optimepath.charAt(i) + " --> "; 
         }
-        result += "\nDistancia: " + this.optimedistance + "m"; 
+        result += "\n6Distancia: " + this.optimedistance + "m"; 
         
         return result; 
     }
@@ -208,12 +209,7 @@ public class Simulacion {
                 probacomulation += probabilities[i] ; 
                 acomulated[i] = probacomulation; 
             }
-            System.out.println("\n\n");
-            //for (int i = 0; i < ciudadesAd.length; i++) {
-             //   System.out.println(ciudadesAd[i]+" : "+ probabilities[i]+ "    [ " + acomulated[i]+" ] ");
-            //}
-             
-             
+            System.out.println("\n\n"); 
             Double random =  Math.random(); 
             for (int i = 0; i < acomulated.length; i++) {
                 if (acomulated[i] >  random) {

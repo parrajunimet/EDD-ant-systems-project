@@ -127,17 +127,7 @@ public class GrafoMatriz {
         System.out.println("|");
 }
     }
-    /*
-    public Vertice getVertice(String a) {
-        for (Vertice i: getVerts()) {
-            if (i.getNombre().equalsIgnoreCase(a)){
-                return i; 
-            }
-        }
-        return null; 
-    }
-    
-*/
+
     public String[] verticesAd(String a)throws Exception{
         int va, counter = 0;
         va = numVertice(a);     
@@ -159,7 +149,6 @@ public class GrafoMatriz {
         return adyacentes;
     }
     
-    
     public Vertice[] getVerts() {
         return verts;
     }
@@ -168,6 +157,33 @@ public class GrafoMatriz {
         return matAd;
     }
     
+    public int numAdyacentes(int i){
+        int counter = 0; 
+        for (int j = 0; j < 10; j++) {
+            if(matAd[i][j] != 0){
+                counter++;
+            }
+        }
+        return counter;  
+    }
     
+    public String [] ciudadesBorde(){
+        int counter = 0, x;
+        for (int i = 0; i < getVerts().length; i++) {
+            if (numAdyacentes(i) == 1) {
+                counter++; 
+            }
+        }
+        String[] vertices = new String [counter];
+        counter = 0;
+        for (int i = 0; i < getVerts().length; i++) {
+            if (numAdyacentes(i) == 1) {
+                vertices[counter] = vertName(i);
+                counter++; 
+            }
+        }
+        return vertices; 
+    }
+
 }
 
