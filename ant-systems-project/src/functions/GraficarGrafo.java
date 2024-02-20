@@ -1,4 +1,6 @@
+
 package functions;
+/*
 import edd.GrafoMatriz;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
@@ -9,8 +11,10 @@ import org.graphstream.graph.implementations.*;
  * @author luisperezp
  * @version 19 feb 2024
  */
+
+
 public class GraficarGrafo {
-    
+    /*
     public void mostrar(GrafoMatriz feromonas, GrafoMatriz distancias) throws Exception{
         
         System.setProperty("org.graphstream.ui", "swing");
@@ -44,4 +48,5 @@ public class GraficarGrafo {
         
     
     }
+*/
 }
