@@ -221,6 +221,11 @@ public class CiclosGUI extends javax.swing.JFrame {
         counter++; 
         this.showCycle();
     }
+    
+    public Grafo getgrafos(){
+        return this.grafos;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea caminos;
