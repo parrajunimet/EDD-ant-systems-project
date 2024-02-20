@@ -9,9 +9,14 @@ import java.io.IOException;
 public class FinalGUI extends javax.swing.JFrame {
 
     public static Grafo grafo = new Grafo();
+    public static GraphStreamGUI interfaz7;
     
-    public FinalGUI() {
+    public FinalGUI(GraphStreamGUI interfaz7) {
         initComponents();
+        this.interfaz7 = interfaz7;
+        interfaz7.setVisible(false);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -120,7 +125,7 @@ public class FinalGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FinalGUI().setVisible(true);
+                new FinalGUI(interfaz7).setVisible(true);
             }
         });
     }

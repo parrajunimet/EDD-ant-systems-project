@@ -186,7 +186,7 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextGUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextGUIActionPerformed
-        
+        //
     }//GEN-LAST:event_nextGUIActionPerformed
 
     private void RoValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoValueActionPerformed
