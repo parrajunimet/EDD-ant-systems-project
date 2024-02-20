@@ -18,11 +18,18 @@ public class Matriz {
     public Matriz() {
         matAd = new Arista [MaxVerts][MaxVerts];
         verts = new Vertice [MaxVerts];
-        Arista arista = new Arista();
-        for (int i=0; i< MaxVerts; i++)
-            for (int j=0; j< MaxVerts; j++)
-                matAd[i][j] = arista;
-        numVerts = 0;
+        Arista [] aristas = new Arista[400]; 
+        for (int i = 0; i< aristas.length; i++) {
+            aristas[i]= new Arista();
+        }
+        int counter = 0; 
+        for (int i=0; i< MaxVerts; i++) {
+            for (int j=0; j< MaxVerts; j++) {
+                matAd[i][j] = aristas[counter];
+                counter++; 
+            }
+        }
+          numVerts = 0;
     }
     
     public void nuevoVertice (String nom){
@@ -40,7 +47,7 @@ public class Matriz {
         return verts[i].getNombre();
     }
     
-    private void eliminarVertice (String nom){
+    public void eliminarVertice(String nom){
         boolean esta = numVertice(nom) >= 0;
         if(esta){
             Vertice v = new Vertice(nom);   
@@ -88,16 +95,15 @@ public class Matriz {
         vb = numVertice(b);
         if(va < 0 || vb <0)throw new Exception ("Vertice no existe");
         int numVerts = getNumVerts();
-        double valorInicial = 1/(double) numVerts;
+        //double valorInicial = 1/(double) numVerts;
         matAd[va][vb].setDistancia(d);
         matAd[vb][va].setDistancia(d);
-        matAd[va][vb].setFeromona(valorInicial);
-        matAd[vb][va].setFeromona(valorInicial);
+        //matAd[va][vb].setFeromona(valorInicial);
+        //matAd[vb][va].setFeromona(valorInicial);
     }
     
     public void nuevaFeromona(String a, String b, double f)throws Exception{
         int va, vb;
-        
         va = numVertice(a);
         vb = numVertice(b);
         if(va < 0 || vb <0)throw new Exception ("Vertice no existe");
@@ -146,7 +152,7 @@ public class Matriz {
             }
             System.out.print("|");
             for (int y=0; y < matAd[x].length; y++) {
-              System.out.print (matAd[x][y]);
+              System.out.print (matAd[x][y].getDistancia());
               if (y!=matAd[x].length-1) System.out.print("\t");
             }
         System.out.println("|");
@@ -214,7 +220,7 @@ public class Matriz {
         counter = 0; 
         for (int i = 0; i < MaxVerts; i++) {
             if(matAd[va][i].getDistancia() != 0){
-                adyacentes[counter] = this.vertName(i); 
+                adyacentes[counter] = vertName(i); 
                 counter++;
             }
         }
@@ -242,5 +248,97 @@ public class Matriz {
             }
         }
     }
+    
+    
+    public double eliminarArco (String a, String b) throws Exception {
+        int va, vb;
+        double distance;
+        va = numVertice(a);
+        vb = numVertice(b);
+        if(va < 0 || vb <0)throw new Exception ("Vertice no existe");
+        distance =  matAd[va][vb].getDistancia();
+        matAd[va][vb].setDistancia(0);
+        matAd[vb][va].setDistancia(0);
+        matAd[va][vb].setFeromona(0);
+        matAd[vb][va].setFeromona(0);
+        return distance; 
+    }
+    
+ 
+    public int numAdyacentes(int i){
+        int counter = 0; 
+        for (int j = 0; j < 10; j++) {
+            if(matAd[i][j].getDistancia() != 0){
+                counter++;
+            }
+        }
+        return counter;  
+    }
+    
+    public boolean[] deepFirstSearch(int numVert, boolean[] visited) throws Exception {
+        visited[numVert] = true;
+        String va = vertName(numVert);
+        System.out.print(va + " ");
+        String[] adyacentes = verticesAd(va);
+        for (String x: adyacentes){
+            if (!visited[numVertice(x)]) {
+                deepFirstSearch(numVertice(x), visited); 
+            }
+        }
+        return visited; 
+    }
+         
+    
+    public int countDFS() throws Exception {
+        boolean [] visited = new boolean[getNumVerts()];
+        visited = deepFirstSearch(0, visited); 
+        System.out.println("\n");
+        int count = 0; 
+        for (boolean t: visited) {
+            if (t) {
+                count++; 
+            }
+        }
+        return count;
+    }
+    
+    public boolean isBridge(int i) throws Exception{
+        String va = vertName(i); 
+        String[] adyacentes = verticesAd(va); 
+        int firstcount = countDFS(), secondcount; 
+        double distance;
+        if (numAdyacentes(i) != 1){
+            for (String ver: adyacentes) {
+            distance = eliminarArco(va, ver); 
+            secondcount = countDFS();
+            nuevaDistancia (ver, va, distance);
+            if (secondcount < firstcount) {
+                return true; 
+            }         
+            }
+        }
+         return false; 
+    
+    }
+    
+    public String[] nonBridgeds() throws Exception{
+        int counter = 0; 
+        for (int i = 0; i < getNumVerts(); i++) {
+            if (isBridge(i)) {
+                counter++; 
+            }
+        }
+        String[] deletable = new String[counter]; 
+        counter = 0; 
+        for (int i = 0; i < getNumVerts(); i++) {
+            if (!isBridge(i)) {
+               deletable[counter]= vertName(i); 
+               counter++; 
+            }
+        }
+        return deletable; 
+    }
+    
+    
     
 }
