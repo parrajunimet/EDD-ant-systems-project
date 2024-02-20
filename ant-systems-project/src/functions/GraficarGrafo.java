@@ -1,7 +1,15 @@
+
 package functions;
+<<<<<<< HEAD
 //import edd.GrafoMatriz;
 //import org.graphstream.graph.*;
 //import org.graphstream.graph.implementations.*;
+=======
+/*
+import edd.GrafoMatriz;
+import org.graphstream.graph.*;
+import org.graphstream.graph.implementations.*;
+>>>>>>> d715b9b6c36cea962fe4e1d75d1561ff32976943
 
 /**Clase que define el GraphStream.
  * Recibiendo como param las matrices de distancias y feromonas.
@@ -9,9 +17,14 @@ package functions;
  * @author luisperezp
  * @version 19 feb 2024
  */
+<<<<<<< HEAD
 /*
+=======
+
+
+>>>>>>> d715b9b6c36cea962fe4e1d75d1561ff32976943
 public class GraficarGrafo {
-    
+    /*
     public void mostrar(GrafoMatriz feromonas, GrafoMatriz distancias) throws Exception{
         
         System.setProperty("org.graphstream.ui", "swing");
@@ -45,5 +58,6 @@ public class GraficarGrafo {
         
     
     }
+*/
 }
 */
