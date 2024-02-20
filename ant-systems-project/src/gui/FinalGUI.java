@@ -13,6 +13,7 @@ public class FinalGUI extends javax.swing.JFrame {
     
     public FinalGUI(GraphStreamGUI interfaz7) {
         initComponents();
+        this.setResizable(false);
         this.interfaz7 = interfaz7;
         interfaz7.setVisible(false);
         this.setVisible(true);
@@ -39,8 +40,9 @@ public class FinalGUI extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Muchas gracias por participar!!!");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
         Save.setFont(new java.awt.Font("Adobe Devanagari", 0, 18)); // NOI18N
         Save.setText("Finalizar y Guardar");
@@ -49,10 +51,10 @@ public class FinalGUI extends javax.swing.JFrame {
                 SaveActionPerformed(evt);
             }
         });
-        jPanel1.add(Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 290, 60));
+        jPanel1.add(Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 290, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 1.01.31 PM (1) (2).jpg"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 510, 340));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 510, 170));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,8 +90,10 @@ public class FinalGUI extends javax.swing.JFrame {
                         writer2.close();
                     }
                 }catch ( IOException e)
-            {
+            {        
     }
+    System.exit(0);
+                
 }
         
         

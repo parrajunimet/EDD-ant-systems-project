@@ -35,8 +35,9 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         CiudadInicial = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         CiudadFinal = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         jLabel4.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -46,14 +47,15 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ciudades");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, 20));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, 20));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 390, 110));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 420, 110));
 
         valor.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         valor.addActionListener(new java.awt.event.ActionListener() {
@@ -75,11 +77,11 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
                 agregarciudadActionPerformed(evt);
             }
         });
-        getContentPane().add(agregarciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 100, -1));
+        getContentPane().add(agregarciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 100, -1));
 
         jButton1.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         jButton1.setText("Eliminar");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 100, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 100, -1));
 
         Continue.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         Continue.setText("Continuar>>");
@@ -89,12 +91,12 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
                 ContinueActionPerformed(evt);
             }
         });
-        getContentPane().add(Continue, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 110, 30));
+        getContentPane().add(Continue, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 110, 30));
 
         jLabel5.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Ciudad Inicial");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 80, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 80, -1));
 
         CiudadInicial.setFont(new java.awt.Font("Adobe Devanagari", 0, 12)); // NOI18N
         CiudadInicial.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +104,7 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
                 CiudadInicialActionPerformed(evt);
             }
         });
-        getContentPane().add(CiudadInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 71, 22));
+        getContentPane().add(CiudadInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 71, 22));
 
         jLabel3.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -116,11 +118,15 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         });
         getContentPane().add(CiudadFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 71, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 1.01.31 PM (1) (2).jpg"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 470, 330));
-
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/brown1.jpeg"))); // NOI18N
+        jLabel7.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 480, 270));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -30, 570, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -192,6 +198,7 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;

@@ -11,6 +11,7 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
         interfaz4.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -177,7 +178,7 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
         });
         jPanel3.add(antnum, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 71, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 1.01.31 PM (1) (2).jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 290));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 290));
@@ -186,7 +187,7 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextGUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextGUIActionPerformed
-        //
+        CiclosGUI interfaz5 = new CiclosGUI(this);
     }//GEN-LAST:event_nextGUIActionPerformed
 
     private void RoValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoValueActionPerformed

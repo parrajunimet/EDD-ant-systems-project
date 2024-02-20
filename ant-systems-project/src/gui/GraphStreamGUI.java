@@ -1,7 +1,7 @@
 
 package gui;
 
-import functions.GraficarGrafo;
+//import functions.GraficarGrafo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -9,6 +9,7 @@ public class GraphStreamGUI extends javax.swing.JFrame {
     private CiclosGUI simulado;
     
     public GraphStreamGUI(CiclosGUI parametro) {
+        parametro.setVisible(false);
         this.setVisible(true);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -27,10 +28,9 @@ public class GraphStreamGUI extends javax.swing.JFrame {
 
         next2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        next = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        next1 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        siguiente = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         next2.setBackground(new java.awt.Color(153, 51, 0));
@@ -54,46 +54,12 @@ public class GraphStreamGUI extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 106, -1, -1));
 
-        next.setBackground(new java.awt.Color(153, 51, 0));
-        next.setFont(new java.awt.Font("Corsiva Hebrew", 0, 14)); // NOI18N
-        next.setForeground(new java.awt.Color(255, 255, 255));
-        next.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pngtree-next-arrow-icon-png-image_7599515-2.png"))); // NOI18N
-        next.setText("Continuar");
-        next.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        next.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        next.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        next.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        next.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nextActionPerformed(evt);
-            }
-        });
-        getContentPane().add(next, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 80, 70));
-
         jLabel2.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Seleccione para graficar:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 40));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, 40));
 
-        next1.setBackground(new java.awt.Color(153, 51, 0));
-        next1.setFont(new java.awt.Font("Corsiva Hebrew", 0, 14)); // NOI18N
-        next1.setForeground(new java.awt.Color(255, 255, 255));
-        next1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pngtree-next-arrow-icon-png-image_7599515-2.png"))); // NOI18N
-        next1.setText("Continuar");
-        next1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        next1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        next1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        next1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        next1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                next1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(next1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 80, 70));
-
-        jButton1.setBackground(new java.awt.Color(153, 51, 0));
-        jButton1.setFont(new java.awt.Font("Corsiva Hebrew", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Adobe Devanagari", 0, 18)); // NOI18N
         jButton1.setText("Graficar Grafo Final");
         jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -101,21 +67,22 @@ public class GraphStreamGUI extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 310, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 310, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/HD-wallpaper-brown-fondo-gradient-man-mix-note-para-purple-rose-simple-2.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 340));
+        siguiente.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        siguiente.setText("Continuar>>");
+        siguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguienteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 110, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
-       FinalGUI interfaz7 = new FinalGUI(this);
-    }//GEN-LAST:event_nextActionPerformed
-
-    private void next1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_next1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_next1ActionPerformed
 
     private void next2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_next2ActionPerformed
         // TODO add your handling code here:
@@ -124,12 +91,16 @@ public class GraphStreamGUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // TODO add your handling code here:
-            GraficarGrafo graph = new GraficarGrafo();
-            graph.mostrar(simulado.getgrafos().getMatrizFeromonas(),simulado.getgrafos().getMatrizDistancias());
+            //GraficarGrafo graph = new GraficarGrafo();
+            //graph.mostrar(simulado.getgrafos().getMatrizFeromonas(),simulado.getgrafos().getMatrizDistancias());
         } catch (Exception ex) {
             Logger.getLogger(GraphStreamGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteActionPerformed
+        FinalGUI interfaz7 = new FinalGUI(this);
+    }//GEN-LAST:event_siguienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,8 +139,7 @@ public class GraphStreamGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton next;
-    private javax.swing.JButton next1;
     private javax.swing.JButton next2;
+    private javax.swing.JButton siguiente;
     // End of variables declaration//GEN-END:variables
 }
