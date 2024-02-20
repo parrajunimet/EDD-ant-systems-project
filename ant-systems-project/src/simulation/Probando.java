@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package gui;
+package simulation;
 
-import edd.Grafo;
+import edd.Matriz;
+import gui.CiclosGUI;
 
 /**
  *
@@ -13,7 +14,7 @@ import edd.Grafo;
 public class Probando {
     
     public static void main(String[] args) throws Exception {
-        Grafo grafos = new Grafo(); 
+        Matriz grafos = new Matriz(); 
 
         String[] array = {"a", "b", "c", "d", "e", "f", "g", "h", "i"}; 
         for (int i = 0; i < array.length; i++) {

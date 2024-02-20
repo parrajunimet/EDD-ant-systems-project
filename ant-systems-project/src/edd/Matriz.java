@@ -1,17 +1,27 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package edd;
 
-public class GrafoMatriz {
+/**
+ *
+ * @author juan-parra
+ */
+public class Matriz {
     private int numVerts;
     private static final int MaxVerts = 20;
     private Vertice verts[];
-    private double [][] matAd;
+    private Arista[][] matAd;
+    
 
-    public GrafoMatriz() {
-        matAd = new double [MaxVerts][MaxVerts];
+    public Matriz() {
+        matAd = new Arista [MaxVerts][MaxVerts];
         verts = new Vertice [MaxVerts];
+        Arista arista = new Arista();
         for (int i=0; i< MaxVerts; i++)
             for (int j=0; j< MaxVerts; j++)
-                matAd[i][j] = 0;
+                matAd[i][j] = arista;
         numVerts = 0;
     }
     
@@ -30,7 +40,7 @@ public class GrafoMatriz {
         return verts[i].getNombre();
     }
     
-    public void eliminarVertice (String nom){
+    private void eliminarVertice (String nom){
         boolean esta = numVertice(nom) >= 0;
         if(esta){
             Vertice v = new Vertice(nom);   
@@ -48,11 +58,12 @@ public class GrafoMatriz {
                 }                   
             }
             verts[MaxVerts-1] = null;
+            Arista arista = new Arista();
             for (int j = 0; j < (MaxVerts-1); j++) {
-                matAd[j][MaxVerts-1] = 0;
-                matAd[MaxVerts-1][j] = 0;
+                matAd[j][MaxVerts-1] = arista;
+                matAd[MaxVerts-1][j] = arista;
             }
-            matAd[MaxVerts-1][MaxVerts-1] = 0;
+            matAd[MaxVerts-1][MaxVerts-1] = arista;
             numVerts --;
         }
     }
@@ -70,14 +81,28 @@ public class GrafoMatriz {
         return (i < numVerts) ? i : -1;
     }
     
-    public void nuevoArco(String a, String b, double d)throws Exception{
+    public void nuevaDistancia(String a, String b, double d)throws Exception{
         int va, vb;
         
         va = numVertice(a);
         vb = numVertice(b);
         if(va < 0 || vb <0)throw new Exception ("Vertice no existe");
-        matAd[va][vb] = d;
-        matAd[vb][va] = d;
+        int numVerts = getNumVerts();
+        double valorInicial = 1/(double) numVerts;
+        matAd[va][vb].setDistancia(d);
+        matAd[vb][va].setDistancia(d);
+        matAd[va][vb].setFeromona(valorInicial);
+        matAd[vb][va].setFeromona(valorInicial);
+    }
+    
+    public void nuevaFeromona(String a, String b, double f)throws Exception{
+        int va, vb;
+        
+        va = numVertice(a);
+        vb = numVertice(b);
+        if(va < 0 || vb <0)throw new Exception ("Vertice no existe");
+        matAd[va][vb].setFeromona(f);
+        matAd[vb][va].setFeromona(f);
     }
 
     public int getNumVerts() {
@@ -89,16 +114,16 @@ public class GrafoMatriz {
         va = numVertice(a);
         vb = numVertice(b);
         if(va < 0 || vb <0)throw new Exception ("Vertice no existe");
-        return matAd[va][vb] != 0;
+        return matAd[va][vb].getDistancia() != 0;
     }
     
-    public ListaDoble adyacentes(String a)throws Exception{
+    private ListaDoble adyacentes(String a)throws Exception{
         int va;
         ListaDoble adyacentes = new ListaDoble();
         va = numVertice(a);     
         if(va < 0)throw new Exception ("Vertice no existe");
         for (int i = 0; i < MaxVerts; i++) {
-            if(matAd[va][i] != 0){
+            if(matAd[va][i].getDistancia() != 0){
                 adyacentes.insertFinal(matAd[va][i]);
             }
         }
@@ -128,7 +153,7 @@ public class GrafoMatriz {
 }
     }
   
-    public String grafoString() {
+    public String grafoDistanciaString() {
         String grafo = "ciudad\n";
         for (int i = 0; i < verts.length; i++) {
             if (verts[i] != null) {
@@ -140,8 +165,31 @@ public class GrafoMatriz {
         for (int i = 0; i < matAd.length; i++) {
             if (verts[i] != null) {
                 for (int j = 0; j < matAd[i].length; j++) {
-                    if (matAd[i][j] != 0) {
-                        String cadena = i + "," + j + "," + matAd[i][j] + "\n";
+                    if (matAd[i][j].getDistancia() != 0) {
+                        String cadena = i + "," + j + "," + matAd[i][j].getDistancia() + "\n";
+                        grafo += cadena;
+                    }
+                }
+
+            }
+
+        }
+        return grafo;
+    }
+    public String grafoFeromonaString() {
+        String grafo = "ciudad\n";
+        for (int i = 0; i < verts.length; i++) {
+            if (verts[i] != null) {
+                grafo += verts[i] + "\n";
+            }
+        }
+        grafo += "arista\n";
+
+        for (int i = 0; i < matAd.length; i++) {
+            if (verts[i] != null) {
+                for (int j = 0; j < matAd[i].length; j++) {
+                    if (matAd[i][j].getDistancia() != 0) {
+                        String cadena = i + "," + j + "," + matAd[i][j].getFeromona() + "\n";
                         grafo += cadena;
                     }
                 }
@@ -158,14 +206,14 @@ public class GrafoMatriz {
         
         if(va < 0)throw new Exception ("Vertice no existe");
         for (int i = 0; i < MaxVerts; i++) {
-            if(matAd[va][i] != 0){
+            if(matAd[va][i].getDistancia() != 0){
                 counter++;
             }
         }
         String[] adyacentes = new String [counter];
         counter = 0; 
         for (int i = 0; i < MaxVerts; i++) {
-            if(matAd[va][i] != 0){
+            if(matAd[va][i].getDistancia() != 0){
                 adyacentes[counter] = this.vertName(i); 
                 counter++;
             }
@@ -173,13 +221,26 @@ public class GrafoMatriz {
         return adyacentes;
     }
     
-    public Vertice[] getVerts() {
+    private Vertice[] getVerts() {
         return verts;
     }
 
-    public double[][] getMatAd() {
+    public Arista[][] getMatAd() {
         return matAd;
     }
-
+    
+    public void feromonasIniciales()throws Exception{
+        int numVerts = this.getNumVerts();
+        double valorInicial = 1/(double) numVerts;
+        for (int x=0; x < numVerts; x++) {
+            String sx = this.vertName(x);
+            for (int y=0; y < numVerts; y++) {
+                String sy = this.vertName(y);
+                if(this.adyacente(sx, sy)){
+                    this.nuevaFeromona(sx, sy, valorInicial);
+                }
+            }
+        }
+    }
+    
 }
-

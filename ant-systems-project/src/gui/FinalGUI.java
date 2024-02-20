@@ -1,6 +1,6 @@
 package gui;
 
-import edd.Grafo;
+import edd.Matriz;
 import functions.ArchivoTxt;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class FinalGUI extends javax.swing.JFrame {
 
-    public static Grafo grafo = new Grafo();
+    public static Matriz grafo = new Matriz();
     public static GraphStreamGUI interfaz7;
     
     public FinalGUI(GraphStreamGUI interfaz7) {
@@ -70,8 +70,8 @@ public class FinalGUI extends javax.swing.JFrame {
 
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         
-        String grafodistancias_string = grafo.getMatrizDistancias().grafoString();
-        String grafoferomonas_string = grafo.getMatrizFeromonas().grafoString();
+        String grafodistancias_string = grafo.grafoDistanciaString();
+        String grafoferomonas_string = grafo.grafoFeromonaString();
         BufferedWriter writer = null;
         BufferedWriter writer2 = null;
         

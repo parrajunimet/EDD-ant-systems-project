@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package edd;
+package simulation;
 
 /**
  *
  * @author Sofia
  */
-public class Probando {
+public class Probando2 {
     
     public static void main(String[] args) throws Exception{
         /*
