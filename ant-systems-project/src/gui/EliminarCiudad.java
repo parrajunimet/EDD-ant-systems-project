@@ -19,11 +19,21 @@ public class EliminarCiudad extends javax.swing.JFrame {
     public EliminarCiudad(Grafo grafos) {
         initComponents();
         this.grafos = grafos; 
+        
     }
-    
-    
-   
-    
+
+    public void start () {
+        /*
+        String[] citys = grafos.getMatrizDistancias().ciudadesBorde(); 
+        String show = ""; 
+        int counter = 1; 
+        for (String c: citys) {
+            show += counter + ". " +c + "\n"; 
+            counter++; 
+        }
+        this.ciudades.setText(show);
+        */
+    }
     
 
     /**
@@ -37,13 +47,14 @@ public class EliminarCiudad extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        notify = new javax.swing.JLabel();
         volver = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ciudades = new javax.swing.JTextArea();
         eliminar = new javax.swing.JButton();
-        ciudad = new javax.swing.JTextField();
+        input = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -51,9 +62,8 @@ public class EliminarCiudad extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 204, 204));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Ingrese ciudad a eliminar");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+        notify.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(notify, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 260, 30));
 
         volver.setText("volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
@@ -76,13 +86,15 @@ public class EliminarCiudad extends javax.swing.JFrame {
             }
         });
         jPanel2.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, -1, -1));
-
-        ciudad.setText("jTextField1");
-        jPanel2.add(ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 240, -1));
+        jPanel2.add(input, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 240, -1));
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Ciudades posibles a eliminar ");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Ingrese ciudad a eliminar");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -105,19 +117,23 @@ public class EliminarCiudad extends javax.swing.JFrame {
     }//GEN-LAST:event_volverActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        // TODO add your handling code here:
+      
+               
     }//GEN-LAST:event_eliminarActionPerformed
 
+    
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ciudad;
     private javax.swing.JTextArea ciudades;
     private javax.swing.JButton eliminar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField input;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel notify;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }

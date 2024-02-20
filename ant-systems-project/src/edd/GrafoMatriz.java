@@ -157,33 +157,8 @@ public class GrafoMatriz {
         return matAd;
     }
     
-    public int numAdyacentes(int i){
-        int counter = 0; 
-        for (int j = 0; j < 10; j++) {
-            if(matAd[i][j] != 0){
-                counter++;
-            }
-        }
-        return counter;  
-    }
-    
-    public String [] ciudadesBorde(){
-        int counter = 0, x;
-        for (int i = 0; i < getVerts().length; i++) {
-            if (numAdyacentes(i) == 1) {
-                counter++; 
-            }
-        }
-        String[] vertices = new String [counter];
-        counter = 0;
-        for (int i = 0; i < getVerts().length; i++) {
-            if (numAdyacentes(i) == 1) {
-                vertices[counter] = vertName(i);
-                counter++; 
-            }
-        }
-        return vertices; 
-    }
+  
+
 
 }
 
