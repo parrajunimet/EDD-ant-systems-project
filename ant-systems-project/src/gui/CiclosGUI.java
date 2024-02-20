@@ -1,8 +1,7 @@
 package gui;
 
-import edd.Grafo;
-import edd.GrafoMatriz;
-import edd.Simulacion;
+import edd.Matriz;
+import simulation.Simulacion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,7 +15,7 @@ import java.util.logging.Logger;
  * @author Sofia
  */
 public class CiclosGUI extends javax.swing.JFrame {
-    private Grafo grafos; 
+    private Matriz grafos; 
     private String ciudadi; 
     private String ciudadf; 
     private int cycles, antn, a, b, counter;
@@ -29,7 +28,7 @@ public class CiclosGUI extends javax.swing.JFrame {
      * Creates new form CiclosGUI
      */
     ///Preguntar 
-    public CiclosGUI(Grafo grafos, String ciudadi, String ciudadf, int cycles, int antn, int a, int b, double p) throws Exception {
+    public CiclosGUI(Matriz grafos, String ciudadi, String ciudadf, int cycles, int antn, int a, int b, double p) throws Exception {
         initComponents();
         this.grafos = grafos; 
         this.ciudadi = ciudadi;

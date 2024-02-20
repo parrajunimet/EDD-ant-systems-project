@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package gui;
+package simulation;
 
-import edd.Grafo;
+import edd.Matriz;
 
 /**
  *
  * @author Sofia
  */
 public class EliminarCiudad extends javax.swing.JFrame {
-    private Grafo grafos;
+    private Matriz grafos;
 
     /**
      * Creates new form EliminarCiudad
      */
-    public EliminarCiudad(Grafo grafos) {
+    public EliminarCiudad(Matriz grafos) {
         initComponents();
         this.grafos = grafos; 
         
@@ -61,8 +61,6 @@ public class EliminarCiudad extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 204));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        notify.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.add(notify, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 260, 30));
 
         volver.setText("volver");
@@ -88,11 +86,9 @@ public class EliminarCiudad extends javax.swing.JFrame {
         jPanel2.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, -1, -1));
         jPanel2.add(input, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 240, -1));
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Ciudades posibles a eliminar ");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ingrese ciudad a eliminar");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 

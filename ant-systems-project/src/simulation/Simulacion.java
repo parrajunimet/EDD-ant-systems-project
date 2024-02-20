@@ -2,18 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package edd;
+package simulation;
+
+import edd.Matriz;
+import edd.ListaDoble;
+import edd.NodoDoble;
+
 /**
  *
  * @author Sofia
  */
 
 public class Simulacion {
-    private GrafoMatriz feromonas; 
-    private GrafoMatriz ciudades; 
     private String ciudadi; 
     private String ciudadf; 
-    private Grafo grafos; 
+    private Matriz grafos; 
     private int cycles, antn, a, b;
     private double p; 
     private Ant[] ants; 
@@ -21,9 +24,7 @@ public class Simulacion {
     private double optimedistance;
     
     //Valores iniciales de la simulacion 
-    public Simulacion(Grafo grafos, String ciudadi, String ciudadf, int cycles, int antn, int a, int b, double p) {
-        this.feromonas = grafos.getMatrizFeromonas();
-        this.ciudades = grafos.getMatrizDistancias();
+    public Simulacion(Matriz grafos, String ciudadi, String ciudadf, int cycles, int antn, int a, int b, double p) {
         this.grafos = grafos; 
         this.ciudadi = ciudadi;
         this.ciudadf = ciudadf;
@@ -82,9 +83,9 @@ public class Simulacion {
             distances[i]=0; 
             pointer = ants[i].getCiudades().getHead(); 
             while (pointer.getNext() != null) {
-                x= getCiudades().numVertice(String.valueOf(pointer.getElement()));
-                y=getCiudades().numVertice(String.valueOf(pointer.getNext().getElement()));
-                distances[i] += getCiudades().getMatAd()[x][y]; 
+                x= grafos.numVertice(String.valueOf(pointer.getElement()));
+                y=grafos.numVertice(String.valueOf(pointer.getNext().getElement()));
+                distances[i] += grafos.getMatAd()[x][y].getDistancia(); 
                 pointer = pointer.getNext(); 
             }
         }
@@ -102,9 +103,9 @@ public class Simulacion {
         } else {
             int optdistance = 0; 
             for (int i = 0; i < this.optimepath.length()-1; i++) {
-                x=getCiudades().numVertice(String.valueOf(this.optimepath.charAt(i)));
-                y=getCiudades().numVertice(String.valueOf(this.optimepath.charAt(i+1)));
-                optdistance += getCiudades().getMatAd()[x][y]; 
+                x=grafos.numVertice(String.valueOf(this.optimepath.charAt(i)));
+                y=grafos.numVertice(String.valueOf(this.optimepath.charAt(i+1)));
+                optdistance += grafos.getMatAd()[x][y].getDistancia(); 
                 }
             if (optdistance < mindistance) {
                 this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ""); 
@@ -136,25 +137,25 @@ public class Simulacion {
                 ListaDoble camino = ant.getCiudades();
                 NodoDoble ciudad = camino.getHead(); 
                 while (ciudad.getNext() != null){
-                    xA= getCiudades().numVertice(String.valueOf(ciudad.getElement()));
-                    yB = getCiudades().numVertice(String.valueOf(ciudad.getNext().getElement()));
-                    double add = 1/(getCiudades().getMatAd()[xA][yB]);
-                    getFeromonas().getMatAd()[yB][xA] += add;
-                    getFeromonas().getMatAd()[xA][yB] += add;
+                    xA= grafos.numVertice(String.valueOf(ciudad.getElement()));
+                    yB = grafos.numVertice(String.valueOf(ciudad.getNext().getElement()));
+                    double add = 1/(grafos.getMatAd()[xA][yB].getDistancia());
+                    grafos.getMatAd()[yB][xA].setFeromona(grafos.getMatAd()[yB][xA].getFeromona()+ add);
+                    grafos.getMatAd()[xA][yB].setFeromona(grafos.getMatAd()[xA][yB].getFeromona()+ add);
                     ciudad = ciudad.getNext(); 
                 }
             }
         }
-        int numVerts = this.getCiudades().getNumVerts();
+        int numVerts = grafos.getNumVerts();
         double factor = 1- this.p, v1, v2;
         for (int x=0; x < numVerts; x++) {
-            String sx = this.getCiudades().vertName(x);
+            String sx = grafos.vertName(x);
             for (int y=0; y < numVerts; y++) {
-                String sy = this.getCiudades().vertName(y);
-                if(this.getCiudades().adyacente(sx, sy)){
-                    v1 = getFeromonas().getMatAd()[y][x]; 
+                String sy = grafos.vertName(y);
+                if(grafos.adyacente(sx, sy)){
+                    v1 = grafos.getMatAd()[y][x].getFeromona(); 
                     v1 *= factor; 
-                    getFeromonas().getMatAd()[y][x] = v1;
+                    grafos.getMatAd()[y][x].setFeromona(v1);
                 }
             }
         
@@ -164,7 +165,7 @@ public class Simulacion {
     }
     
     public String [] possibleCitys(String a, Ant ant) throws Exception{
-        String[] ciudadesAd = ciudades.verticesAd(a);
+        String[] ciudadesAd = grafos.verticesAd(a);
         ListaDoble visitadas = ant.getCiudades(); 
         int x=0; 
         for (int i = 0; i < ciudadesAd.length; i++) {
@@ -184,16 +185,16 @@ public class Simulacion {
     
     
     public String chooseCity(String a, Ant ant) throws Exception{ 
-        int xA = getCiudades().numVertice(a);
+        int xA = grafos.numVertice(a);
         String cityB = ""; 
         int y;
         double d, t, n, sumatoria =0; 
         String[] ciudadesAd = possibleCitys(a, ant);
         if (ciudadesAd != null) {
             for (String i: ciudadesAd) {
-                y = getCiudades().numVertice(i);
-                t = getFeromonas().getMatAd()[xA][y];
-                d = getCiudades().getMatAd()[xA][y];
+                y = grafos.numVertice(i);
+                t = grafos.getMatAd()[xA][y].getFeromona();
+                d = grafos.getMatAd()[xA][y].getDistancia();
                 n = 1/d; 
                 sumatoria += Math.pow(t, this.a)* Math.pow(n, b); 
             }
@@ -201,9 +202,9 @@ public class Simulacion {
             double[] probabilities = new double[ciudadesAd.length];
             double probacomulation = 0;
             for (int i = 0; i < acomulated.length; i++) {
-                y = getCiudades().numVertice(ciudadesAd[i]);
-                t = getFeromonas().getMatAd()[xA][y];
-                d = getCiudades().getMatAd()[xA][y];
+                y = grafos.numVertice(ciudadesAd[i]);
+                t = grafos.getMatAd()[xA][y].getFeromona();
+                d = grafos.getMatAd()[xA][y].getDistancia();
                 n = 1/d; 
                 probabilities [i] =  (Math.pow(t, this.a)*Math.pow(n, this.b))/sumatoria; 
                 probacomulation += probabilities[i] ; 
@@ -232,18 +233,6 @@ public class Simulacion {
         } 
         return end; 
     }
-
-    public GrafoMatriz getFeromonas() {
-        return feromonas;
-    }
-
-    public GrafoMatriz getCiudades() {
-        return ciudades;
-    }
-    
-    
-    
-    
-    
+        
     
 }

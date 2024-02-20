@@ -1,7 +1,7 @@
 
 package gui;
 
-import edd.Grafo;
+import edd.Matriz;
 import functions.ArchivoTxt;
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,7 +20,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class EditorTxtGUI extends javax.swing.JFrame {
     
     public static WelcomeGUI interfaz1;
-    public static Grafo grafo = new Grafo();
+    public static Matriz grafo = new Matriz();
     
     public EditorTxtGUI(WelcomeGUI interfaz1) {
         initComponents();
@@ -213,7 +213,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         
             JOptionPane.showMessageDialog(null,"Guardado exitosamente!!");
 
-                grafo.getMatrizDistancias().print();
+                grafo.print();
        
     }//GEN-LAST:event_GuardarInfoActionPerformed
 
