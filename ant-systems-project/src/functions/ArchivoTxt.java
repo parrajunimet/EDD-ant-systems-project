@@ -1,7 +1,7 @@
 
 package functions;
 
-import edd.Grafo;
+import edd.Matriz;
 import edd.Vertice;
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class ArchivoTxt {
     }
     
     
-    public void cargar_txt(String txt, Grafo grafo) throws Exception{
+    public void cargar_txt(String txt, Matriz grafo) throws Exception{
         String replaceCiudad = txt.replaceFirst("ciudad", "Ω");
         String replaceArista = replaceCiudad.replaceFirst("aristas", "Ω");
         String[] lines = replaceArista.split("Ω");
