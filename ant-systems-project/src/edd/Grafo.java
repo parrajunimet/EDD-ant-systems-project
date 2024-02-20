@@ -1,6 +1,8 @@
 
 package edd;
 
+import edd.GrafoMatriz;
+
 
 public class Grafo {
     

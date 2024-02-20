@@ -127,6 +127,7 @@ public class GrafoMatriz {
         System.out.println("|");
 }
     }
+  
     public String grafoString() {
         String grafo = "ciudad\n";
         for (int i = 0; i < verts.length; i++) {
@@ -171,7 +172,6 @@ public class GrafoMatriz {
         }
         return adyacentes;
     }
-    
     
     public Vertice[] getVerts() {
         return verts;

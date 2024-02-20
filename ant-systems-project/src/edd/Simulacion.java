@@ -13,6 +13,7 @@ public class Simulacion {
     private GrafoMatriz ciudades; 
     private String ciudadi; 
     private String ciudadf; 
+    private Grafo grafos; 
     private int cycles, antn, a, b;
     private double p; 
     private Ant[] ants; 
@@ -20,9 +21,10 @@ public class Simulacion {
     private double optimedistance;
     
     //Valores iniciales de la simulacion 
-    public Simulacion(GrafoMatriz feromonas, GrafoMatriz ciudades, String ciudadi, String ciudadf, int cycles, int antn, int a, int b, double p) {
-        this.feromonas = feromonas;
-        this.ciudades = ciudades;
+    public Simulacion(Grafo grafos, String ciudadi, String ciudadf, int cycles, int antn, int a, int b, double p) {
+        this.feromonas = grafos.getMatrizFeromonas();
+        this.ciudades = grafos.getMatrizDistancias();
+        this.grafos = grafos; 
         this.ciudadi = ciudadi;
         this.ciudadf = ciudadf;
         this.cycles = cycles;
@@ -36,6 +38,12 @@ public class Simulacion {
         
     }
     
+    public void startData() throws Exception {
+        creadoHormigas(); 
+        grafos.feromonasIniciales();
+    }
+    
+    
     public void creadoHormigas(){
         for (int i = 0; i < antn; i++) {
             Ant ant = new Ant(0);
@@ -44,22 +52,17 @@ public class Simulacion {
         }
     }
     
-    public void Simulation() throws Exception {
-        creadoHormigas(); 
-        for (int i = 0; i < cycles; i++) {
-            Cycle();
-        } 
+    
+    public String simulationResults() throws Exception {
         String result = "El camino mas optimo en los " + this.cycles + " ciclos fue:\n        "; 
         for (int i = 0; i < this.optimepath.length(); i++) {
             result+=  this.optimepath.charAt(i) + " --> "; 
         }
-        result += "\nDistancia: " + this.optimedistance + "m"; 
+        result += "\n6Distancia: " + this.optimedistance + "m"; 
         
-        System.out.println(result);
-        
-        
+        return result; 
     }
-    public void Cycle() throws Exception {
+    public String[] Cycle() throws Exception {
         while (!endofCycle()) {
             for (Ant ant : ants) {
                 if (ant.getState() == 0) {
@@ -67,12 +70,11 @@ public class Simulacion {
                     String camino = chooseCity(a, ant); 
                     ant.addCity(camino, this.ciudadf);   
                 }       
-            }
-         
+            }      
         } 
         feromonesUptade();
         double mindistance; 
-        String results = ""; 
+        String results1 = "", resultsc = "", resultsd = ""; 
         NodoDoble pointer;
         int x, y, index=0; 
         double [] distances = new double[this.antn]; 
@@ -111,18 +113,19 @@ public class Simulacion {
         }
         
         //System.out.println("\n\n");
-        results += "El camino mas optimo fue:\n\nRecorrido               Distancia\n"; 
-        results += ants[index].getCiudades().printString() + "           "+ mindistance +"m";
-        results += "\nRecorrido por hormiga: \n\nHormiga                 Recorrido               Distancia\n";
+        results1 += ants[index].getCiudades().printString() +"\nDistancia: " + mindistance +"m";
         for (int i = 0; i < ants.length; i++) {
-            results += "Hormiga "+ i +":              " + ants[i].getCiudades().printString()+ "              " + distances[i] + " m\n";
+            resultsc+= ants[i].getCiudades().printString()+ "\n\n"; 
+            resultsd += distances[i] + " m\n\n";
             
         }
-        System.out.println(results);
         for (Ant ant : ants) {
             ant.getCiudades().emptyButHead();
             ant.setState(0);
         }
+        
+        String[] results = {results1, resultsc, resultsd}; 
+        return results; 
     }
         
         
@@ -206,6 +209,7 @@ public class Simulacion {
                 probacomulation += probabilities[i] ; 
                 acomulated[i] = probacomulation; 
             }
+            System.out.println("\n\n"); 
             Double random =  Math.random(); 
             for (int i = 0; i < acomulated.length; i++) {
                 if (acomulated[i] >  random) {
