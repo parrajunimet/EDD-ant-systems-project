@@ -101,8 +101,11 @@ public class CiclosGUI extends javax.swing.JFrame {
         jLabel4.setText("Camino");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 90, 30));
 
+        next.setBackground(new java.awt.Color(102, 51, 0));
         next.setFont(new java.awt.Font("Adobe Devanagari", 1, 18)); // NOI18N
-        next.setText("Continue");
+        next.setForeground(new java.awt.Color(255, 255, 255));
+        next.setText("Continuar>>");
+        next.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         next.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextActionPerformed(evt);
@@ -177,6 +180,7 @@ public class CiclosGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
+
         if (this.counter < this.cycles) {
             counter++; 
             try { 
@@ -198,7 +202,8 @@ public class CiclosGUI extends javax.swing.JFrame {
                 
             }
         }
-        GraphStreamGUI interfaz6 = new GraphStreamGUI(this);
+        GraphGUI interfaz6 = new GraphGUI(this);
+        
     }//GEN-LAST:event_nextActionPerformed
 
     /**

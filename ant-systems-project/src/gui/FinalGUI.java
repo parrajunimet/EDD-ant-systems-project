@@ -9,9 +9,9 @@ import java.io.IOException;
 public class FinalGUI extends javax.swing.JFrame {
 
     public static Matriz grafo = new Matriz();
-    public static GraphStreamGUI interfaz7;
+    public static GraphGUI interfaz7;
     
-    public FinalGUI(GraphStreamGUI interfaz7) {
+    public FinalGUI(GraphGUI interfaz7) {
         initComponents();
         this.setResizable(false);
         this.interfaz7 = interfaz7;
@@ -44,8 +44,11 @@ public class FinalGUI extends javax.swing.JFrame {
         jLabel1.setText("Muchas gracias por participar!!!");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
+        Save.setBackground(new java.awt.Color(102, 51, 0));
         Save.setFont(new java.awt.Font("Adobe Devanagari", 0, 18)); // NOI18N
+        Save.setForeground(new java.awt.Color(255, 255, 255));
         Save.setText("Finalizar y Guardar");
+        Save.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SaveActionPerformed(evt);

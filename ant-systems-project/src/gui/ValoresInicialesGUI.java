@@ -155,8 +155,11 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        nextGUI.setBackground(new java.awt.Color(102, 51, 0));
         nextGUI.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        nextGUI.setForeground(new java.awt.Color(255, 255, 255));
         nextGUI.setText("Continuar>>");
+        nextGUI.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         nextGUI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextGUIActionPerformed(evt);

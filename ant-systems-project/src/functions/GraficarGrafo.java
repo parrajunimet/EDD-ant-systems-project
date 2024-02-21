@@ -1,10 +1,10 @@
 
 package functions;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //import edd.GrafoMatriz;
 //import org.graphstream.graph.*;
 //import org.graphstream.graph.implementations.*;
-=======
+//=======
 /*
 import edd.GrafoMatriz;
 import org.graphstream.graph.*;
@@ -17,7 +17,7 @@ import org.graphstream.graph.implementations.*;
  * @author luisperezp
  * @version 19 feb 2024
  */
-<<<<<<< HEAD
+//<<<<<<< HEAD
 /*
 =======
 
@@ -58,6 +58,4 @@ public class GraficarGrafo {
         
     
     }
-*/
-}
 */

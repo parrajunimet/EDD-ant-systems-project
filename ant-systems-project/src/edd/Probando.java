@@ -4,7 +4,7 @@
  */
 package edd;
 
-import gui.EliminarCiudad;
+//import gui.EliminarCiudad;
 
 /**
  *
@@ -33,8 +33,8 @@ public class Probando {
             System.out.println(prueba.vertName(3) + " " +prueba.isBridge(3));
             String [] x = prueba.nonBridgeds(); 
             
-            EliminarCiudad h = new EliminarCiudad(prueba); 
-            h.start();
+            //EliminarCiudad h = new EliminarCiudad(prueba); 
+            //h.start();
 
     }
 }

@@ -8,13 +8,20 @@ package gui;
  *
  * @author Sofia
  */
-public class AgregarCiudades extends javax.swing.JFrame {
+public class AgregarCiudadesGUI extends javax.swing.JFrame {
+    
+    public static EditCuidadesGUI interfazB;
 
     /**
      * Creates new form AgregarCiudades
      */
-    public AgregarCiudades() {
+    public AgregarCiudadesGUI(EditCuidadesGUI interfazB) {
         initComponents();
+        this.interfazB = interfazB;
+        interfazB.setVisible(false);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -29,6 +36,7 @@ public class AgregarCiudades extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Volver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -36,17 +44,33 @@ public class AgregarCiudades extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Volver.setBackground(new java.awt.Color(102, 51, 0));
+        Volver.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        Volver.setForeground(new java.awt.Color(255, 255, 255));
         Volver.setText("Volver");
-        jPanel1.add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
+        Volver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 90, 30));
 
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("AGREGAR CIUDADES");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 120, 30));
+        jLabel1.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
+        jLabel1.setText("Agregar Ciudades");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 220, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 300));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
+        EditCuidadesGUI interfazC = new EditCuidadesGUI(this);
+    }//GEN-LAST:event_VolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -65,20 +89,21 @@ public class AgregarCiudades extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarCiudades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarCiudades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarCiudades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarCiudades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AgregarCiudades().setVisible(true);
+                new AgregarCiudadesGUI(interfazB).setVisible(true);
             }
         });
     }
@@ -86,6 +111,7 @@ public class AgregarCiudades extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Volver;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

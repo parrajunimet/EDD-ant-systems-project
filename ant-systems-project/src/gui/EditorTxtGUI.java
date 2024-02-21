@@ -69,8 +69,11 @@ public class EditorTxtGUI extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 105, 512, 199));
 
+        next.setBackground(new java.awt.Color(102, 51, 0));
         next.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
+        next.setForeground(new java.awt.Color(255, 255, 255));
         next.setText("Continuar>>");
+        next.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         next.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextActionPerformed(evt);
@@ -78,8 +81,11 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         });
         getContentPane().add(next, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 120, 30));
 
+        crear_txt.setBackground(new java.awt.Color(102, 51, 0));
         crear_txt.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        crear_txt.setForeground(new java.awt.Color(255, 255, 255));
         crear_txt.setText("Crear nuevo");
+        crear_txt.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         crear_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 crear_txtActionPerformed(evt);
@@ -92,13 +98,15 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         jLabel2.setText("Crear nuevo archivo TXT:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, 20));
 
+        abrir_archivo.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         abrir_archivo.setText("Abrir archivo");
+        abrir_archivo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         abrir_archivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 abrir_archivoActionPerformed(evt);
             }
         });
-        getContentPane().add(abrir_archivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 116, 22));
+        getContentPane().add(abrir_archivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 130, 22));
 
         route.setEditable(false);
         route.addActionListener(new java.awt.event.ActionListener() {
@@ -128,8 +136,11 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         jLabel5.setToolTipText("");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, -1, 20));
 
+        GuardarInfo.setBackground(new java.awt.Color(102, 51, 0));
         GuardarInfo.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        GuardarInfo.setForeground(new java.awt.Color(255, 255, 255));
         GuardarInfo.setText("Guardar");
+        GuardarInfo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         GuardarInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GuardarInfoActionPerformed(evt);
