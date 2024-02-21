@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CiclosGUI extends javax.swing.JFrame {
-    public static ValoresInicialesGUI interfaz5;
+    public static IniciarSimulacionGUI interfaz5b;
     private Matriz grafos; 
     private String ciudadi; 
     private String ciudadf; 
@@ -20,11 +20,11 @@ public class CiclosGUI extends javax.swing.JFrame {
      * Creates new form CiclosGUI
      */
     ///Preguntar 
-    public CiclosGUI(ValoresInicialesGUI interfaz5){
+    public CiclosGUI(IniciarSimulacionGUI interfaz5b){
         initComponents();
         this.setResizable(false);
-        this.interfaz5 = interfaz5;
-        interfaz5.setVisible(false);
+        this.interfaz5b = interfaz5b;
+        interfaz5b.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
     }
@@ -91,7 +91,7 @@ public class CiclosGUI extends javax.swing.JFrame {
         ncycles.setText("1");
         jPanel1.add(ncycles, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, 50));
 
-        jLabel3.setFont(new java.awt.Font("Adobe Devanagari", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Adobe Devanagari", 2, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Resultados: ");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, 30));
@@ -102,7 +102,7 @@ public class CiclosGUI extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 90, 30));
 
         next.setBackground(new java.awt.Color(102, 51, 0));
-        next.setFont(new java.awt.Font("Adobe Devanagari", 1, 18)); // NOI18N
+        next.setFont(new java.awt.Font("Adobe Devanagari", 0, 18)); // NOI18N
         next.setForeground(new java.awt.Color(255, 255, 255));
         next.setText("Continuar>>");
         next.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -166,7 +166,7 @@ public class CiclosGUI extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 900, 40));
 
-        jLabel7.setFont(new java.awt.Font("Adobe Devanagari", 0, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Adobe Devanagari", 2, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("El camino óptimo fue: ");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 30));
@@ -261,7 +261,7 @@ public class CiclosGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CiclosGUI(interfaz5).setVisible(true);
+                new CiclosGUI(interfaz5b).setVisible(true);
             }
         });
     }

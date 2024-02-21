@@ -4,11 +4,21 @@ package gui;
 public class ValoresInicialesGUI extends javax.swing.JFrame {
 
     public static EditCuidadesGUI interfaz4;
+    public static IniciarSimulacionGUI interfaz4back;
     
     public ValoresInicialesGUI(EditCuidadesGUI interfaz4) {
         initComponents();
         this.interfaz4 = interfaz4;
         interfaz4.setVisible(false);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+    }
+    
+    public ValoresInicialesGUI(IniciarSimulacionGUI interfaz4back) {
+        initComponents();
+        this.interfaz4back = interfaz4back;
+        interfaz4back.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -47,6 +57,7 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
         nextGUI = new javax.swing.JButton();
         cycleValue = new javax.swing.JTextField();
         antnum = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -165,7 +176,7 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
                 nextGUIActionPerformed(evt);
             }
         });
-        jPanel3.add(nextGUI, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 110, 30));
+        jPanel3.add(nextGUI, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 110, 30));
 
         cycleValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +192,18 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
         });
         jPanel3.add(antnum, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 71, -1));
 
+        jButton1.setBackground(new java.awt.Color(102, 51, 0));
+        jButton1.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("<<Volver");
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 110, 30));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 290));
 
@@ -190,7 +213,7 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextGUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextGUIActionPerformed
-        CiclosGUI interfaz5 = new CiclosGUI(this);
+        IniciarSimulacionGUI interfaz5a = new IniciarSimulacionGUI(this);
     }//GEN-LAST:event_nextGUIActionPerformed
 
     private void RoValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoValueActionPerformed
@@ -224,6 +247,10 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
     private void cycleValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cycleValueActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cycleValueActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       EditCuidadesGUI interfaz3back = new EditCuidadesGUI(this);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,6 +303,7 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
     private javax.swing.JLabel city3;
     private javax.swing.JTextField cycleValue;
     private javax.swing.JTextField endcity;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
