@@ -47,23 +47,24 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         Volver.setBackground(new java.awt.Color(102, 51, 0));
         Volver.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         Volver.setForeground(new java.awt.Color(255, 255, 255));
-        Volver.setText("Volver");
+        Volver.setText("<<Volver");
         Volver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VolverActionPerformed(evt);
             }
         });
-        jPanel1.add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 90, 30));
+        jPanel1.add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 100, 40));
 
         jLabel1.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Agregar Ciudades");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 220, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 220, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 300));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 300));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 300));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

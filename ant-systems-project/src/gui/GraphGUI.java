@@ -43,8 +43,9 @@ public class GraphGUI extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Graph Stream");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 6, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         crearGrafo.setBackground(new java.awt.Color(102, 51, 0));
         crearGrafo.setFont(new java.awt.Font("Adobe Devanagari", 0, 18)); // NOI18N
@@ -56,7 +57,7 @@ public class GraphGUI extends javax.swing.JFrame {
                 crearGrafoActionPerformed(evt);
             }
         });
-        getContentPane().add(crearGrafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 73, 210, 37));
+        getContentPane().add(crearGrafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 230, 60));
 
         jButton1.setBackground(new java.awt.Color(102, 51, 0));
         jButton1.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
@@ -68,7 +69,7 @@ public class GraphGUI extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 90, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 200));

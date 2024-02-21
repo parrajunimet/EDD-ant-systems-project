@@ -20,7 +20,17 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class EditorTxtGUI extends javax.swing.JFrame {
     
     public static WelcomeGUI interfaz1;
+    public static EditCuidadesGUI interfaz2back;
     public static Matriz grafo = new Matriz();
+    
+    public EditorTxtGUI(EditCuidadesGUI interfaz2back) {
+        initComponents();
+        this.setResizable(false);
+        this.interfaz2back = interfaz2back;
+        interfaz2back.setVisible(false);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+    }
     
     public EditorTxtGUI(WelcomeGUI interfaz1) {
         initComponents();
