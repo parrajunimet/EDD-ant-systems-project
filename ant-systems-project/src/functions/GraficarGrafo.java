@@ -34,19 +34,24 @@ public class GraficarGrafo {
         graph.setAutoCreate(true);
         graph.display();
         
+        System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
         graph.setAutoCreate(true);
         graph.setAttribute("ui.quality");
         graph.setAttribute("ui.antialias");
-        graph.setAttribute("ui.stylesheet", "node { size-mode: fit; shape:circle;fill-color: white;  stroke-mode: plain; padding: 4px, 3px; }edge { arrow-shape: line; size: 2px; fill-color: #444; }");
+        graph.setAttribute("ui.stylesheet", "node { text-alignment: center; text-size: 23px; text-background-mode: rounded-box; text-background-color: white; }");
+        graph.setAttribute("ui.stylesheet", "node { size-mode: fit; shape: circle; fill-color: white; stroke-mode: plain; padding: 6px, 6px; } edge { arrow-shape: arrow; size: 2px; fill-color: white; }");
+        graph.setAttribute("ui.stylesheet", "graph { fill-color: brown; }");
         
         for(int i =0; i<feromonas.getNumVerts();i++){
-            graph.addNode(feromonas.getVerts()[i].getNombre());
+            Node nuevo = graph.addNode(feromonas.getVerts()[i].getNombre());
+            nuevo.setAttribute("ui.label",feromonas.getVerts()[i].getNombre());
         }
         
         for(int j =0;j<feromonas.getNumVerts();j++){
             for(int k =0;k<feromonas.getNumVerts();k++){
                 if(feromonas.adyacente(feromonas.vertName(j), feromonas.vertName(k)))
-                    graph.addEdge("Feromonas: "+ Double.toString(feromonas.getMatAd()[j][k]) + "Distancia: "+ Double.toString(distancias.getMatAd()[j][k]),feromonas.getVerts()[j].getNombre(), feromonas.getVerts()[k].getNombre());
+                    Edge camino = graph.addEdge("Feromonas: "+ Double.toString(feromonas.getMatAd()[j][k]) + "Distancia: "+ Double.toString(distancias.getMatAd()[j][k]),feromonas.getVerts()[j].getNombre(), feromonas.getVerts()[k].getNombre());
+                    camino.setAttribute("ui.label",Double.toString(distancias.getMatAd()[j][k])); 
             }
         }
         
