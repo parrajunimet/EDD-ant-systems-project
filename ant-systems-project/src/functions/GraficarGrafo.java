@@ -55,9 +55,7 @@ public class GraficarGrafo {
             }
         }
         
-        for(Node node : graph){
-            node.setAttribute("ui.label", node.getId());
-        }
+        
         
         
         
