@@ -24,6 +24,10 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     
     public EditorTxtGUI(EditCuidadesGUI interfaz2back) {
         initComponents();
+        noinfo.setVisible(false);
+        guardado.setVisible(false);
+        next.setVisible(true);
+        
         this.setResizable(false);
         this.interfaz2back = interfaz2back;
         interfaz2back.setVisible(false);
@@ -33,6 +37,10 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     
     public EditorTxtGUI(WelcomeGUI interfaz1) {
         initComponents();
+        noinfo.setVisible(false);
+        guardado.setVisible(false);
+        next.setVisible(false);
+        
         this.setResizable(false);
         this.interfaz1 = interfaz1;
         interfaz1.setVisible(false);
@@ -67,6 +75,8 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         GuardarInfo = new javax.swing.JButton();
+        noinfo = new javax.swing.JLabel();
+        guardado = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -81,7 +91,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         Contenido.setRows(5);
         jScrollPane1.setViewportView(Contenido);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 105, 512, 199));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 105, 512, 180));
 
         next.setBackground(new java.awt.Color(102, 51, 0));
         next.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
@@ -98,19 +108,19 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         crear_txt.setBackground(new java.awt.Color(102, 51, 0));
         crear_txt.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         crear_txt.setForeground(new java.awt.Color(255, 255, 255));
-        crear_txt.setText("Crear nuevo");
+        crear_txt.setText("Cargar");
         crear_txt.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         crear_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 crear_txtActionPerformed(evt);
             }
         });
-        getContentPane().add(crear_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 132, 31));
+        getContentPane().add(crear_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 132, 31));
 
         jLabel2.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Crear nuevo archivo TXT:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, 20));
+        jLabel2.setText("Cargar ultimo archivo TXT:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, 20));
 
         abrir_archivo.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         abrir_archivo.setText("Abrir archivo");
@@ -148,7 +158,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Guardar informacion del TXT superior");
         jLabel5.setToolTipText("");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, -1, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, 20));
 
         GuardarInfo.setBackground(new java.awt.Color(102, 51, 0));
         GuardarInfo.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
@@ -160,7 +170,18 @@ public class EditorTxtGUI extends javax.swing.JFrame {
                 GuardarInfoActionPerformed(evt);
             }
         });
-        getContentPane().add(GuardarInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 190, 30));
+        getContentPane().add(GuardarInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 190, 30));
+
+        noinfo.setBackground(new java.awt.Color(255, 0, 0));
+        noinfo.setFont(new java.awt.Font("Adobe Devanagari", 1, 14)); // NOI18N
+        noinfo.setForeground(new java.awt.Color(255, 0, 0));
+        noinfo.setText("No hay informacion que guardar! ");
+        getContentPane().add(noinfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
+
+        guardado.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        guardado.setForeground(new java.awt.Color(51, 255, 0));
+        guardado.setText("Guardado exitosamente!!");
+        getContentPane().add(guardado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
         jLabel6.setText("jLabel6");
@@ -231,7 +252,10 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_routeActionPerformed
 
     private void GuardarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarInfoActionPerformed
-
+        if (Contenido.getText().length() == 0){
+            noinfo.setVisible(true);
+            guardado.setVisible(false);
+        }else{
             String txt = Contenido.getText();
             ArchivoTxt func = new ArchivoTxt();
 
@@ -241,10 +265,14 @@ public class EditorTxtGUI extends javax.swing.JFrame {
                 Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-            JOptionPane.showMessageDialog(null,"Guardado exitosamente!!");
+            noinfo.setVisible(false);
+            guardado.setVisible(true);
+            next.setVisible(true);
 
                 grafo.print();
-
+                
+        }
+            
        
     }//GEN-LAST:event_GuardarInfoActionPerformed
 
@@ -264,6 +292,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private javax.swing.JButton GuardarInfo;
     private javax.swing.JButton abrir_archivo;
     private javax.swing.JButton crear_txt;
+    private javax.swing.JLabel guardado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -273,6 +302,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton next;
+    private javax.swing.JLabel noinfo;
     private javax.swing.JTextField route;
     // End of variables declaration//GEN-END:variables
 }

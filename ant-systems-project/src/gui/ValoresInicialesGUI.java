@@ -1,14 +1,20 @@
 
 package gui;
 
+import edd.Matriz;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class ValoresInicialesGUI extends javax.swing.JFrame {
 
     public static EditCuidadesGUI interfaz4;
     public static IniciarSimulacionGUI interfaz4back;
+    private Matriz grafo; 
     
     public ValoresInicialesGUI(EditCuidadesGUI interfaz4) {
         initComponents();
         this.interfaz4 = interfaz4;
+        this.grafo = interfaz4.getGrafo();
         interfaz4.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -18,12 +24,18 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
     public ValoresInicialesGUI(IniciarSimulacionGUI interfaz4back) {
         initComponents();
         this.interfaz4back = interfaz4back;
+        this.grafo = interfaz4.getGrafo();
         interfaz4back.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
 
+    public Matriz getGrafo() {
+        return grafo;
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -249,7 +261,11 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cycleValueActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       EditCuidadesGUI interfaz3back = new EditCuidadesGUI(this);
+        try {
+            EditCuidadesGUI interfaz3back = new EditCuidadesGUI(this);
+        } catch (Exception ex) {
+            Logger.getLogger(ValoresInicialesGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

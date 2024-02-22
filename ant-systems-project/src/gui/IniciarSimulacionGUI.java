@@ -4,6 +4,8 @@
  */
 package gui;
 
+import edd.Matriz;
+
 /**
  *
  * @author User
@@ -11,6 +13,7 @@ package gui;
 public class IniciarSimulacionGUI extends javax.swing.JFrame {
     
     public static ValoresInicialesGUI interfaz5a;
+    private Matriz grafo; 
 
     /**
      * Creates new form IniciarSimulacionGUI
@@ -95,6 +98,10 @@ public class IniciarSimulacionGUI extends javax.swing.JFrame {
         ValoresInicialesGUI interfaz4back = new ValoresInicialesGUI(this);
     }//GEN-LAST:event_VolverActionPerformed
 
+    public Matriz getGrafo() {
+        return grafo;
+    }
+    
     /**
      * @param args the command line arguments
      */

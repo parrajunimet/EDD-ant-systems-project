@@ -59,6 +59,7 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         texto2 = new javax.swing.JLabel();
         notify = new javax.swing.JLabel();
         texto1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -76,7 +77,7 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
                 VolverActionPerformed(evt);
             }
         });
-        jPanel1.add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 100, 40));
+        jPanel1.add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 100, 40));
 
         jLabel1.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -89,15 +90,15 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
                 addcityActionPerformed(evt);
             }
         });
-        jPanel1.add(addcity, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
-        jPanel1.add(distancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 110, -1));
+        jPanel1.add(addcity, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
+        jPanel1.add(distancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 110, -1));
 
         ciudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ciudadActionPerformed(evt);
             }
         });
-        jPanel1.add(ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 90, -1));
+        jPanel1.add(ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 90, -1));
 
         info.setEditable(false);
         info.setColumns(20);
@@ -105,9 +106,13 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         info.setRows(5);
         jScrollPane1.setViewportView(info);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 220, 200));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 190, 200));
 
+        addpath.setBackground(new java.awt.Color(102, 51, 0));
+        addpath.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        addpath.setForeground(new java.awt.Color(255, 255, 255));
         addpath.setText("Agregar arista");
+        addpath.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         addpath.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addpathActionPerformed(evt);
@@ -115,7 +120,11 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         });
         jPanel1.add(addpath, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 120, -1));
 
+        terminar.setBackground(new java.awt.Color(102, 51, 0));
+        terminar.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        terminar.setForeground(new java.awt.Color(255, 255, 255));
         terminar.setText("Terminar");
+        terminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         terminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 terminarActionPerformed(evt);
@@ -123,16 +132,19 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         });
         jPanel1.add(terminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 90, -1));
 
-        texto2.setForeground(new java.awt.Color(0, 0, 0));
+        texto2.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        texto2.setForeground(new java.awt.Color(255, 255, 255));
         texto2.setText("Distancia entre ciudades");
-        jPanel1.add(texto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 140, -1));
-
-        notify.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(texto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 140, -1));
         jPanel1.add(notify, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 430, 20));
 
-        texto1.setForeground(new java.awt.Color(0, 0, 0));
+        texto1.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        texto1.setForeground(new java.awt.Color(255, 255, 255));
         texto1.setText("Ciudad Vertice");
-        jPanel1.add(texto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 90, -1));
+        jPanel1.add(texto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 90, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 320));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 340));
 
@@ -140,9 +152,15 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
-        EditCuidadesGUI interfazC = new EditCuidadesGUI(this);
+        try {
+            EditCuidadesGUI interfazC = new EditCuidadesGUI(this);
+        } catch (Exception ex) {
+            Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_VolverActionPerformed
-
+    
+    
+    
     private void addcityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addcityActionPerformed
         this.terminar.setVisible(false);
         this.notify.setVisible(true);
@@ -216,6 +234,11 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         this.distancia.setText("");
     }//GEN-LAST:event_addpathActionPerformed
 
+    public Matriz getGrafo() {
+        return grafo;
+    }
+
+    
     private void terminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terminarActionPerformed
         this.ciudad.setVisible(false);
         this.distancia.setVisible(false);
@@ -278,6 +301,7 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
     private javax.swing.JTextField distancia;
     private javax.swing.JTextArea info;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel notify;
