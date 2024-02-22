@@ -5,6 +5,8 @@
 package gui;
 
 import edd.Matriz;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,17 +16,28 @@ public class IniciarSimulacionGUI extends javax.swing.JFrame {
     
     public static ValoresInicialesGUI interfaz5a;
     private Matriz grafo; 
+    private double alpha, beta, gamma; 
+    private int antn, cycles; 
+    private String ciudadi, ciudadf; 
 
     /**
      * Creates new form IniciarSimulacionGUI
      */
-    public IniciarSimulacionGUI(ValoresInicialesGUI interfaz5a) {
+    public IniciarSimulacionGUI(ValoresInicialesGUI interfaz5a, String ciudadi, String ciudadf, int cycles, int antn, double a, double b, double p) {
         initComponents();
         this.setResizable(false);
         this.interfaz5a = interfaz5a;
+        this.grafo = interfaz5a.getGrafo();
         interfaz5a.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.ciudadi = ciudadi;
+        this.ciudadf = ciudadf;
+        this.cycles = cycles;
+        this.antn = antn;
+        this.alpha = a;
+        this.beta = b;
+        this.gamma = p;
         initComponents();
     }
 
@@ -58,7 +71,7 @@ public class IniciarSimulacionGUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Adobe Devanagari", 2, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("NOTA: al presionar el boton no podra cambiar los valores agregados");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 388, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 450, 70));
 
         IniciarSimulacion.setBackground(new java.awt.Color(102, 0, 0));
         IniciarSimulacion.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
@@ -85,13 +98,17 @@ public class IniciarSimulacionGUI extends javax.swing.JFrame {
         getContentPane().add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 180, 30));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, 0, 480, 240));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, 0, 520, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void IniciarSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSimulacionActionPerformed
-        CiclosGUI interfaz5b = new CiclosGUI(this);
+        try {
+            CiclosGUI interfaz5b = new CiclosGUI(this, this.ciudadi, this.ciudadf, this.cycles, this.antn, this.alpha, this.beta, this.gamma);
+        } catch (Exception ex) {
+            Logger.getLogger(IniciarSimulacionGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_IniciarSimulacionActionPerformed
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
@@ -105,37 +122,7 @@ public class IniciarSimulacionGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IniciarSimulacionGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IniciarSimulacionGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IniciarSimulacionGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IniciarSimulacionGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new IniciarSimulacionGUI(interfaz5a).setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton IniciarSimulacion;
