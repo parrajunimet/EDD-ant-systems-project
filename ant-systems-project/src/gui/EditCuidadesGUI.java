@@ -2,6 +2,8 @@
 package gui;
     
 import edd.Matriz;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EditCuidadesGUI extends javax.swing.JFrame {
 
@@ -9,8 +11,7 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
     public static AgregarCiudadesGUI interfazC;
     public static EliminarCiudades interfazD;
     public static ValoresInicialesGUI interfaz3back;
-    private Matriz grafo;
-    private Matriz grafoupdated; 
+    private Matriz grafo; 
     
     public EditCuidadesGUI(ValoresInicialesGUI interfaz3back) {
         initComponents();
@@ -37,21 +38,25 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
     }
-    public EditCuidadesGUI(EditorTxtGUI interfaz2) {
+    public EditCuidadesGUI(EditorTxtGUI interfaz2) throws Exception {
         initComponents();
+        this.grafo = interfaz2.getGrafo(); 
         this.setResizable(false);
         this.interfaz2 = interfaz2;
         interfaz2.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.showCities();
     }
-    
+    /*
     public EditCuidadesGUI(Matriz grafo) {
         initComponents();
         this.grafo = grafo;
         this.grafoupdated = grafoupdated;
     }
-
+    /*
+    
+    */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,7 +89,9 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         jLabel1.setText("Ciudades");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, 20));
 
+        ciudades.setEditable(false);
         ciudades.setColumns(20);
+        ciudades.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         ciudades.setRows(5);
         jScrollPane1.setViewportView(ciudades);
 
@@ -147,7 +154,16 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    public void showCities() throws Exception {
+       this.ciudades.setText(this.grafo.citiesAndPaths());
+    } 
 
+    public Matriz getGrafo() {
+        return grafo;
+    }
+    
+    
     private void ContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContinueActionPerformed
         ValoresInicialesGUI interfaz4 = new ValoresInicialesGUI(this);
     }//GEN-LAST:event_ContinueActionPerformed
@@ -157,7 +173,11 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarciudadActionPerformed
 
     private void eliminarciudadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarciudadesActionPerformed
-        EliminarCiudades interfazA = new EliminarCiudades(this);
+        try {
+            EliminarCiudades interfazA = new EliminarCiudades(this);
+        } catch (Exception ex) {
+            Logger.getLogger(EditCuidadesGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_eliminarciudadesActionPerformed
 
     private void gobackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gobackActionPerformed
@@ -195,7 +215,11 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditCuidadesGUI(interfaz2).setVisible(true);
+                try {
+                    new EditCuidadesGUI(interfaz2).setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(EditCuidadesGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

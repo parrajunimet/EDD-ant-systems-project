@@ -6,35 +6,40 @@ package edd;
 
 //import gui.EliminarCiudad;
 
+import gui.AgregarCiudadesGUI;
+import gui.EliminarCiudades;
+
+
 /**
  *
  * @author Sofia
  */
 public class Probando {
-   
+   /*
     public static void main (String[] args) throws Exception{
          Matriz prueba = new Matriz(); 
     
-        String[] array = {"a", "b", "c", "d"};
-        for (int i = 0; i < array.length; i++) {
-               prueba.nuevoVertice(array[i]);
+        for (int i = 1; i < 8; i++) {
+               prueba.nuevoVertice(String.valueOf(i));
             }
 
-            prueba.nuevaDistancia("a","b", 1);
-            prueba.nuevaDistancia("b","c", 2);
-            prueba.nuevaDistancia("c","d", 2);
-            
+            prueba.nuevaDistancia("1","2", 5);
+            prueba.nuevaDistancia("1","3",3.1);
+            prueba.nuevaDistancia("1","6", 5.2);
+            prueba.nuevaDistancia("3","6", 3.2);
+            prueba.nuevaDistancia("5","6", 4.7);
+            prueba.nuevaDistancia("3","2", 4.9);
+            prueba.nuevaDistancia("2","7",5.2);
+            prueba.nuevaDistancia("3","7",3);
+            prueba.nuevaDistancia("3","5",6);
+            prueba.nuevaDistancia("4","7",4.8);
+            prueba.nuevaDistancia("5","4",5.5);
             prueba.print();
             prueba.countDFS();
-           
-            System.out.println(prueba.vertName(0) + " "+prueba.isBridge(0));
-            System.out.println(prueba.vertName(1) + " "+ prueba.isBridge(1));
-            System.out.println(prueba.vertName(2) + " " +prueba.isBridge(2));
-            System.out.println(prueba.vertName(3) + " " +prueba.isBridge(3));
             String [] x = prueba.nonBridgeds(); 
             
-            //EliminarCiudad h = new EliminarCiudad(prueba); 
-            //h.start();
-
+            //EliminarCiudades m = new EliminarCiudades(prueba);             
+           AgregarCiudadesGUI m = new AgregarCiudadesGUI(prueba); 
     }
+*/
 }
