@@ -227,7 +227,7 @@ public class Matriz {
         return adyacentes;
     }
     
-    private Vertice[] getVerts() {
+    public Vertice[] getVerts() {
         return verts;
     }
 
