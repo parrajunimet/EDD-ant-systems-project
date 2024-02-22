@@ -3,7 +3,10 @@ package functions;
 
 import edd.Matriz;
 import edd.Vertice;
+import static gui.FinalGUI.grafo;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -66,5 +69,25 @@ public class ArchivoTxt {
         
     }
     
-    
+    public void guardar_txt(String grafodistancias_string, String grafoferomonas_string) {
+        BufferedWriter writer = null;
+        BufferedWriter writer2 = null;
+        
+        try{
+            writer = new BufferedWriter( new FileWriter("grafodistancias.txt"));
+            writer2 = new BufferedWriter( new FileWriter("grafoferomonas.txt"));
+            writer.write( grafodistancias_string);
+            writer2.write( grafoferomonas_string);
+            }catch ( IOException e){
+            }finally {
+                try{
+                    if ( writer != null && writer2 != null){
+                        writer.close();
+                        writer2.close();
+                    }
+                }catch ( IOException e){
+                }
+        }
+    }
+        
 }

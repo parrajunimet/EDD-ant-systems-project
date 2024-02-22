@@ -2,9 +2,12 @@ package gui;
 
 import edd.Matriz;
 import functions.ArchivoTxt;
+import static gui.EditorTxtGUI.grafo;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FinalGUI extends javax.swing.JFrame {
 
@@ -77,29 +80,15 @@ public class FinalGUI extends javax.swing.JFrame {
         
         String grafodistancias_string = grafo.grafoDistanciaString();
         String grafoferomonas_string = grafo.grafoFeromonaString();
-        BufferedWriter writer = null;
-        BufferedWriter writer2 = null;
+        ArchivoTxt func = new ArchivoTxt();
         
-        try{
-            writer = new BufferedWriter( new FileWriter("grafodistancias.txt"));
-            writer2 = new BufferedWriter( new FileWriter("grafoferomonas.txt"));
-            writer.write( grafodistancias_string);
-            writer2.write( grafoferomonas_string);
-            }catch ( IOException e){
-            }finally {
-                try{
-                    if ( writer != null && writer2 != null){
-                        writer.close();
-                        writer2.close();
-                    }
-                }catch ( IOException e)
-            {        
-    }
-    System.exit(0);
-                
-}
-        
-        
+        try {
+                func.guardar_txt(grafodistancias_string, grafoferomonas_string);
+            } catch (Exception ex) {
+                Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        System.exit(0);
+          
     }//GEN-LAST:event_SaveActionPerformed
 
     /**
