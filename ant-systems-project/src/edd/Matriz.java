@@ -278,7 +278,6 @@ public class Matriz {
     public boolean[] deepFirstSearch(int numVert, boolean[] visited) throws Exception {
         visited[numVert] = true;
         String va = vertName(numVert);
-        System.out.print(va + " ");
         String[] adyacentes = verticesAd(va);
         for (String x: adyacentes){
             if (!visited[numVertice(x)]) {
@@ -292,7 +291,6 @@ public class Matriz {
     public int countDFS() throws Exception {
         boolean [] visited = new boolean[getNumVerts()];
         visited = deepFirstSearch(0, visited); 
-        System.out.println("\n");
         int count = 0; 
         for (boolean t: visited) {
             if (t) {
@@ -324,21 +322,45 @@ public class Matriz {
     public String[] nonBridgeds() throws Exception{
         int counter = 0; 
         for (int i = 0; i < getNumVerts(); i++) {
-            if (isBridge(i)) {
+            if (!isBridge(i)) {
                 counter++; 
             }
         }
         String[] deletable = new String[counter]; 
-        counter = 0; 
+        int h = 0; 
         for (int i = 0; i < getNumVerts(); i++) {
             if (!isBridge(i)) {
-               deletable[counter]= vertName(i); 
-               counter++; 
+               deletable[h]= vertName(i); 
+               h++; 
             }
         }
         return deletable; 
     }
     
+    public String citiesAndPaths() throws Exception{
+        String x = ""; 
+        x += "\n\nCiudad      Aristas de conexion\n"; 
+        String va, vb; 
+        for (int i = 0; i < getNumVerts(); i++) {
+            va = vertName(i);
+            x += va + "\n"; 
+             for (int m = 0; m < getNumVerts(); m++) {
+                 vb = vertName(m);
+                 if (adyacente(va, vb)){
+                     x += "                " + vb + "-  " + getMatAd()[i][m].getDistancia() + "m\n";
+                 }
+             }x += "\n";
+             
+        }return x;  
+    }
     
+    public boolean isVert(String x) {
+        for (int i =0; i < getNumVerts(); i++) {
+               if (getVerts()[i].getNombre().equalsIgnoreCase(x)) {
+                   return true; 
+                }
+            } 
+        return false; 
+    }
     
 }

@@ -18,7 +18,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 public class EditorTxtGUI extends javax.swing.JFrame {
-    
     public static WelcomeGUI interfaz1;
     public static EditCuidadesGUI interfaz2back;
     public static Matriz grafo = new Matriz();
@@ -41,6 +40,11 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    public static Matriz getGrafo() {
+        return grafo;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -166,7 +170,11 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
-        EditCuidadesGUI interfaz3 = new EditCuidadesGUI(this);
+        try {
+            EditCuidadesGUI interfaz3 = new EditCuidadesGUI(this);
+        } catch (Exception ex) {
+            Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_nextActionPerformed
 
@@ -236,6 +244,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Guardado exitosamente!!");
 
                 grafo.print();
+
        
     }//GEN-LAST:event_GuardarInfoActionPerformed
 

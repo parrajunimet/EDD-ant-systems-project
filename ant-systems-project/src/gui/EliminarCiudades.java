@@ -6,7 +6,9 @@ package gui;
 
 import edd.Matriz;
 import static gui.AgregarCiudadesGUI.interfazB;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Sofia
@@ -16,26 +18,30 @@ public class EliminarCiudades extends javax.swing.JFrame {
     private String[] deletable ; 
     public static EditCuidadesGUI interfazA;
     
+    
     /**
      * Creates new form EliminarCiudades
      */
-    public EliminarCiudades(EditCuidadesGUI interfazA) {
+    public EliminarCiudades(EditCuidadesGUI interfazA) throws Exception {
         initComponents();
         this.interfazA= interfazA;
         interfazA.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.grafo = interfazA.getGrafo(); 
+        this.start();
     }
-            
     
-    public EliminarCiudades(Matriz grafo) {
+    public EliminarCiudades(Matriz x) throws Exception {
         initComponents();
-        this.grafo = grafo;
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.grafo =x; 
+        this.start();
     }
-    
-    
-
+          
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,7 +52,6 @@ public class EliminarCiudades extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        notify = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ciudades = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
@@ -55,20 +60,21 @@ public class EliminarCiudades extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         Volver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(notify, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 250, 40));
 
         ciudades.setEditable(false);
         ciudades.setColumns(20);
+        ciudades.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
         ciudades.setRows(5);
         jScrollPane1.setViewportView(ciudades);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 80, 210));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 60, 210));
 
         jLabel2.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -97,7 +103,7 @@ public class EliminarCiudades extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Adobe Devanagari", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Posibles ciudades a eliminar:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
         Volver.setBackground(new java.awt.Color(102, 51, 0));
         Volver.setFont(new java.awt.Font("Adobe Devanagari", 0, 12)); // NOI18N
@@ -114,6 +120,11 @@ public class EliminarCiudades extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 380, 340));
 
+        jLabel4.setFont(new java.awt.Font("Adobe Devanagari", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Posibles ciudades a eliminar:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 290));
 
         pack();
@@ -125,19 +136,31 @@ public class EliminarCiudades extends javax.swing.JFrame {
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
        String x = this.input.getText();
-       if (x.isBlank()) {
-           this.notify.setText("Por favor, ingrese una ciudad");
-       } else if (this.deletable.length == 0){
-           this.notify.setText("No puede borrar ciudades, se encuentra en el limite minimo de ciudades");
+       boolean found = false; 
+       if (this.deletable.length == 0) {
+           input.setText("");
+           JOptionPane.showMessageDialog(null,"No puede borrar ciudades");
+       } else if (x.isBlank()){
+           JOptionPane.showMessageDialog(null, "Por favor ingrese una ciudad");
        } else {
            for (String c: this.deletable) {
                x.replace(" ", ""); 
-               if (c == x) {
+               if (c.equals(x)) {
+                   found = true; 
+                }
+            } 
+            if (found) {
                    this.grafo.eliminarVertice(x);
-               } else {
-                   this.notify.setText("Por favor entre una ciudad valida.");
+                   try { 
+                       start();
+                   } catch (Exception ex) {
+                       Logger.getLogger(EliminarCiudades.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+            } else {
+                   input.setText("");
+                   JOptionPane.showMessageDialog(null, "Por favor entre una ciudad valida.");
+                   x = "";
                }
-           }
        }
     }//GEN-LAST:event_eliminarActionPerformed
 
@@ -174,7 +197,11 @@ public class EliminarCiudades extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AgregarCiudadesGUI(interfazA).setVisible(true);
+                try {
+                    new AgregarCiudadesGUI(interfazA).setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(EliminarCiudades.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -184,22 +211,23 @@ public class EliminarCiudades extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public void start () throws Exception {
+        input.setText("");
+        this.ciudades.setText("");
+        System.out.println("Numero de ciudades: " + this.grafo.getNumVerts());
         if (this.grafo.getNumVerts() <= 4) {
-            this.notify.setText("Solo puede eliminar ciudades si hay más de cuatro ciudades existentes");
+            JOptionPane.showMessageDialog(null,"Solo puede eliminar ciudades si hay más de cuatro ciudades existentes");
             this.deletable =  new String[0]; 
         } else {
             this.deletable = this.grafo.nonBridgeds();
             String show = ""; 
             int counter = 1; 
             if (this.deletable.length == 0) {
-                show = "Ninguna ciudad puede ser eliminada";
+                JOptionPane.showMessageDialog(null, "Ninguna ciudad puede ser eliminada.");
             }else {
                 for (String c: this.deletable) {
                 show += counter + "-  " +c + "\n"; 
                 counter++; 
             }
-            this.setVisible(true);
-            this.setLocationRelativeTo(null);
             this.ciudades.setText(show);
             }
         }
@@ -214,8 +242,8 @@ public class EliminarCiudades extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel notify;
     // End of variables declaration//GEN-END:variables
 }
