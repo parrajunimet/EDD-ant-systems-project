@@ -41,7 +41,11 @@ public class EliminarCiudades extends javax.swing.JFrame {
         this.grafo =x; 
         this.start();
     }
-          
+
+    public Matriz getGrafo() {
+        return grafo;
+    }
+         
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -144,7 +148,7 @@ public class EliminarCiudades extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, "Por favor ingrese una ciudad");
        } else {
            for (String c: this.deletable) {
-               x.replace(" ", ""); 
+               x = x.replace(" ", ""); 
                if (c.equals(x)) {
                    found = true; 
                 }
@@ -159,13 +163,16 @@ public class EliminarCiudades extends javax.swing.JFrame {
             } else {
                    input.setText("");
                    JOptionPane.showMessageDialog(null, "Por favor entre una ciudad valida.");
-                   x = "";
                }
        }
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
-        EditCuidadesGUI interfazD= new EditCuidadesGUI(this);
+        try {
+            EditCuidadesGUI interfazD= new EditCuidadesGUI(this);
+        } catch (Exception ex) {
+            Logger.getLogger(EliminarCiudades.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Matriz grafoUpdated = grafo;
         
     }//GEN-LAST:event_VolverActionPerformed

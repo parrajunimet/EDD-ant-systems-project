@@ -13,30 +13,36 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
     public static ValoresInicialesGUI interfaz3back;
     private Matriz grafo; 
     
-    public EditCuidadesGUI(ValoresInicialesGUI interfaz3back) {
+    public EditCuidadesGUI(ValoresInicialesGUI interfaz3back) throws Exception {
         initComponents();
         this.interfaz3back = interfaz3back;
+        this.grafo = interfaz3back.getGrafo();
         this.setResizable(false);
         interfaz3back.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.showCities();
     }
-    public EditCuidadesGUI(EliminarCiudades interfazD) {
+    public EditCuidadesGUI(EliminarCiudades interfazD) throws Exception {
         initComponents();
+        this.grafo = interfazD.getGrafo(); 
         this.interfazD = interfazD;
         this.setResizable(false);
         interfazD.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.showCities();
     }
     
-    public EditCuidadesGUI(AgregarCiudadesGUI interfazC) {
+    public EditCuidadesGUI(AgregarCiudadesGUI interfazC) throws Exception {
         initComponents();
         this.setResizable(false);
+        this.grafo = interfazC.getGrafo(); 
         this.interfazC = interfazC;
         interfazC.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.showCities();
     }
     public EditCuidadesGUI(EditorTxtGUI interfaz2) throws Exception {
         initComponents();
@@ -169,7 +175,11 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ContinueActionPerformed
 
     private void agregarciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarciudadActionPerformed
-        AgregarCiudadesGUI interfazB = new AgregarCiudadesGUI(this);
+        try {
+            AgregarCiudadesGUI interfazB = new AgregarCiudadesGUI(this);
+        } catch (Exception ex) {
+            Logger.getLogger(EditCuidadesGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_agregarciudadActionPerformed
 
     private void eliminarciudadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarciudadesActionPerformed
