@@ -10,8 +10,8 @@ public class CiclosGUI extends javax.swing.JFrame {
     private Matriz grafos; 
     private String ciudadi; 
     private String ciudadf; 
-    private int cycles, antn, a, b, counter;
-    private double p; 
+    private int cycles, antn, counter;
+    private double p, a, b;
     private Simulacion simulacion; 
     private boolean done; 
     
@@ -20,17 +20,14 @@ public class CiclosGUI extends javax.swing.JFrame {
      * Creates new form CiclosGUI
      */
     ///Preguntar 
-    public CiclosGUI(IniciarSimulacionGUI interfaz5b){
+    public CiclosGUI(IniciarSimulacionGUI interfaz5b, String ciudadi, String ciudadf, int cycles, int antn, double a, double b, double p) throws Exception {
         initComponents();
         this.setResizable(false);
         this.interfaz5b = interfaz5b;
         interfaz5b.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-    }
-    public CiclosGUI( Matriz grafos, String ciudadi, String ciudadf, int cycles, int antn, int a, int b, double p) throws Exception {
-        initComponents();
-        this.grafos = grafos; 
+        this.grafos = interfaz5b.getGrafo();
         this.ciudadi = ciudadi;
         this.ciudadf = ciudadf;
         this.cycles = cycles;
@@ -38,12 +35,11 @@ public class CiclosGUI extends javax.swing.JFrame {
         this.a = a;
         this.b = b;
         this.p = p;
-        this.setVisible(true);
-        this.setLocationRelativeTo(null);this.
-        counter = 0;
+        this.counter = 0;
         this.done = false; 
         this.start(); 
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -199,10 +195,10 @@ public class CiclosGUI extends javax.swing.JFrame {
                     Logger.getLogger(CiclosGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }   
             }else {
-                
+                GraphGUI interfaz6 = new GraphGUI(this);
             }
         }
-        GraphGUI interfaz6 = new GraphGUI(this);
+        
         
     }//GEN-LAST:event_nextActionPerformed
 
@@ -234,38 +230,7 @@ public class CiclosGUI extends javax.swing.JFrame {
     public Matriz getgrafos(){
         return this.grafos;
     }
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditCuidadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditCuidadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditCuidadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditCuidadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CiclosGUI(interfaz5b).setVisible(true);
-            }
-        });
-    }
-    
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea caminos;

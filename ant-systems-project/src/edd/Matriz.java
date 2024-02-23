@@ -136,7 +136,7 @@ public class Matriz {
         return adyacentes;
     }
     
-    public void print(){
+    public void print(int s){
         System.out.print("|");
         
         for (int y=0; y < verts.length; y++) {
@@ -152,7 +152,11 @@ public class Matriz {
             }
             System.out.print("|");
             for (int y=0; y < matAd[x].length; y++) {
-              System.out.print (matAd[x][y].getDistancia());
+                if (s == 0) {
+                    System.out.print (matAd[x][y].getDistancia());
+                }else {
+                    System.out.print (matAd[x][y].getFeromona());
+                }
               if (y!=matAd[x].length-1) System.out.print("\t");
             }
         System.out.println("|");

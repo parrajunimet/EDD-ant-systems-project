@@ -269,7 +269,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
             guardado.setVisible(true);
             next.setVisible(true);
 
-                grafo.print();
+            grafo.print(0);
                 
         }
             
