@@ -351,7 +351,7 @@ public class Matriz {
              for (int m = 0; m < getNumVerts(); m++) {
                  vb = vertName(m);
                  if (adyacente(va, vb)){
-                     x += "                " + vb + "-  " + getMatAd()[i][m].getDistancia() + "m\n";
+                     x += "                    " + vb + "-  " + getMatAd()[i][m].getDistancia() + "m\n";
                  }
              }x += "\n";
              

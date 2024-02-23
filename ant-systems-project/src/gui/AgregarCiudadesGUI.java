@@ -91,14 +91,14 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
             }
         });
         jPanel1.add(addcity, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
-        jPanel1.add(distancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 110, -1));
+        jPanel1.add(distancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 110, -1));
 
         ciudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ciudadActionPerformed(evt);
             }
         });
-        jPanel1.add(ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 90, -1));
+        jPanel1.add(ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 100, -1));
 
         info.setEditable(false);
         info.setColumns(20);
@@ -106,7 +106,7 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         info.setRows(5);
         jScrollPane1.setViewportView(info);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 190, 200));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 210, 200));
 
         addpath.setBackground(new java.awt.Color(102, 51, 0));
         addpath.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
@@ -135,16 +135,16 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         texto2.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         texto2.setForeground(new java.awt.Color(255, 255, 255));
         texto2.setText("Distancia entre ciudades");
-        jPanel1.add(texto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 140, -1));
+        jPanel1.add(texto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 170, -1));
         jPanel1.add(notify, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 430, 20));
 
         texto1.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         texto1.setForeground(new java.awt.Color(255, 255, 255));
         texto1.setText("Ciudad Vertice");
-        jPanel1.add(texto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 90, -1));
+        jPanel1.add(texto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 150, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 320));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 350));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 340));
 
@@ -160,28 +160,7 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_VolverActionPerformed
     
     
-    
-    private void addcityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addcityActionPerformed
-        this.terminar.setVisible(false);
-        this.notify.setVisible(true);
-        if (this.grafo.getNumVerts() == 20) {
-            this.notify.setText("No se pueden agregar mas ciudades, se ha alcanzado el limite");
-        }else {
-            this.texto1.setVisible(true);
-            this.texto2.setVisible(true);
-            this.addcity.setVisible(false);
-            this.grafo.nuevoVertice(String.valueOf(grafo.getNumVerts()+1));
-            this.ciudad.setVisible(true);
-            this.distancia.setVisible(true);
-            this.addpath.setVisible(true);
-            try { 
-                uptadeScreen();
-            } catch (Exception ex) {
-                Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(Level.SEVERE, null, ex);
-            } 
-        }
-    }//GEN-LAST:event_addcityActionPerformed
-    private void uptadeScreen() throws Exception{
+        private void uptadeScreen() throws Exception{
         String x = "Ciudades\n"; 
         for (int i = 0; i < this.grafo.getNumVerts(); i++) {
             x += this.grafo.vertName(i) + " - ";
@@ -251,7 +230,30 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         this.terminar.setVisible(false);
         this.ciudad.setText("");
         this.distancia.setText("");
+        this.Volver.setVisible(true);
     }//GEN-LAST:event_terminarActionPerformed
+
+    private void addcityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addcityActionPerformed
+        this.Volver.setVisible(false);
+        this.terminar.setVisible(false);
+        this.notify.setVisible(true);
+        if (this.grafo.getNumVerts() == 20) {
+            this.notify.setText("No se pueden agregar mas ciudades, se ha alcanzado el limite");
+        }else {
+            this.texto1.setVisible(true);
+            this.texto2.setVisible(true);
+            this.addcity.setVisible(false);
+            this.grafo.nuevoVertice(String.valueOf(grafo.getNumVerts()+1));
+            this.ciudad.setVisible(true);
+            this.distancia.setVisible(true);
+            this.addpath.setVisible(true);
+            try {
+                uptadeScreen();
+            } catch (Exception ex) {
+                Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_addcityActionPerformed
 
     /**
      * @param args the command line arguments
