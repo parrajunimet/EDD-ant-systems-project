@@ -7,6 +7,7 @@ package simulation;
 import edd.Matriz;
 import edd.ListaDoble;
 import edd.NodoDoble;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -60,7 +61,7 @@ public class Simulacion {
             if (i != this.optimepath.length() -1 ) result+=  this.optimepath.charAt(i) + " --> "; 
             else result+=  this.optimepath.charAt(i); 
         }
-        result += "\nDistancia: " + this.optimedistance + "m"; 
+        result += "\nDistancia: " + String.format("%.2f", this.optimedistance).replace(',', '.')  + "m"; 
         //System.out.println(result);
         return result; 
     }
@@ -78,7 +79,7 @@ public class Simulacion {
             //System.out.println("\n\n");
         } 
         feromonesUptade();
-        double mindistance; 
+        double mindistance = -1; 
         String results1 = "", resultsc = "", resultsd = ""; 
         NodoDoble pointer;
         int x, y, index=0; 
@@ -93,38 +94,50 @@ public class Simulacion {
                 pointer = pointer.getNext(); 
             }
         }
-        mindistance = distances[0];
-        for (int i = 1; i < distances.length; i++) {
-            if (distances[i] < mindistance) {
-               mindistance = distances[i]; 
-               index = i; 
-            }
-        }
-        
-        if (this.optimepath == "") {
-            this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ""); 
-            this.optimedistance =  mindistance; 
-        } else {
-            int optdistance = 0; 
-            for (int i = 0; i < this.optimepath.length()-1; i++) {
-                x=grafos.numVertice(String.valueOf(this.optimepath.charAt(i)));
-                y=grafos.numVertice(String.valueOf(this.optimepath.charAt(i+1)));
-                optdistance += grafos.getMatAd()[x][y].getDistancia(); 
+       
+        for (int i = 0; i < distances.length; i++){
+            if (mindistance == -1) {
+                if (ants[i].getState() == 2) {
+                    mindistance = distances[i]; 
+                    index = i; 
                 }
-            if (optdistance > mindistance) {
-                this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ""); 
-                this.optimedistance = mindistance; 
             }
-            
+            if (ants[i].getState() == 2) {
+                if (distances[i] < mindistance) {
+                   mindistance = distances[i]; 
+                   index = i; 
+                }
+            } 
         }
         
+        if (mindistance == -1) {
+            results1 += "No hay camino mas corto, puesto que ninguna hormiga llego a la ciudad destino, todas quedaron estancadas. ";
+        } else {
+                   if (this.optimepath == "") {
+                    this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ""); 
+                    this.optimedistance =  mindistance; 
+                } else {
+                    int optdistance = 0; 
+                    for (int i = 0; i < this.optimepath.length()-1; i++) {
+                        x=grafos.numVertice(String.valueOf(this.optimepath.charAt(i)));
+                        y=grafos.numVertice(String.valueOf(this.optimepath.charAt(i+1)));
+                        optdistance += grafos.getMatAd()[x][y].getDistancia(); 
+                        }
+                    if (optdistance > mindistance) {
+                        this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ""); 
+                        this.optimedistance = mindistance; 
+                    }
+            
+                } 
+        }
+     
         //System.out.println("\n\n");
         //String results= "El camino mas corto fue: \n";
-        results1 += ants[index].getCiudades().printString() +"\nDistancia: " + mindistance +"m\n";
+        results1 += ants[index].getCiudades().printString() +"\nDistancia: " + String.format("%.2f", mindistance).replace(',', '.') +"m\n";
         //results += results1; 
         for (int i = 0; i < ants.length; i++) {
             resultsc+= ants[i].getCiudades().printString()+ "\n\n"; 
-            resultsd += distances[i] + " m\n\n";
+            resultsd += String.format("%.2f",distances[i] ).replace(',', '.') + " m\n\n";
             //results += "Hormiga " + i+1 + "           " + ants[i].getCiudades().printString() + "           " + distances[i] + " m\n"; 
             
         }
