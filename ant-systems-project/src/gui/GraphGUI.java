@@ -1,20 +1,19 @@
 package gui;
-
-
-//import functions.GraficarGrafo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import functions.GraficarGrafo;
 
 public class GraphGUI extends javax.swing.JFrame {
     
-    public static CiclosGUI interfaz6;
+    public CiclosGUI simulado;
 
     /**
      * Creates new form GraphGUI
+     * @param interfaz6
      */
     public GraphGUI(CiclosGUI interfaz6) {
         initComponents();
-        this.interfaz6 = interfaz6;
+        simulado = interfaz6;
         interfaz6.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -80,8 +79,8 @@ public class GraphGUI extends javax.swing.JFrame {
     private void crearGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearGrafoActionPerformed
         try {
             // TODO add your handling code here:
-            //GraficarGrafo graph = new GraficarGrafo();
-            //graph.mostrar(simulado.getgrafos().getMatrizFeromonas(),simulado.getgrafos().getMatrizDistancias());
+            GraficarGrafo graph = new GraficarGrafo();
+            graph.mostrar(simulado.getgrafos());
         } catch (Exception ex) {
             Logger.getLogger(GraphGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -118,12 +117,7 @@ public class GraphGUI extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GraphGUI(interfaz6).setVisible(true);
-            }
-        });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
