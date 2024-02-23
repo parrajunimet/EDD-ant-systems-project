@@ -61,7 +61,7 @@ public class Simulacion {
             if (i != this.optimepath.length() -1 ) result+=  this.optimepath.charAt(i) + " --> "; 
             else result+=  this.optimepath.charAt(i); 
         }
-        result += "\nDistancia: " +(new DecimalFormat("####.####").format(this.optimedistance))  + "m"; 
+        result += "\nDistancia: " + String.format("%.2f", this.optimedistance).replace(',', '.')  + "m"; 
         //System.out.println(result);
         return result; 
     }
@@ -133,11 +133,11 @@ public class Simulacion {
      
         //System.out.println("\n\n");
         //String results= "El camino mas corto fue: \n";
-        results1 += ants[index].getCiudades().printString() +"\nDistancia: " +(new DecimalFormat("####.####").format(mindistance)) +"m\n";
+        results1 += ants[index].getCiudades().printString() +"\nDistancia: " + String.format("%.2f", mindistance).replace(',', '.') +"m\n";
         //results += results1; 
         for (int i = 0; i < ants.length; i++) {
             resultsc+= ants[i].getCiudades().printString()+ "\n\n"; 
-            resultsd += (new DecimalFormat("####.####").format(distances[i]) ) + " m\n\n";
+            resultsd += String.format("%.2f",distances[i] ).replace(',', '.') + " m\n\n";
             //results += "Hormiga " + i+1 + "           " + ants[i].getCiudades().printString() + "           " + distances[i] + " m\n"; 
             
         }
