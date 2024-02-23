@@ -202,7 +202,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private void crear_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_txtActionPerformed
         ArchivoTxt func = new ArchivoTxt();
         try {
-                func.crear_txt();
+                func.leer_txt();
         } catch (Exception ex) {
             Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
         }

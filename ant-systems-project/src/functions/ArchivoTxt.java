@@ -4,30 +4,46 @@ package functions;
 import edd.Matriz;
 import edd.Vertice;
 import static gui.FinalGUI.grafo;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 
 public class ArchivoTxt {
     
     File archivo;
     
-    public void crear_txt() {
-        archivo = new File ("archivo.txt");
+    public String leer_txt() {
+        String line;
+        String expresion_txt = "";
+        String path = "test\\documentos.txt";
+        File file = new File(path);
         try{
-            if(archivo.createNewFile()) {
-                System.out.println("Archivo creado con exito!");
-            }
-            else{
-                System.out.println("Error al crear el archivo.");
-            }
-        }catch(IOException exepcion){
-            exepcion.printStackTrace(System.out);
+            if(!file.exists()){
+               file.createNewFile();
+            }else{
+                FileReader fr = new FileReader(file);
+                BufferedReader br = new BufferedReader(fr);
+                while((line = br.readLine())!= null){
+                    if(!line.isEmpty()){
+                        expresion_txt += line;
+                    }
+                }
+                
+                br.close();
+                return expresion_txt;
+            }  
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al leer la expresion");
         }
+        return expresion_txt;
     }
+    
     
     public void eliminar_txt() {
         try{
@@ -40,6 +56,35 @@ public class ArchivoTxt {
         }catch(IOException exepcion){
             exepcion.printStackTrace(System.out);
         }
+    }
+    
+    
+    public void cargar_txt_feromonas(String txt, Matriz grafo) throws Exception{
+        String replaceCiudad = txt.replaceFirst("ciudad", "Ω");
+        String replaceArista = replaceCiudad.replaceFirst("aristas", "Ω");
+        String[] lines = replaceArista.split("Ω");
+        
+        String ciudades_txt = lines[1];
+        String[] ciudades = ciudades_txt.split("\n");
+        
+        for (int i = 1; i < ciudades.length; i++) {
+            String salida = ciudades[i].replaceAll("\r", "");
+            grafo.nuevoVertice(salida);
+        }
+
+        String aristas_txt = lines[2];
+        String[] aristas = aristas_txt.split("\n");
+        
+        for (int i = 1; i < aristas.length; i++) {
+            String[] partes = aristas[i].split(",");
+            String salida1 = partes[0].replaceAll("\r", "");
+            String salida2 = partes[1].replaceAll("\r", "");
+            String salida3 = partes[2].replaceAll("\r", "");
+            String salida4 = partes[3].replaceAll("\r", "");
+            //Necesito una funcion que cree un objeto de la clase Arista
+            //grafo.nuevaDistancia(salida1, salida2, Double.parseDouble(salida3), Double.parseDouble(salida4));
+        }
+        
     }
     
     
@@ -69,25 +114,13 @@ public class ArchivoTxt {
         
     }
     
-    public void guardar_txt(String grafodistancias_string, String grafoferomonas_string) {
-        BufferedWriter writer = null;
-        BufferedWriter writer2 = null;
-        
+    public void guardar_txt(String grafoferomonas_string) {
         try{
-            writer = new BufferedWriter( new FileWriter("grafodistancias.txt"));
-            writer2 = new BufferedWriter( new FileWriter("grafoferomonas.txt"));
-            writer.write( grafodistancias_string);
-            writer2.write( grafoferomonas_string);
-            }catch ( IOException e){
-            }finally {
-                try{
-                    if ( writer != null && writer2 != null){
-                        writer.close();
-                        writer2.close();
-                    }
-                }catch ( IOException e){
-                }
+            FileWriter writer = new FileWriter("Archivo");
+            writer.write(grafoferomonas_string);
+            writer.close();
+        }catch( IOException e){
+            System.out.println("Fallo");
         }
-    }
-        
+    }    
 }

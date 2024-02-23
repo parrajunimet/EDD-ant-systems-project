@@ -77,18 +77,15 @@ public class FinalGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
-        
-        String grafodistancias_string = grafo.grafoDistanciaString();
         String grafoferomonas_string = grafo.grafoFeromonaString();
         ArchivoTxt func = new ArchivoTxt();
         
         try {
-                func.guardar_txt(grafodistancias_string, grafoferomonas_string);
+                func.guardar_txt(grafoferomonas_string);
             } catch (Exception ex) {
                 Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-        System.exit(0);
-          
+        System.exit(0);   
     }//GEN-LAST:event_SaveActionPerformed
 
     /**

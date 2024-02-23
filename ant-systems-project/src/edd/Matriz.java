@@ -182,6 +182,7 @@ public class Matriz {
         }
         return grafo;
     }
+
     public String grafoFeromonaString() {
         String grafo = "ciudad\n";
         for (int i = 0; i < verts.length; i++) {
@@ -194,10 +195,13 @@ public class Matriz {
         for (int i = 0; i < matAd.length; i++) {
             if (verts[i] != null) {
                 for (int j = 0; j < matAd[i].length; j++) {
-                    if (matAd[i][j].getDistancia() != 0) {
-                        String cadena = i + "," + j + "," + matAd[i][j].getFeromona() + "\n";
-                        grafo += cadena;
+                    if (i > j) {
+                        if (matAd[i][j].getDistancia() != 0) {
+                            String cadena = i + "," + j + "," +matAd[i][j].getDistancia() +","+matAd[i][j].getFeromona() + "\n";
+                            grafo += cadena;
+                        }
                     }
+
                 }
 
             }
@@ -205,6 +209,7 @@ public class Matriz {
         }
         return grafo;
     }
+
 
     public String[] verticesAd(String a)throws Exception{
         int va, counter = 0;
