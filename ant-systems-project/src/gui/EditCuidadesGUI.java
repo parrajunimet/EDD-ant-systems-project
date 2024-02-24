@@ -12,6 +12,7 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
     public static EliminarCiudades interfazD;
     public static ValoresInicialesGUI interfaz3back;
     private Matriz grafo; 
+    private String show; 
     
     public EditCuidadesGUI(ValoresInicialesGUI interfaz3back) throws Exception {
         initComponents();
@@ -44,7 +45,7 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.showCities();
     }
-    public EditCuidadesGUI(EditorTxtGUI interfaz2) throws Exception {
+    public EditCuidadesGUI(EditorTxtGUI interfaz2, String show) throws Exception {
         initComponents();
         this.grafo = interfaz2.getGrafo(); 
         this.setResizable(false);
@@ -53,6 +54,7 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.showCities();
+        this.show = show; 
     }
     /*
     public EditCuidadesGUI(Matriz grafo) {
@@ -191,7 +193,7 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarciudadesActionPerformed
 
     private void gobackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gobackActionPerformed
-        EditorTxtGUI interfaz2back = new EditorTxtGUI(this);
+        EditorTxtGUI interfaz2back = new EditorTxtGUI(this, this.show);
     }//GEN-LAST:event_gobackActionPerformed
 
     
@@ -226,7 +228,7 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new EditCuidadesGUI(interfaz2).setVisible(true);
+                    new EditCuidadesGUI(interfaz2, "").setVisible(true);
                 } catch (Exception ex) {
                     Logger.getLogger(EditCuidadesGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }

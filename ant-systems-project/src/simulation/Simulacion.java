@@ -113,7 +113,7 @@ public class Simulacion {
         if (mindistance == -1) {
             results1 += "No hay camino mas corto, puesto que ninguna hormiga llego a la ciudad destino, todas quedaron estancadas. ";
         } else {
-                   if (this.optimepath == "") {
+                   if ("".equals(this.optimepath)) {
                     this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ""); 
                     this.optimedistance =  mindistance; 
                 } else {
@@ -136,8 +136,8 @@ public class Simulacion {
         results1 += ants[index].getCiudades().printString() +"\nDistancia: " + String.format("%.2f", mindistance).replace(',', '.') +"m\n";
         //results += results1; 
         for (int i = 0; i < ants.length; i++) {
-            resultsc+= ants[i].getCiudades().printString()+ "\n\n"; 
-            resultsd += String.format("%.2f",distances[i] ).replace(',', '.') + " m\n\n";
+            resultsc+= (i+1)+ " |          " + ants[i].getCiudades().printString()+ "\n\n"; 
+            resultsd +=  (i+1)+ " | " + String.format("%.2f",distances[i] ).replace(',', '.') + " m\n\n";
             //results += "Hormiga " + i+1 + "           " + ants[i].getCiudades().printString() + "           " + distances[i] + " m\n"; 
             
         }
