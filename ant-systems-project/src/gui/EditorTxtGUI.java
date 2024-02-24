@@ -120,7 +120,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Cargar ultimo archivo TXT:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, 20));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, 20));
 
         abrir_archivo.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         abrir_archivo.setText("Abrir archivo");
@@ -269,7 +269,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
             guardado.setVisible(true);
             next.setVisible(true);
 
-                grafo.print();
+            grafo.print(0);
                 
         }
             

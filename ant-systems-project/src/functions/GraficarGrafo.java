@@ -1,17 +1,7 @@
-
 package functions;
-/*
-//<<<<<<< HEAD
 import edd.Matriz;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
-//=======
-
-import edd Matriz;
-import org.graphstream.graph.*;
-import org.graphstream.graph.implementations.*;
-
-//>>>>>>> d715b9b6c36cea962fe4e1d75d1561ff32976943
 
 /**Clase que define el GraphStream.
  * Recibiendo como param las matrices de distancias y feromonas.
@@ -19,10 +9,6 @@ import org.graphstream.graph.implementations.*;
  * @author luisperezp
  * @version 19 feb 2024
  */
-//<<<<<<< HEAD
-
-/*
->>>>>>> d715b9b6c36cea962fe4e1d75d1561ff32976943
 public class GraficarGrafo {
 
     public void mostrar(Matriz grafo) throws Exception{
@@ -47,15 +33,14 @@ public class GraficarGrafo {
             nuevo.setAttribute("ui.label",grafo.getVerts()[i].getNombre());
         }
         
-        double x, y;
-        
+        int totalcaminos = grafo.getMatAd().length;
         for(int j =0;j<grafo.getNumVerts();j++){
             for(int k =0;k<grafo.getNumVerts();k++){
-                if(grafo.adyacente(grafo.vertName(j), grafo.vertName(k)))
-                    x = grafo.getMatAd()[j][k].getFeromona();
-                    y=grafo.getMatAd()[j][k].getDistancia(); 
-                    Edge camino = graph.addEdge("Feromonas: "+ Double.toString(x) + "Distancia: "+ Double.toString(y),grafo.getVerts()[j].getNombre(), grafo.getVerts()[k].getNombre());
-                    camino.setAttribute("ui.label",Double.toString(y)); 
+                if(grafo.adyacente(grafo.vertName(j), grafo.vertName(k))){
+                    Edge camino = graph.addEdge(Integer.toString(totalcaminos), grafo.getVerts()[j].getNombre(), grafo.getVerts()[k].getNombre());
+                    camino.setAttribute("ui.label", grafo.getMatAd()[j][k].getFeromona());
+                    totalcaminos-=1;
+                }
             }
         }
         
@@ -65,4 +50,6 @@ public class GraficarGrafo {
         
     
     }
-*/
+    
+   
+}

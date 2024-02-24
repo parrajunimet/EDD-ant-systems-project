@@ -224,7 +224,11 @@ public class ListaDoble implements ILista{
         NodoDoble pointer = getHead();
         String list = ""; 
         while (pointer != null) {
-            list = list + pointer.getElement() + " -> "; 
+            if (pointer.getNext() != null) {
+                list = list + pointer.getElement() + " -> "; 
+            } else {
+                list = list + pointer.getElement(); 
+            } 
             pointer = pointer.getNext(); 
             
        }    
@@ -235,7 +239,7 @@ public class ListaDoble implements ILista{
     public boolean isIn(Object element) {
         NodoDoble pointer = getHead(); 
         while (pointer != null){
-            if (pointer.getElement() == element) {
+            if (pointer.getElement().equals(element)) {
                 return true;
             }
             pointer = pointer.getNext();

@@ -14,21 +14,37 @@ import gui.CiclosGUI;
 public class Probando {
     
     public static void main(String[] args) throws Exception {
-        Matriz grafos = new Matriz(); 
+        Matriz prueba = new Matriz(); 
+        for (int i = 1; i < 8; i++) {
+               prueba.nuevoVertice(String.valueOf(i));
+            }
 
-        String[] array = {"a", "b", "c", "d", "e", "f", "g", "h", "i"}; 
-        for (int i = 0; i < array.length; i++) {
-            grafos.nuevoVertice(array[i]);
+        prueba.nuevaDistancia("1","2", 5);
+        prueba.nuevaDistancia("1","3",3.1);
+        prueba.nuevaDistancia("1","6", 5.2);
+        prueba.nuevaDistancia("3","6", 3.2);
+        prueba.nuevaDistancia("5","6", 4.7);
+        prueba.nuevaDistancia("3","2", 4.9);
+        prueba.nuevaDistancia("2","7", 5.2);
+        prueba.nuevaDistancia("3","7",3);
+        prueba.nuevaDistancia("3","5",6);
+        prueba.nuevaDistancia("4","7",4.8);
+        prueba.nuevaDistancia("5","4",5.5);
+            
+        prueba.print(0);
+        Simulacion  x = new Simulacion (prueba, "1", "7", 4, 5, 1,2,0.5); 
+        x.startData();
+        System.out.println("\n\n");
+        prueba.print(1);
+        for (int i = 0; i < 4; i++) {
+            x.Cycle();
+            System.out.println("\n\n");
+            prueba.print(1);
+            System.out.println("\n\n");
         }
-        
-        grafos.nuevaDistancia("a","b", 20.8);
-        grafos.nuevaDistancia("b","c", 10);
-        grafos.nuevaDistancia("a","d", 10.9);
-        grafos.nuevaDistancia("d","c", 7);
-        grafos.nuevaDistancia("d","b", 1.5);
+        System.out.println("\n\n");
+        x.simulationResults(); 
+       
 
-        CiclosGUI x = new CiclosGUI(grafos, "a", "c", 3, 5, 1, 2, 0.5); 
     }
-    
-    
 }
