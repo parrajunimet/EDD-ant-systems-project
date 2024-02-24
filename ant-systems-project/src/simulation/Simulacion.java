@@ -7,6 +7,7 @@ package simulation;
 import edd.Matriz;
 import edd.ListaDoble;
 import edd.NodoDoble;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -17,14 +18,14 @@ public class Simulacion {
     private String ciudadi; 
     private String ciudadf; 
     private Matriz grafos; 
-    private int cycles, antn, a, b;
-    private double p; 
+    private int cycles, antn;
+    private double p, a, b; 
     private Ant[] ants; 
     private String optimepath;
     private double optimedistance;
     
     //Valores iniciales de la simulacion 
-    public Simulacion(Matriz grafos, String ciudadi, String ciudadf, int cycles, int antn, int a, int b, double p) {
+    public Simulacion(Matriz grafos, String ciudadi, String ciudadf, int cycles, int antn, double a, double b, double p) {
         this.grafos = grafos; 
         this.ciudadi = ciudadi;
         this.ciudadf = ciudadf;
@@ -57,10 +58,11 @@ public class Simulacion {
     public String simulationResults() throws Exception {
         String result = "El camino mas optimo en los " + this.cycles + " ciclos fue:\n        "; 
         for (int i = 0; i < this.optimepath.length(); i++) {
-            result+=  this.optimepath.charAt(i) + " --> "; 
+            if (i != this.optimepath.length() -1 ) result+=  this.optimepath.charAt(i) + " --> "; 
+            else result+=  this.optimepath.charAt(i); 
         }
-        result += "\n6Distancia: " + this.optimedistance + "m"; 
-        
+        result += "\nDistancia: " + String.format("%.2f", this.optimedistance).replace(',', '.')  + "m"; 
+        //System.out.println(result);
         return result; 
     }
     public String[] Cycle() throws Exception {
@@ -70,11 +72,14 @@ public class Simulacion {
                     String a = String.valueOf(ant.getCiudades().getTail().getElement());
                     String camino = chooseCity(a, ant); 
                     ant.addCity(camino, this.ciudadf);   
+                    //System.out.println("Hormiga  " + ant +" : " + ant.getCiudades().printString() );
+                    //System.out.println("\n\n");
                 }       
-            }      
+            }
+            //System.out.println("\n\n");
         } 
         feromonesUptade();
-        double mindistance; 
+        double mindistance = -1; 
         String results1 = "", resultsc = "", resultsd = ""; 
         NodoDoble pointer;
         int x, y, index=0; 
@@ -89,35 +94,51 @@ public class Simulacion {
                 pointer = pointer.getNext(); 
             }
         }
-        mindistance = distances[0];
-        for (int i = 1; i < distances.length; i++) {
-            if (distances[i] < mindistance) {
-               mindistance = distances[i]; 
-               index = i; 
-            }
-        }
-        
-        if (this.optimepath == "") {
-            this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ""); 
-            this.optimedistance =  mindistance; 
-        } else {
-            int optdistance = 0; 
-            for (int i = 0; i < this.optimepath.length()-1; i++) {
-                x=grafos.numVertice(String.valueOf(this.optimepath.charAt(i)));
-                y=grafos.numVertice(String.valueOf(this.optimepath.charAt(i+1)));
-                optdistance += grafos.getMatAd()[x][y].getDistancia(); 
+       
+        for (int i = 0; i < distances.length; i++){
+            if (mindistance == -1) {
+                if (ants[i].getState() == 2) {
+                    mindistance = distances[i]; 
+                    index = i; 
                 }
-            if (optdistance < mindistance) {
-                this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ""); 
             }
-            
+            if (ants[i].getState() == 2) {
+                if (distances[i] < mindistance) {
+                   mindistance = distances[i]; 
+                   index = i; 
+                }
+            } 
         }
         
+        if (mindistance == -1) {
+            results1 += "No hay camino mas corto, puesto que ninguna hormiga llego a la ciudad destino, todas quedaron estancadas. ";
+        } else {
+                   if (this.optimepath == "") {
+                    this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ""); 
+                    this.optimedistance =  mindistance; 
+                } else {
+                    int optdistance = 0; 
+                    for (int i = 0; i < this.optimepath.length()-1; i++) {
+                        x=grafos.numVertice(String.valueOf(this.optimepath.charAt(i)));
+                        y=grafos.numVertice(String.valueOf(this.optimepath.charAt(i+1)));
+                        optdistance += grafos.getMatAd()[x][y].getDistancia(); 
+                        }
+                    if (optdistance > mindistance) {
+                        this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ""); 
+                        this.optimedistance = mindistance; 
+                    }
+            
+                } 
+        }
+     
         //System.out.println("\n\n");
-        results1 += ants[index].getCiudades().printString() +"\nDistancia: " + mindistance +"m";
+        //String results= "El camino mas corto fue: \n";
+        results1 += ants[index].getCiudades().printString() +"\nDistancia: " + String.format("%.2f", mindistance).replace(',', '.') +"m\n";
+        //results += results1; 
         for (int i = 0; i < ants.length; i++) {
             resultsc+= ants[i].getCiudades().printString()+ "\n\n"; 
-            resultsd += distances[i] + " m\n\n";
+            resultsd += String.format("%.2f",distances[i] ).replace(',', '.') + " m\n\n";
+            //results += "Hormiga " + i+1 + "           " + ants[i].getCiudades().printString() + "           " + distances[i] + " m\n"; 
             
         }
         for (Ant ant : ants) {
@@ -125,6 +146,8 @@ public class Simulacion {
             ant.setState(0);
         }
         
+        
+        //System.out.println(results);
         String[] results = {results1, resultsc, resultsd}; 
         return results; 
     }
@@ -167,9 +190,21 @@ public class Simulacion {
     public String [] possibleCitys(String a, Ant ant) throws Exception{
         String[] ciudadesAd = grafos.verticesAd(a);
         ListaDoble visitadas = ant.getCiudades(); 
+        /*
+        System.out.println("Ciudades visitadas");
+        System.out.println(visitadas.printString());
+        System.out.println("Ciudades adyacentes");
+        for (String c: ciudadesAd) {
+            System.out.print(c + "-");
+            }
+       System.out.println("\n");
+*/
+        
         int x=0; 
         for (int i = 0; i < ciudadesAd.length; i++) {
-            if (visitadas.isIn(ciudadesAd[i])) x++; 
+            if (visitadas.isIn(ciudadesAd[i])) {
+                x++;
+            } 
         }if (x< ciudadesAd.length) {
             String [] cities = new String[ciudadesAd.length-x];
             x =0; 
@@ -178,7 +213,14 @@ public class Simulacion {
                     cities[x] = ciudad; 
                     x++;
                 }
-            }  return cities; 
+            }  //System.out.println("Ciudades para la hormiga");
+            /*
+                for (String c: cities) {
+                    System.out.print(c + "-");
+                }
+                System.out.println("\n");
+            */
+                return cities; 
         } return null;
     }
     
@@ -210,7 +252,6 @@ public class Simulacion {
                 probacomulation += probabilities[i] ; 
                 acomulated[i] = probacomulation; 
             }
-            System.out.println("\n\n"); 
             Double random =  Math.random(); 
             for (int i = 0; i < acomulated.length; i++) {
                 if (acomulated[i] >  random) {
