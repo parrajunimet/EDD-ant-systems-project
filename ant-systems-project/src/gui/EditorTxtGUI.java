@@ -18,18 +18,41 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 public class EditorTxtGUI extends javax.swing.JFrame {
-    
     public static WelcomeGUI interfaz1;
+    public static EditCuidadesGUI interfaz2back;
     public static Matriz grafo = new Matriz();
+    
+    public EditorTxtGUI(EditCuidadesGUI interfaz2back) {
+        initComponents();
+        noinfo.setVisible(false);
+        guardado.setVisible(false);
+        next.setVisible(true);
+        
+        this.setResizable(false);
+        this.interfaz2back = interfaz2back;
+        interfaz2back.setVisible(false);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+    }
     
     public EditorTxtGUI(WelcomeGUI interfaz1) {
         initComponents();
+        noinfo.setVisible(false);
+        guardado.setVisible(false);
+        next.setVisible(false);
+        
+        this.setResizable(false);
         this.interfaz1 = interfaz1;
         interfaz1.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
     }
 
+    public static Matriz getGrafo() {
+        return grafo;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,7 +75,9 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         GuardarInfo = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        noinfo = new javax.swing.JLabel();
+        guardado = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 153));
@@ -66,38 +91,46 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         Contenido.setRows(5);
         jScrollPane1.setViewportView(Contenido);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 105, 512, 199));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 105, 512, 180));
 
+        next.setBackground(new java.awt.Color(102, 51, 0));
         next.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
+        next.setForeground(new java.awt.Color(255, 255, 255));
         next.setText("Continuar>>");
+        next.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         next.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextActionPerformed(evt);
             }
         });
-        getContentPane().add(next, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, 120, 30));
+        getContentPane().add(next, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 120, 30));
 
+        crear_txt.setBackground(new java.awt.Color(102, 51, 0));
         crear_txt.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
-        crear_txt.setText("Crear nuevo");
+        crear_txt.setForeground(new java.awt.Color(255, 255, 255));
+        crear_txt.setText("Cargar");
+        crear_txt.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         crear_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 crear_txtActionPerformed(evt);
             }
         });
-        getContentPane().add(crear_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 132, 31));
+        getContentPane().add(crear_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 132, 31));
 
         jLabel2.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Crear nuevo archivo TXT:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, 20));
+        jLabel2.setText("Cargar ultimo archivo TXT:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, 20));
 
+        abrir_archivo.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         abrir_archivo.setText("Abrir archivo");
+        abrir_archivo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         abrir_archivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 abrir_archivoActionPerformed(evt);
             }
         });
-        getContentPane().add(abrir_archivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 116, 22));
+        getContentPane().add(abrir_archivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 130, 22));
 
         route.setEditable(false);
         route.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +143,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Archivo TXT");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,26 +158,44 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Guardar informacion del TXT superior");
         jLabel5.setToolTipText("");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, 20));
 
+        GuardarInfo.setBackground(new java.awt.Color(102, 51, 0));
         GuardarInfo.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        GuardarInfo.setForeground(new java.awt.Color(255, 255, 255));
         GuardarInfo.setText("Guardar");
+        GuardarInfo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         GuardarInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GuardarInfoActionPerformed(evt);
             }
         });
-        getContentPane().add(GuardarInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 110, 30));
+        getContentPane().add(GuardarInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 190, 30));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 1.01.31 PM (1) (2).jpg"))); // NOI18N
-        jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 0, 590, 410));
+        noinfo.setBackground(new java.awt.Color(255, 0, 0));
+        noinfo.setFont(new java.awt.Font("Adobe Devanagari", 1, 14)); // NOI18N
+        noinfo.setForeground(new java.awt.Color(255, 0, 0));
+        noinfo.setText("No hay informacion que guardar! ");
+        getContentPane().add(noinfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
+
+        guardado.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        guardado.setForeground(new java.awt.Color(51, 255, 0));
+        guardado.setText("Guardado exitosamente!!");
+        getContentPane().add(guardado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
-        EditCuidadesGUI interfaz3 = new EditCuidadesGUI(this);
+        try {
+            EditCuidadesGUI interfaz3 = new EditCuidadesGUI(this);
+        } catch (Exception ex) {
+            Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_nextActionPerformed
 
@@ -201,7 +252,10 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_routeActionPerformed
 
     private void GuardarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarInfoActionPerformed
-
+        if (Contenido.getText().length() == 0){
+            noinfo.setVisible(true);
+            guardado.setVisible(false);
+        }else{
             String txt = Contenido.getText();
             ArchivoTxt func = new ArchivoTxt();
 
@@ -211,9 +265,14 @@ public class EditorTxtGUI extends javax.swing.JFrame {
                 Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-            JOptionPane.showMessageDialog(null,"Guardado exitosamente!!");
+            noinfo.setVisible(false);
+            guardado.setVisible(true);
+            next.setVisible(true);
 
-                grafo.print();
+            grafo.print(0);
+                
+        }
+            
        
     }//GEN-LAST:event_GuardarInfoActionPerformed
 
@@ -233,15 +292,17 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private javax.swing.JButton GuardarInfo;
     private javax.swing.JButton abrir_archivo;
     private javax.swing.JButton crear_txt;
+    private javax.swing.JLabel guardado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton next;
+    private javax.swing.JLabel noinfo;
     private javax.swing.JTextField route;
     // End of variables declaration//GEN-END:variables
 }

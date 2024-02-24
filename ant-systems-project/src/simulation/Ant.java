@@ -25,7 +25,7 @@ public class Ant {
     
     public void addCity(String nom, String cityF) {
        if (nom != null) {
-            if (nom == cityF) setState(2);
+            if (nom.equals(cityF)) setState(2);
             getCiudades().insertFinal(nom);
        } else{
            setState(1);
