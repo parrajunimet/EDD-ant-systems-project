@@ -1,4 +1,6 @@
 package functions;
+
+/*
 import edd.Matriz;
 //import org.graphstream.graph.*;
 //import org.graphstream.graph.implementations.*;
@@ -9,6 +11,7 @@ import edd.Matriz;
  * @author luisperezp
  * @version 19 feb 2024
  */
+/*
 public class GraficarGrafo {
 
     public void mostrar(Matriz grafo) throws Exception{
@@ -53,3 +56,4 @@ public class GraficarGrafo {
     
    
 }
+*/
