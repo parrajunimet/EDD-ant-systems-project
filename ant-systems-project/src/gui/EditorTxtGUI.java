@@ -24,6 +24,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     
     public EditorTxtGUI(EditCuidadesGUI interfaz2back) {
         initComponents();
+        cargararch.setVisible(false);
         noinfo.setVisible(false);
         guardado.setVisible(false);
         next.setVisible(true);
@@ -37,6 +38,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     
     public EditorTxtGUI(WelcomeGUI interfaz1) {
         initComponents();
+        cargararch.setVisible(false);
         noinfo.setVisible(false);
         guardado.setVisible(false);
         next.setVisible(false);
@@ -77,6 +79,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         GuardarInfo = new javax.swing.JButton();
         noinfo = new javax.swing.JLabel();
         guardado = new javax.swing.JLabel();
+        cargararch = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -183,6 +186,11 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         guardado.setText("Guardado exitosamente!!");
         getContentPane().add(guardado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
 
+        cargararch.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
+        cargararch.setForeground(new java.awt.Color(0, 255, 0));
+        cargararch.setText("Archivo cargado con exito!!");
+        getContentPane().add(cargararch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
+
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
         jLabel6.setText("jLabel6");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 420));
@@ -202,11 +210,17 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private void crear_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_txtActionPerformed
         ArchivoTxt func = new ArchivoTxt();
         try {
-                func.leer_txt();
+              
+            
+              func.cargar_txt(func.leer_txt().substring(0, func.leer_txt().length()-1), grafo);
+              System.out.println(grafo.grafoDistanciaString());
+              this.Contenido.setText(grafo.grafoDistanciaString());
+              
         } catch (Exception ex) {
             Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(null, "Archivo creado exitosamente!");
+        cargararch.setVisible(true);
+        next.setVisible(true);
     }//GEN-LAST:event_crear_txtActionPerformed
 
     private void abrir_archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrir_archivoActionPerformed
@@ -291,6 +305,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private javax.swing.JTextArea Contenido;
     private javax.swing.JButton GuardarInfo;
     private javax.swing.JButton abrir_archivo;
+    private javax.swing.JLabel cargararch;
     private javax.swing.JButton crear_txt;
     private javax.swing.JLabel guardado;
     private javax.swing.JLabel jLabel1;

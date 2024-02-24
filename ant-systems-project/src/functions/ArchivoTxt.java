@@ -3,7 +3,6 @@ package functions;
 
 import edd.Matriz;
 import edd.Vertice;
-import static gui.FinalGUI.grafo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -21,7 +20,7 @@ public class ArchivoTxt {
     public String leer_txt() {
         String line;
         String expresion_txt = "";
-        String path = "test\\documentos.txt";
+        String path = "test\\grafo.txt";
         File file = new File(path);
         try{
             if(!file.exists()){
@@ -31,7 +30,7 @@ public class ArchivoTxt {
                 BufferedReader br = new BufferedReader(fr);
                 while((line = br.readLine())!= null){
                     if(!line.isEmpty()){
-                        expresion_txt += line;
+                        expresion_txt += line + "\n";
                     }
                 }
                 
@@ -56,37 +55,7 @@ public class ArchivoTxt {
         }catch(IOException exepcion){
             exepcion.printStackTrace(System.out);
         }
-    }
-    
-    
-    public void cargar_txt_feromonas(String txt, Matriz grafo) throws Exception{
-        String replaceCiudad = txt.replaceFirst("ciudad", "Ω");
-        String replaceArista = replaceCiudad.replaceFirst("aristas", "Ω");
-        String[] lines = replaceArista.split("Ω");
-        
-        String ciudades_txt = lines[1];
-        String[] ciudades = ciudades_txt.split("\n");
-        
-        for (int i = 1; i < ciudades.length; i++) {
-            String salida = ciudades[i].replaceAll("\r", "");
-            grafo.nuevoVertice(salida);
-        }
-
-        String aristas_txt = lines[2];
-        String[] aristas = aristas_txt.split("\n");
-        
-        for (int i = 1; i < aristas.length; i++) {
-            String[] partes = aristas[i].split(",");
-            String salida1 = partes[0].replaceAll("\r", "");
-            String salida2 = partes[1].replaceAll("\r", "");
-            String salida3 = partes[2].replaceAll("\r", "");
-            String salida4 = partes[3].replaceAll("\r", "");
-            //Necesito una funcion que cree un objeto de la clase Arista
-            //grafo.nuevaDistancia(salida1, salida2, Double.parseDouble(salida3), Double.parseDouble(salida4));
-        }
-        
-    }
-    
+    } 
     
     public void cargar_txt(String txt, Matriz grafo) throws Exception{
         String replaceCiudad = txt.replaceFirst("ciudad", "Ω");
@@ -102,6 +71,7 @@ public class ArchivoTxt {
         }
 
         String aristas_txt = lines[2];
+        
         String[] aristas = aristas_txt.split("\n");
         
         for (int i = 1; i < aristas.length; i++) {
@@ -116,7 +86,7 @@ public class ArchivoTxt {
     
     public void guardar_txt(String grafoferomonas_string) {
         try{
-            FileWriter writer = new FileWriter("Archivo");
+            FileWriter writer = new FileWriter("test\\grafo.txt");
             writer.write(grafoferomonas_string);
             writer.close();
         }catch( IOException e){

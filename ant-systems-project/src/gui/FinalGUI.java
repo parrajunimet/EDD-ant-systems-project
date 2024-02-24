@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class FinalGUI extends javax.swing.JFrame {
 
-    public static Matriz grafo = new Matriz();
+    
     public static GraphGUI interfaz7;
     
     public FinalGUI(GraphGUI interfaz7) {
@@ -77,7 +77,7 @@ public class FinalGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
-        String grafoferomonas_string = grafo.grafoFeromonaString();
+        String grafoferomonas_string = grafo.grafoDistanciaString();
         ArchivoTxt func = new ArchivoTxt();
         
         try {
