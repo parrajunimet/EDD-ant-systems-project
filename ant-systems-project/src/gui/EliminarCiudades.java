@@ -30,17 +30,10 @@ public class EliminarCiudades extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.grafo = interfazA.getGrafo(); 
+        this.eliminar.setVisible(false);
         this.start();
     }
     
-    public EliminarCiudades(Matriz x) throws Exception {
-        initComponents();
-        this.setVisible(true);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.grafo =x; 
-        this.start();
-    }
 
     public Matriz getGrafo() {
         return grafo;
@@ -61,10 +54,10 @@ public class EliminarCiudades extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         input = new javax.swing.JTextField();
         eliminar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         Volver = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        notify = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,19 +71,19 @@ public class EliminarCiudades extends javax.swing.JFrame {
         ciudades.setRows(5);
         jScrollPane1.setViewportView(ciudades);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 60, 210));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 60, 150));
 
         jLabel2.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Eliminar ciudades");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
 
         input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputActionPerformed(evt);
             }
         });
-        jPanel1.add(input, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 140, -1));
+        jPanel1.add(input, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 140, -1));
 
         eliminar.setBackground(new java.awt.Color(102, 51, 0));
         eliminar.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
@@ -102,12 +95,7 @@ public class EliminarCiudades extends javax.swing.JFrame {
                 eliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 100, -1));
-
-        jLabel3.setFont(new java.awt.Font("Adobe Devanagari", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Posibles ciudades a eliminar:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        jPanel1.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 100, -1));
 
         Volver.setBackground(new java.awt.Color(102, 51, 0));
         Volver.setFont(new java.awt.Font("Adobe Devanagari", 0, 12)); // NOI18N
@@ -119,17 +107,24 @@ public class EliminarCiudades extends javax.swing.JFrame {
                 VolverActionPerformed(evt);
             }
         });
-        jPanel1.add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 100, 30));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 380, 340));
+        jPanel1.add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 100, 30));
 
         jLabel4.setFont(new java.awt.Font("Adobe Devanagari", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Posibles ciudades a eliminar:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 290));
+        notify.setBackground(new java.awt.Color(153, 102, 0));
+        notify.setFont(new java.awt.Font("Rockwell", 1, 12)); // NOI18N
+        notify.setForeground(new java.awt.Color(204, 0, 0));
+        notify.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel1.add(notify, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 420, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 290));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 290));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -143,9 +138,9 @@ public class EliminarCiudades extends javax.swing.JFrame {
        boolean found = false; 
        if (this.deletable.length == 0) {
            input.setText("");
-           JOptionPane.showMessageDialog(null,"No puede borrar ciudades");
+           this.notify.setText("No puede borrar ciudades");
        } else if (x.isBlank()){
-           JOptionPane.showMessageDialog(null, "Por favor ingrese una ciudad");
+           this.notify.setText("Por favor ingrese una ciudad");
        } else {
            for (String c: this.deletable) {
                x = x.replace(" ", ""); 
@@ -162,7 +157,7 @@ public class EliminarCiudades extends javax.swing.JFrame {
                    }
             } else {
                    input.setText("");
-                   JOptionPane.showMessageDialog(null, "Por favor entre una ciudad valida.");
+                   this.notify.setText("Por favor entre una ciudad valida.");
                }
        }
     }//GEN-LAST:event_eliminarActionPerformed
@@ -216,23 +211,27 @@ public class EliminarCiudades extends javax.swing.JFrame {
     
     /**
      * @param args the command line arguments
+     * @throws java.lang.Exception
      */
+    
     public void start () throws Exception {
         input.setText("");
         this.ciudades.setText("");
-        System.out.println("Numero de ciudades: " + this.grafo.getNumVerts());
+        //System.out.println("Numero de ciudades: " + this.grafo.getNumVerts());
         if (this.grafo.getNumVerts() <= 4) {
-            JOptionPane.showMessageDialog(null,"Solo puede eliminar ciudades si hay más de cuatro ciudades existentes");
+            this.eliminar.setVisible(false);
+            this.notify.setText("Solo puede eliminar ciudades si hay más de cuatro ciudades existentes");
             this.deletable =  new String[0]; 
         } else {
             this.deletable = this.grafo.nonBridgeds();
             String show = ""; 
             int counter = 1; 
             if (this.deletable.length == 0) {
-                JOptionPane.showMessageDialog(null, "Ninguna ciudad puede ser eliminada.");
+                this.notify.setText("Ninguna ciudad puede ser eliminada."); 
             }else {
+                this.eliminar.setVisible(true);
                 for (String c: this.deletable) {
-                show += counter + "-  " +c + "\n"; 
+                show += "-.    " +c + "\n"; 
                 counter++; 
             }
             this.ciudades.setText(show);
@@ -248,9 +247,9 @@ public class EliminarCiudades extends javax.swing.JFrame {
     private javax.swing.JTextField input;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel notify;
     // End of variables declaration//GEN-END:variables
 }

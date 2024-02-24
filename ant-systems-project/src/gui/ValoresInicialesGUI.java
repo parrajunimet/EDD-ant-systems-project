@@ -200,7 +200,9 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
         jPanel3.add(endcity, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 71, -1));
 
         notify.setBackground(new java.awt.Color(204, 153, 0));
-        jPanel3.add(notify, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 330, 40));
+        notify.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        notify.setForeground(new java.awt.Color(204, 0, 0));
+        jPanel3.add(notify, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 440, 40));
 
         city1.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         city1.setForeground(new java.awt.Color(255, 255, 255));
