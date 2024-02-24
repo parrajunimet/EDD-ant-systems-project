@@ -1,6 +1,5 @@
 
 package main;
-
 import gui.WelcomeGUI;
 
 public class Main {
@@ -14,6 +13,7 @@ public class Main {
        WelcomeGUI interfaz1 = new WelcomeGUI();
        interfaz1.setVisible(true);
        interfaz1.setLocationRelativeTo(null);
+       
     }
     
 }

@@ -79,7 +79,7 @@ public class GraphGUI extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             GraficarGrafo graph = new GraficarGrafo();
-            graph.mostrar(simulado.getgrafos());
+            graph.mostrar(simulado.getgrafos(),simulado.getSimulacion());
         } catch (Exception ex) {
             Logger.getLogger(GraphGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
