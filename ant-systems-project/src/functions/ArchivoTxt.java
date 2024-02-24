@@ -3,28 +3,46 @@ package functions;
 
 import edd.Matriz;
 import edd.Vertice;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 
 public class ArchivoTxt {
     
     File archivo;
     
-    public void crear_txt() {
-        archivo = new File ("archivo.txt");
+    public String leer_txt() {
+        String line;
+        String expresion_txt = "";
+        String path = "test\\grafo.txt";
+        File file = new File(path);
         try{
-            if(archivo.createNewFile()) {
-                System.out.println("Archivo creado con exito!");
-            }
-            else{
-                System.out.println("Error al crear el archivo.");
-            }
-        }catch(IOException exepcion){
-            exepcion.printStackTrace(System.out);
+            if(!file.exists()){
+               file.createNewFile();
+            }else{
+                FileReader fr = new FileReader(file);
+                BufferedReader br = new BufferedReader(fr);
+                while((line = br.readLine())!= null){
+                    if(!line.isEmpty()){
+                        expresion_txt += line + "\n";
+                    }
+                }
+                
+                br.close();
+                return expresion_txt;
+            }  
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al leer la expresion");
         }
+        return expresion_txt;
     }
+    
     
     public void eliminar_txt() {
         try{
@@ -37,8 +55,7 @@ public class ArchivoTxt {
         }catch(IOException exepcion){
             exepcion.printStackTrace(System.out);
         }
-    }
-    
+    } 
     
     public void cargar_txt(String txt, Matriz grafo) throws Exception{
         String replaceCiudad = txt.replaceFirst("ciudad", "Ω");
@@ -54,6 +71,7 @@ public class ArchivoTxt {
         }
 
         String aristas_txt = lines[2];
+        
         String[] aristas = aristas_txt.split("\n");
         
         for (int i = 1; i < aristas.length; i++) {
@@ -66,5 +84,13 @@ public class ArchivoTxt {
         
     }
     
-    
+    public void guardar_txt(String grafoferomonas_string) {
+        try{
+            FileWriter writer = new FileWriter("test\\grafo.txt");
+            writer.write(grafoferomonas_string);
+            writer.close();
+        }catch( IOException e){
+            System.out.println("Fallo");
+        }
+    }    
 }
