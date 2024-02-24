@@ -2,6 +2,7 @@
 package gui;
 
 import edd.Matriz;
+import functions.ValoresInicialesTXT;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,11 +11,17 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
     public static EditCuidadesGUI interfaz4;
     public static IniciarSimulacionGUI interfaz4back;
     private Matriz grafo; 
-    
+      
     public ValoresInicialesGUI(EditCuidadesGUI interfaz4) {
         initComponents();
         this.interfaz4 = interfaz4;
         this.grafo = interfaz4.getGrafo();
+        String [] valores = this.getInitialValues(); 
+        this.alphaValue.setText(valores[0]);
+        this.BetaValue.setText(valores[1]);
+        this.GammaValue.setText(valores[2]);
+        this.antnum.setText(valores[3]);
+        this.cycleValue.setText(valores[4]);
         interfaz4.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -26,6 +33,12 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
         initComponents();
         this.interfaz4back = interfaz4back;
         this.grafo = interfaz4.getGrafo();
+        String [] valores = this.getInitialValues(); 
+        this.alphaValue.setText(valores[0]);
+        this.BetaValue.setText(valores[1]);
+        this.GammaValue.setText(valores[2]);
+        this.antnum.setText(valores[3]);
+        this.cycleValue.setText(valores[4]);
         interfaz4back.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -36,6 +49,14 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
     public Matriz getGrafo() {
         return grafo;
     }
+    
+    public String[] getInitialValues() {
+        ValoresInicialesTXT fileHandler = new ValoresInicialesTXT("valoresIniciales.txt");
+        fileHandler.createTxtFile();
+        String[] valores = fileHandler.readTxtFile();
+        return valores;
+    }
+    
     
     
     /**
@@ -254,6 +275,8 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
                    ciudadi =this.startcity.getText(); 
                    ciudadf = this.endcity.getText(); 
                    if (!ciudadi.equalsIgnoreCase(ciudadf)) {
+                       ValoresInicialesTXT fileHandler = new ValoresInicialesTXT("valoresIniciales.txt");
+                       fileHandler.editTxtFile(alpha , beta , gamma , a , c );
                        IniciarSimulacionGUI interfaz5a = new IniciarSimulacionGUI(this, ciudadi, ciudadf, c, a, alpha, beta, gamma);
                    }else {
                         this.notify.setVisible(true);
