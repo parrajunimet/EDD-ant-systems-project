@@ -16,40 +16,83 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
-
+/**
+ * Interfaz que permite subir un archivotxt, guardar el archivo y cargar el archivo de la ultima simulacion
+ * 
+ * @author Julene
+ */
 public class EditorTxtGUI extends javax.swing.JFrame {
+    //Se llaman a las interfaces WelcomeGUI, EditCuidadesGUI y a la Matriz grafo
     public static WelcomeGUI interfaz1;
     public static EditCuidadesGUI interfaz2back;
     public static Matriz grafo = new Matriz();
     
+     /**
+     * Constructor que inicializa la interfaz3back de ValoresInicialesGUI y la Matriz grafo
+     * @param interfaz2back interfaz que se encuentra en EditCuidadesGUI
+     *
+     */
     public EditorTxtGUI(EditCuidadesGUI interfaz2back) {
         initComponents();
+        //Declara que a los label cargararch, noinfo, guardado, selecarchivo y next no visibles
         cargararch.setVisible(false);
         noinfo.setVisible(false);
         guardado.setVisible(false);
         next.setVisible(true);
+        selecarchivo.setVisible(false);
         
+        // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
+        
+        //Instancia la interfaz2back
         this.interfaz2back = interfaz2back;
+        
+        //Declara que la interfaz2back no es visible inicialmente
         interfaz2back.setVisible(false);
+        
+        //Declara a la interfaz EditorTxtGUI no visible
         this.setVisible(true);
+        
+        //Posicina la interfaz en el centro de la pantalla
         this.setLocationRelativeTo(null);
     }
     
+    /**
+     * Constructor que inicializa la interfaz3back de ValoresInicialesGUI y la Matriz grafo
+     * @param interfaz1 interfaz que se encuentra en WelcomeGUI
+     *
+     */
     public EditorTxtGUI(WelcomeGUI interfaz1) {
         initComponents();
+        
+        //Declara que a los label cargararch, noinfo, guardado, selecarchivo y next no visibles
         cargararch.setVisible(false);
         noinfo.setVisible(false);
         guardado.setVisible(false);
         next.setVisible(false);
+        selecarchivo.setVisible(false);
         
+        //No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
+        
+        //Instancia a la interfaz1  
         this.interfaz1 = interfaz1;
+        
+        //Declara que la interfaz1 no es visible inicialmente
         interfaz1.setVisible(false);
+        
+        //Declara a la interfaz EditorTxtGUI no visible
         this.setVisible(true);
+        
+        //Posicina la interfaz en el centro de la pantalla
         this.setLocationRelativeTo(null);
     }
-
+    
+    /**
+     * Metodo que retorna el Grafo
+     * @return grafo
+     *
+     */
     public static Matriz getGrafo() {
         return grafo;
     }
@@ -80,6 +123,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         noinfo = new javax.swing.JLabel();
         guardado = new javax.swing.JLabel();
         cargararch = new javax.swing.JLabel();
+        selecarchivo = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -191,38 +235,63 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         cargararch.setText("Archivo cargado con exito!!");
         getContentPane().add(cargararch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
 
+        selecarchivo.setFont(new java.awt.Font("Adobe Devanagari", 0, 16)); // NOI18N
+        selecarchivo.setForeground(new java.awt.Color(255, 0, 0));
+        selecarchivo.setText("No ha seleccionado ningun archivo!!");
+        getContentPane().add(selecarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
+
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
         jLabel6.setText("jLabel6");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Metodo para que al presionar el boton se continue a la siguiente interfaz3 (EditCuidadesGUI)
+     * @param evt 
+     */
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
         try {
+            //Inicializa la interfaz3/EditCuidadesGUI
             EditCuidadesGUI interfaz3 = new EditCuidadesGUI(this);
         } catch (Exception ex) {
             Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_nextActionPerformed
-
+    /**
+     * Metodo que carga el archivo creado en la ultima simulacion
+     * @param evt 
+     */
     private void crear_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_txtActionPerformed
+        //Se crea un nuevo ArchivoTxt
         ArchivoTxt func = new ArchivoTxt();
+        
         try {
-              
+            //Retorna la informacion del leer_txt y se elimina un salto de linea inicial con el .substring
+            func.cargar_txt(func.leer_txt().substring(0, func.leer_txt().length()-1), grafo);
             
-              func.cargar_txt(func.leer_txt().substring(0, func.leer_txt().length()-1), grafo);
-              System.out.println(grafo.grafoDistanciaString());
-              this.Contenido.setText(grafo.grafoDistanciaString());
+            //Imprime el grafoDistanciaString
+            System.out.println(grafo.grafoDistanciaString());
+            
+            //Muestra la informacion del txt en el text area Contenido
+            this.Contenido.setText(grafo.grafoDistanciaString());
               
         } catch (Exception ex) {
             Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //Muestra el mensaje "Archivo Cargado exitosamente!!"
         cargararch.setVisible(true);
+        
+        //Muestra en la interfaz el boton de continuar
         next.setVisible(true);
     }//GEN-LAST:event_crear_txtActionPerformed
 
+     /**
+     * Metodo que permite bajar un archivo Txt de la computadora y leerlo
+     * @param evt 
+     * @exception IOException e1
+     */
     private void abrir_archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrir_archivoActionPerformed
         //Creo el Objeto JFileChooser
         JFileChooser fc = new JFileChooser();
@@ -244,20 +313,39 @@ public class EditorTxtGUI extends javax.swing.JFrame {
 
             //Escribir la ruta del fichero
             this.route.setText(fichero.getAbsolutePath());
+            
+            //Esconde el mensaje "No se ha seleccionado ningun archivo"
+            selecarchivo.setVisible(false);
 
+            //Iniciliaza un FileReader llamado fr
             try(FileReader fr = new FileReader(fichero)){
+                
+                //Crea una nueva variable cadena que esta vacia 
                 String cadena = "";
+                
+                //Crea una nueva variable que lea la informacion del FileReader fr
                 int valor = fr.read();
+                
+                //Lee todo el documento hasta que el valor sea -1
                 while(valor != -1){
+                    
+                    //Se le agrega a la variable cadena los valores del fr
                     cadena = cadena + (char) valor;
+                    
+                    //Lee el proximo valor
                     valor = fr.read();
                 }
+                
+                //Muestra los elementos del txt en el text area Contenido
                 this.Contenido.setText(cadena);
+                
+            //Chequea por IOException e1    
             }catch (IOException e1){
                 e1.printStackTrace();
             }
         }else{
-            JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún archivo.");
+            //Muestra en la interfaz un mensaje que dice "No se ha seleccionado ningun archivo"
+            selecarchivo.setVisible(true);
         }
     }//GEN-LAST:event_abrir_archivoActionPerformed
 
@@ -265,25 +353,36 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_routeActionPerformed
 
+    /**
+     * Metodo que permite guardar los valores mostrados del Txt
+     * @param evt 
+     * @exception ex
+     */
     private void GuardarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarInfoActionPerformed
+        //Chequea que en el Text area Contenido esten mostrados los valores del Txt
         if (Contenido.getText().length() == 0){
+            
+            //Muestra los mensajes de "No hay informacion que guardar" y esconde el mensaje de "Guardado exitosamente"
             noinfo.setVisible(true);
             guardado.setVisible(false);
         }else{
+            //Crea una variable String txt con la informacion del Text area Contenido
             String txt = Contenido.getText();
+            
+            //Crea un nuevo Archivo txt
             ArchivoTxt func = new ArchivoTxt();
 
             try {
+                //Carga la informacion al Archivo Txt
                 func.cargar_txt(txt, grafo);
+                
             } catch (Exception ex) {
                 Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
+            //Esconde noinfo y muestra mensajes de "Guardado exitosamente!!" y muestra el boton de continuar
             noinfo.setVisible(false);
             guardado.setVisible(true);
             next.setVisible(true);
-
-            grafo.print(0);
                 
         }
             
@@ -319,5 +418,6 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private javax.swing.JButton next;
     private javax.swing.JLabel noinfo;
     private javax.swing.JTextField route;
+    private javax.swing.JLabel selecarchivo;
     // End of variables declaration//GEN-END:variables
 }

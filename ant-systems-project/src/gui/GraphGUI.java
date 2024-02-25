@@ -9,6 +9,8 @@ public class GraphGUI extends javax.swing.JFrame {
     /**
      * Creates new form GraphGUI
      * @param interfaz6
+     * @author Julene
+     * @author Luis
      */
     public GraphGUI(CiclosGUI interfaz6) {
         initComponents();
