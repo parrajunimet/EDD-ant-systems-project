@@ -1,7 +1,7 @@
 package gui;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import functions.GraficarGrafo;
+import functions.GraficarGrafo;
 public class GraphGUI extends javax.swing.JFrame {
     
     public CiclosGUI simulado;
@@ -9,8 +9,6 @@ public class GraphGUI extends javax.swing.JFrame {
     /**
      * Creates new form GraphGUI
      * @param interfaz6
-     * @author Julene
-     * @author Luis
      */
     public GraphGUI(CiclosGUI interfaz6) {
         initComponents();
@@ -80,8 +78,8 @@ public class GraphGUI extends javax.swing.JFrame {
     private void crearGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearGrafoActionPerformed
         try {
             // TODO add your handling code here:
-           // GraficarGrafo graph = new GraficarGrafo();
-            //graph.mostrar(simulado.getgrafos());
+            GraficarGrafo graph = new GraficarGrafo();
+            graph.mostrar(simulado.getgrafos());
         } catch (Exception ex) {
             Logger.getLogger(GraphGUI.class.getName()).log(Level.SEVERE, null, ex);
         }

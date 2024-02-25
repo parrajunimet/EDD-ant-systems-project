@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package gui;
 
 import edd.Matriz;
@@ -5,9 +9,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 
+ *
  * @author Sofia
- * @author Julene
  */
 public class AgregarCiudadesGUI extends javax.swing.JFrame {
     
@@ -103,7 +106,7 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         info.setRows(5);
         jScrollPane1.setViewportView(info);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 210, 200));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 210, 200));
 
         addpath.setBackground(new java.awt.Color(102, 51, 0));
         addpath.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
@@ -133,11 +136,7 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         texto2.setForeground(new java.awt.Color(255, 255, 255));
         texto2.setText("Distancia entre ciudades");
         jPanel1.add(texto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 170, -1));
-
-        notify.setBackground(new java.awt.Color(153, 102, 0));
-        notify.setFont(new java.awt.Font("Rockwell Condensed", 1, 14)); // NOI18N
-        notify.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(notify, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 330, 40));
+        jPanel1.add(notify, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 430, 20));
 
         texto1.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         texto1.setForeground(new java.awt.Color(255, 255, 255));

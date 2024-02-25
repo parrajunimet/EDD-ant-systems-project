@@ -9,16 +9,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Interfaz que permite iniciar la simulacion
- * 
- * @author Julene
- * @author Sofia
- * @version 24/02/2024
+ *
+ * @author User
  */
-
 public class IniciarSimulacionGUI extends javax.swing.JFrame {
     
-    //Se llama a la interfaz5a/ValoresInicialesGUI, a la Matriz grafo, alpha, beta, gammma, antn, cycles, ciudadi y ciudadf
     public static ValoresInicialesGUI interfaz5a;
     private Matriz grafo; 
     private double alpha, beta, gamma; 
@@ -26,32 +21,16 @@ public class IniciarSimulacionGUI extends javax.swing.JFrame {
     private String ciudadi, ciudadf; 
 
     /**
-     * Constructor que inicializa la Simulacion
-     * @param interfaz5a interfaz que se encuentra en ValoresInicialesGUI
-     *
+     * Creates new form IniciarSimulacionGUI
      */
     public IniciarSimulacionGUI(ValoresInicialesGUI interfaz5a, String ciudadi, String ciudadf, int cycles, int antn, double a, double b, double p) {
         initComponents();
-        
-        // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
-        
-        //Iniciliza la interfaz5a
         this.interfaz5a = interfaz5a;
-        
-        //Inicializa el grafo
         this.grafo = interfaz5a.getGrafo();
-        
-        //Declara que la interfaz5a no es visible inicialmente
         interfaz5a.setVisible(false);
-        
-        //Declara visible a IniciarSimulacionGUI
         this.setVisible(true);
-        
-        //Posiciona la interfaz en el centro de la pantalla
         this.setLocationRelativeTo(null);
-        
-        //Se inicializan alpha, beta, gammma, antn, cycles, ciudadi y ciudadf
         this.ciudadi = ciudadi;
         this.ciudadf = ciudadf;
         this.cycles = cycles;
@@ -59,6 +38,7 @@ public class IniciarSimulacionGUI extends javax.swing.JFrame {
         this.alpha = a;
         this.beta = b;
         this.gamma = p;
+        initComponents();
     }
 
     /**
@@ -122,34 +102,19 @@ public class IniciarSimulacionGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    /**
-     * Metodo para que al presionar el boton se continue a la siguiente interfaz5b/CiclosGUI
-     * @param evt 
-     */
+
     private void IniciarSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSimulacionActionPerformed
         try {
-            //Se iniciliza la interfaz5b/CiclosGUI
             CiclosGUI interfaz5b = new CiclosGUI(this, this.ciudadi, this.ciudadf, this.cycles, this.antn, this.alpha, this.beta, this.gamma);
         } catch (Exception ex) {
             Logger.getLogger(IniciarSimulacionGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_IniciarSimulacionActionPerformed
 
-    /**
-     * Metodo para que al presionar el boton se devuelva a la interfaz4back/ValoresInicialesGUI
-     * @param evt 
-     */
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
-        //Se inicializa la interfaz4back/ValoresInicialesGUI
         ValoresInicialesGUI interfaz4back = new ValoresInicialesGUI(this);
     }//GEN-LAST:event_VolverActionPerformed
-    
-    /**
-     * Metodo que retorna el Grafo
-     * @return grafo
-     *
-     */
+
     public Matriz getGrafo() {
         return grafo;
     }
