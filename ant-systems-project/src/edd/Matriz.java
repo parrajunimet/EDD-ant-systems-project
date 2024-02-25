@@ -185,6 +185,7 @@ public class Matriz {
      * Escribe string con formato de txt deseado. 
      * Recorre Matriz y añade valores de ciudades y distancias.
      * @return grafo
+     *
      */
     
     public String grafoDistanciaString() {
@@ -232,29 +233,45 @@ public class Matriz {
             }
 
         }
+        //Retorna el string grafo
         return grafo;
     }
     
     
+    /**
+     * Escribe string con formato de txt deseado. 
+     * Recorre Matriz y añade valores de ciudades y distancias a un String con el formato deseado del txt
+     * @param ciudadi
+     * @param ciudadf
+     * @return grafo
+     * @author Julene
+     */
     public String grafoDistanciaString2(String ciudadi, String ciudadf) {
         
         //Crea una variable grafo que contendra toda la informacion deseada
         String grafo = "ciudad\n";
+        
+        //Añade la ciudad inicial al string grafo
         grafo += ciudadi + "\n";
+        
         //Recorre la matriz
         for (int i = 0; i < verts.length; i++) {
             
             //Chequea que vertices no sean nulos
             if (verts[i] != null) {
                 
+                //Chequea que el valor que estamos agregando no sea igual al de la ciudad inicial o la ciudad final
                 if(!String.valueOf(verts[i].getNumVertice()+1).equals(ciudadi) && !String.valueOf(verts[i].getNumVertice()+1).equals(ciudadf)){
+                    
                     //Añade el valor de los vertices a la variable grafo, junto con un salto de linea
                     grafo += (verts[i].getNumVertice()+1) + "\n";
                 }
             }
         }
         
+        //Añade la ultima ciudad al string grafo
         grafo += ciudadf + "\n";
+        
         // Añade la palabra aristas a la variable grafo
         grafo += "aristas\n";
         
@@ -267,7 +284,7 @@ public class Matriz {
                 //Recorre la matriz, j es el numero de filas
                 for (int j = 0; j < matAd[i].length; j++) {
                     
-                    //
+                    //Parte la matriz en diagonal para recorrerla y que no existan duplicados
                     if (i < j) {
                         
                         //Chequea que la distancia de la matriz no sea 0
@@ -292,7 +309,7 @@ public class Matriz {
      * Escribe string con formato de txt deseado, que guardaremos en el archivo txt. 
      * Recorre Matriz y añade valores de ciudades y distancias.
      * @return grafo
-     * @author Julene
+     * 
      */
     
     public String grafoFeromonaString() {
