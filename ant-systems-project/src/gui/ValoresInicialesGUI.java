@@ -2,40 +2,107 @@
 package gui;
 
 import edd.Matriz;
+import functions.ValoresInicialesTXT;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Interfaz que muestra valores iniciales y permite editarlo
+ * 
+ * @author Julene
+ * @version 24/02/2024
+ */
 public class ValoresInicialesGUI extends javax.swing.JFrame {
 
+    //Se llaman a las interfaces EditCuidadesGUI, IniciarSimulacionGUI y la matriz grafo
     public static EditCuidadesGUI interfaz4;
     public static IniciarSimulacionGUI interfaz4back;
     private Matriz grafo; 
-    
+      
+    /**
+     * Constructor que inicializa la interfaz4 de EditCuidadesGUI, alphavalue...
+     * @param interfaz4 interfaz que se encuentra en EditCuidadesGUI
+     *
+     */
     public ValoresInicialesGUI(EditCuidadesGUI interfaz4) {
         initComponents();
+        
+        //Instancia la interfaz4
         this.interfaz4 = interfaz4;
+        
+        //Instancia el grafo
         this.grafo = interfaz4.getGrafo();
+        
+        String [] valores = this.getInitialValues(); 
+        this.alphaValue.setText(valores[0]);
+        this.BetaValue.setText(valores[1]);
+        this.GammaValue.setText(valores[2]);
+        this.antnum.setText(valores[3]);
+        this.cycleValue.setText(valores[4]);
+        
+        //Declara que la interfaz4 no es visible
         interfaz4.setVisible(false);
+        
+        //Declara a la interfaz ValoresInicialesGUI visible
         this.setVisible(true);
+        
+        //Posiciona la interfaz en el centro de la pantalla
         this.setLocationRelativeTo(null);
+        
+        // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
+        
         this.notify.setVisible(false);
     }
     
+    /**
+     * Constructor que inicializa la interfaz4back de IniciarSimulacionGUI, alphavalue...
+     * @param interfaz4back interfaz que se encuentra en IniciarSimulacionGUI
+     *
+     */
     public ValoresInicialesGUI(IniciarSimulacionGUI interfaz4back) {
         initComponents();
+        
+        //Instancia la interfaz4back
         this.interfaz4back = interfaz4back;
+        
+        //Instancia al grafo
         this.grafo = interfaz4.getGrafo();
+        
+        String [] valores = this.getInitialValues(); 
+        this.alphaValue.setText(valores[0]);
+        this.BetaValue.setText(valores[1]);
+        this.GammaValue.setText(valores[2]);
+        this.antnum.setText(valores[3]);
+        this.cycleValue.setText(valores[4]);
+        
+        
+        //Declara que la interfaz4back no es visible
         interfaz4back.setVisible(false);
+        
+        //Declara a la interfaz ValoresInicialesGUI visible
         this.setVisible(true);
+        
+        //Posiciona la interfaz en el centro de la pantalla
         this.setLocationRelativeTo(null);
+        
+        // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
+        
         this.notify.setVisible(false);
     }
 
     public Matriz getGrafo() {
         return grafo;
     }
+    
+    public String[] getInitialValues() {
+        ValoresInicialesTXT fileHandler = new ValoresInicialesTXT("valoresIniciales.txt");
+        fileHandler.createTxtFile();
+        String[] valores = fileHandler.readTxtFile();
+        return valores;
+    }
+    
     
     
     /**
@@ -200,7 +267,9 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
         jPanel3.add(endcity, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 71, -1));
 
         notify.setBackground(new java.awt.Color(204, 153, 0));
-        jPanel3.add(notify, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 330, 40));
+        notify.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        notify.setForeground(new java.awt.Color(204, 0, 0));
+        jPanel3.add(notify, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 440, 40));
 
         city1.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
         city1.setForeground(new java.awt.Color(255, 255, 255));
@@ -252,6 +321,8 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
                    ciudadi =this.startcity.getText(); 
                    ciudadf = this.endcity.getText(); 
                    if (!ciudadi.equalsIgnoreCase(ciudadf)) {
+                       ValoresInicialesTXT fileHandler = new ValoresInicialesTXT("valoresIniciales.txt");
+                       fileHandler.editTxtFile(alpha , beta , gamma , a , c );
                        IniciarSimulacionGUI interfaz5a = new IniciarSimulacionGUI(this, ciudadi, ciudadf, c, a, alpha, beta, gamma);
                    }else {
                         this.notify.setVisible(true);
