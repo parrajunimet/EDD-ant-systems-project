@@ -1,40 +1,70 @@
 
 package edd;
+/**
+ * @author Sofia
+ * Esta clase define a una listadoblemente enlazada
+ */
 
 
 public class ListaDoble implements ILista{
+    //Atributos de la clase
     private int size; 
     private NodoDoble head, tail;
-
+    /**
+     * Constructo para la clase ListaDoble
+     */
     public ListaDoble() {
         this.size = 0;
         this.head = this.tail = null;
     }
-
+    //cierre del constructor
+    
+    /**
+     * Metodo para retornar el tamaño de la lista en un int 
+     * @return int size
+     */
+   
     public int getSize() {
         return size;
     }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
+    
+    /**
+     * Metodo para retornar el el primer nodo de la lista
+     * @return  head
+     */
     public NodoDoble getHead() {
         return head;
     }
+    
+    /**
+     * Metodo para setear la cabeza de lista a un nuevo nododoble
+     * @param head 
+     */
 
     public void setHead(NodoDoble head) {
         this.head = head;
     }
-
+    
+    /**
+     * Mtodo para obtener el ultimo nodo de la lista 
+     * @return el ultimo Nododoble de la lista 
+     */
     public NodoDoble getTail() {
         return tail;
     }
-
+    
+    /**
+     * Metodo para setear la cola de la lista a un nuevo NodoDoble
+     * @param tail 
+     */
     public void setTail(NodoDoble tail) {
         this.tail = tail;
     }
     
+    /**
+     * Metodo pata insertar un elemento al comienzo de la lista, como la cabeza de esta
+     * @param element cualquier tipo de objeto. 
+     */
     @Override
     public void insertBegin(Object element) {
         NodoDoble newNodo = new NodoDoble(element);
@@ -49,6 +79,10 @@ public class ListaDoble implements ILista{
         size++;
     }
 
+    /**
+     * Metodo para insertar un elemento al fianl de la lista, como a cola de esta
+     * @param element que puede ser cualquier tipo de objeto
+     */
     @Override
     public void insertFinal(Object element) {
         NodoDoble newNodo = new NodoDoble(element);
@@ -63,6 +97,11 @@ public class ListaDoble implements ILista{
         size++;
     }
 
+    /**
+     * Metodo para insertar un objeto cualquiera en una posicion (index) especifico de la lista
+     * @param element
+     * @param index 
+     */
     @Override
     public void insertInIndex(Object element, int index) {
         NodoDoble newNodo = new NodoDoble(element);
@@ -107,7 +146,10 @@ public class ListaDoble implements ILista{
         }
     }
 
-
+    /**
+ * Metodo para eliminar un nodo al final de la lista
+ * @return el objeto  correspondiente al nodo que ha sido eliminado
+ */
     @Override
     public Object deleteFinal() {
         if (isEmpty()) {
@@ -130,7 +172,10 @@ public class ListaDoble implements ILista{
         return null;
         
     }
-
+/**
+ * Metodo para eliminar un nodo al inicio de la lista
+ * @return el objeto  correspondiente al nodo que ha sido eliminado
+ */
     @Override
     public Object deleteBegin() {
         if (isEmpty()) {
@@ -148,7 +193,11 @@ public class ListaDoble implements ILista{
         return null;
         
     }
-
+/**
+ * Metodo para eliminar un nodo en una posicion especifica (index) de la lista
+ * @return el objeto  correspondiente al nodo que ha sido eliminado
+ * @param index
+ */
     @Override
     public Object deleteInIndex(int index) {
         if (isEmpty()) {
@@ -200,12 +249,18 @@ public class ListaDoble implements ILista{
         return null;
         
     }
-
+/**
+ * Metodo para saber si la lista no contiene ningun elemento, es decir, esta vacia
+ * @return booleano, true si esta vacia, false si no lo esta
+ */
     @Override
     public boolean isEmpty() {
         return (getHead() == null  && getTail() == null); 
     }
-
+    
+/**
+ * Metodo para imprimir la lista por consola
+ */
     @Override
     public void print() {
         NodoDoble pointer = getHead();
@@ -219,7 +274,10 @@ public class ListaDoble implements ILista{
             System.out.println("Empty List");
         }
     }
-    
+/**
+ * Metodo para obtener un string con los elementos de la lista
+ * @return String con los elementos de la lista
+ */    
     public String printString() {
         NodoDoble pointer = getHead();
         String list = ""; 
@@ -234,8 +292,12 @@ public class ListaDoble implements ILista{
        }    
        return list;
     }
-    
-    
+
+    /**
+ * Metodo para saber si un elemento esta dentro de la lista
+ * @param element
+ * @return booleano, true si elemento fue encontrado en la lista, false si no lo fue
+ */      
     public boolean isIn(Object element) {
         NodoDoble pointer = getHead(); 
         while (pointer != null){
@@ -247,7 +309,9 @@ public class ListaDoble implements ILista{
         return false; 
     }
     
-    
+    /**
+     * Metodo para vaciar la lista, exceptuando la cabeza
+     */
     public void emptyButHead() {
         if (!isEmpty()){
             while(getHead().getNext() != null){

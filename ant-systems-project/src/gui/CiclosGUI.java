@@ -1,11 +1,19 @@
 package gui;
 
+
+/**
+ * Interfaz grafica para mostrar cada uno de los ciclos de la simulacion y sus resultados
+ * @author Sofia
+ */
+
+
 import edd.Matriz;
 import simulation.Simulacion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CiclosGUI extends javax.swing.JFrame {
+    //Atributos de la interfaz
     public static IniciarSimulacionGUI interfaz5b;
     private Matriz grafos; 
     private String ciudadi; 
@@ -17,9 +25,8 @@ public class CiclosGUI extends javax.swing.JFrame {
     
     
     /**
-     * Creates new form CiclosGUI
+     * Constructor de la clase partiendo de la interfaz de iniciar simulacion
      */
-    ///Preguntar 
     public CiclosGUI(IniciarSimulacionGUI interfaz5b, String ciudadi, String ciudadf, int cycles, int antn, double a, double b, double p) throws Exception {
         initComponents();
         this.setResizable(false);
@@ -164,6 +171,10 @@ public class CiclosGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo para cambiar de ciclo, ver los ultimos resultados de la simulacion, o ir a la siguiente interfaz
+     * @param evt 
+     */
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
 
         if (this.counter < this.cycles) {
@@ -191,10 +202,10 @@ public class CiclosGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_nextActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    
+   /**
+    * Metodo que muestra  en pantalla los resultados de un ciclo de la simulacion. 
+    * @throws Exception 
+    */ 
     public void showCycle() throws Exception {
         String[] results = simulacion.Cycle();
         this.ncycles.setText(String.valueOf(counter));
@@ -203,7 +214,10 @@ public class CiclosGUI extends javax.swing.JFrame {
         this.optimo.setText(results[0]);
     }
     
-    
+   /**
+    * Metodo para iniciar la simulacion, y los datos inciciales de la simulacion. 
+    * @throws Exception 
+    */ 
     public void start() throws Exception {
         this.simulacion = new Simulacion (this.grafos, this.ciudadi, this.ciudadf, this.cycles, this.antn, this.a, this.b, this.p); 
         this.simulacion.startData();
@@ -211,6 +225,10 @@ public class CiclosGUI extends javax.swing.JFrame {
         this.showCycle();
     }
     
+    /**
+     * Metodo para obtener la matriz que representa el grafo multiponderado
+     * @return Matriz de ciudades de la simulacion 
+     */
     public Matriz getgrafos(){
         return this.grafos;
     }
