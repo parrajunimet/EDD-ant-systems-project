@@ -6,16 +6,33 @@ import functions.ValoresInicialesTXT;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Interfaz que muestra valores iniciales y permite editarlo
+ * 
+ * @author Julene
+ * @version 24/02/2024
+ */
 public class ValoresInicialesGUI extends javax.swing.JFrame {
 
+    //Se llaman a las interfaces EditCuidadesGUI, IniciarSimulacionGUI y la matriz grafo
     public static EditCuidadesGUI interfaz4;
     public static IniciarSimulacionGUI interfaz4back;
     private Matriz grafo; 
       
+    /**
+     * Constructor que inicializa la interfaz4 de EditCuidadesGUI, alphavalue...
+     * @param interfaz4 interfaz que se encuentra en EditCuidadesGUI
+     *
+     */
     public ValoresInicialesGUI(EditCuidadesGUI interfaz4) {
         initComponents();
+        
+        //Instancia la interfaz4
         this.interfaz4 = interfaz4;
+        
+        //Instancia el grafo
         this.grafo = interfaz4.getGrafo();
+        
         String [] valores = this.getInitialValues(); 
         this.alphaValue.setText(valores[0]);
         this.BetaValue.setText(valores[1]);
@@ -24,27 +41,55 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
         this.cycleValue.setText(valores[4]);
         this.startcity.setText(grafo.getVerts()[0].getNombre());
         this.endcity.setText(grafo.getVerts()[grafo.getNumVerts()-1].getNombre());
+        //Declara que la interfaz4 no es visible
         interfaz4.setVisible(false);
+        
+        //Declara a la interfaz ValoresInicialesGUI visible
         this.setVisible(true);
+        
+        //Posiciona la interfaz en el centro de la pantalla
         this.setLocationRelativeTo(null);
+        
+        // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
+        
         this.notify.setVisible(false);
     }
     
+    /**
+     * Constructor que inicializa la interfaz4back de IniciarSimulacionGUI, alphavalue...
+     * @param interfaz4back interfaz que se encuentra en IniciarSimulacionGUI
+     *
+     */
     public ValoresInicialesGUI(IniciarSimulacionGUI interfaz4back) {
         initComponents();
+        
+        //Instancia la interfaz4back
         this.interfaz4back = interfaz4back;
+        
+        //Instancia al grafo
         this.grafo = interfaz4.getGrafo();
+        
         String [] valores = this.getInitialValues(); 
         this.alphaValue.setText(valores[0]);
         this.BetaValue.setText(valores[1]);
         this.GammaValue.setText(valores[2]);
         this.antnum.setText(valores[3]);
         this.cycleValue.setText(valores[4]);
+        
+        
+        //Declara que la interfaz4back no es visible
         interfaz4back.setVisible(false);
+        
+        //Declara a la interfaz ValoresInicialesGUI visible
         this.setVisible(true);
+        
+        //Posiciona la interfaz en el centro de la pantalla
         this.setLocationRelativeTo(null);
+        
+        // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
+        
         this.notify.setVisible(false);
     }
 

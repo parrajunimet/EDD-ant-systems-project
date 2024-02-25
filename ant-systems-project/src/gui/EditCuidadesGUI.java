@@ -5,8 +5,14 @@ import edd.Matriz;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class EditCuidadesGUI extends javax.swing.JFrame {
+/**
+ * Interfaz que permite editar el numero de ciudades, ya sea agregando o eliminando
+ * 
+ * @author Julene
+ */
 
+public class EditCuidadesGUI extends javax.swing.JFrame {
+    //Se llaman a las interfaces EditorTxtGUI, AgregarCuidadGUI, EliminarCiudades, ValoresInicialesGUI y a la Matriz
     public static EditorTxtGUI interfaz2;
     public static AgregarCiudadesGUI interfazC;
     public static EliminarCiudades interfazD;
@@ -14,45 +20,121 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
     private Matriz grafo; 
     private String show; 
     
+    /**
+     * Constructor que inicializa la interfaz3back de ValoresInicialesGUI y la Matriz grafo
+     * @param interfaz3back interfaz que se encuentra en ValoresInicialesGUI
+     *
+     */
     public EditCuidadesGUI(ValoresInicialesGUI interfaz3back) throws Exception {
         initComponents();
+        //Instancia la interfaz3back
         this.interfaz3back = interfaz3back;
+        
+        //Instancia al grafo
         this.grafo = interfaz3back.getGrafo();
+        
+        // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
+        
+        //Declara que la interfaz3back inicialmente no es visible
         interfaz3back.setVisible(false);
+        
+        //Declara visible a la interfaz EditCiudadesGUI
         this.setVisible(true);
+        
+        //Posiciona la interfaz en el centro de la pantalla
         this.setLocationRelativeTo(null);
-        this.showCities();
-    }
-    public EditCuidadesGUI(EliminarCiudades interfazD) throws Exception {
-        initComponents();
-        this.grafo = interfazD.getGrafo(); 
-        this.interfazD = interfazD;
-        this.setResizable(false);
-        interfazD.setVisible(false);
-        this.setVisible(true);
-        this.setLocationRelativeTo(null);
+        
+        //Muestra las ciudades
         this.showCities();
     }
     
-    public EditCuidadesGUI(AgregarCiudadesGUI interfazC) throws Exception {
+    /**
+     * Constructor que inicializa la interfazD de EliminarCiudades y la Matriz grafo
+     * @param interfazD interfaz que se encuentra en EliminarCiudades
+     *
+     */
+    public EditCuidadesGUI(EliminarCiudades interfazD) throws Exception {
         initComponents();
+        //Instancia al grafo
+        this.grafo = interfazD.getGrafo(); 
+        
+        //Instancia a la interfazD
+        this.interfazD = interfazD;
+        
+        // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
-        this.grafo = interfazC.getGrafo(); 
-        this.interfazC = interfazC;
-        interfazC.setVisible(false);
+        
+        //Declara que la interfazD inicialmente no es visible 
+        interfazD.setVisible(false);
+        
+        //Declara visible a la interfaz EditCiudadesGUI
         this.setVisible(true);
+        
+        //Posiciona la interfaz en el centro de la pantalla
         this.setLocationRelativeTo(null);
+        
+        //Muestra las ciudades
         this.showCities();
     }
-    public EditCuidadesGUI(EditorTxtGUI interfaz2, String show) throws Exception {
+    
+    /**
+     * Constructor que inicializa la interfazc de AgregarCiudades y la Matriz grafo
+     * @param interfazC interfaz que se encuentra en AgregarCiudadesGUI
+     *
+     */
+    public EditCuidadesGUI(AgregarCiudadesGUI interfazC) throws Exception {
         initComponents();
-        this.grafo = interfaz2.getGrafo(); 
+        // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
-        this.interfaz2 = interfaz2;
-        interfaz2.setVisible(false);
+        
+        //Instancia al grafo
+        this.grafo = interfazC.getGrafo(); 
+        
+        //Instancia a la interfazC
+        this.interfazC = interfazC;
+        
+        //Declara que la interfazC inicialmente no es visible 
+        interfazC.setVisible(false);
+        
+        //Declara visible a la interfaz EditCuidadesGUI
         this.setVisible(true);
+        
+        //Posiciona la interfaz en el centro de la pantalla
         this.setLocationRelativeTo(null);
+        
+        //Muestra ciudades 
+        this.showCities();
+    }
+
+    
+    /**
+     * Constructor que inicializa la interfaz2 de EditorTxtGUI y la Matriz grafo
+     * @param interfaz2 interfaz que se encuentra en EditorTxtGUI
+     *
+     */
+    public EditCuidadesGUI(EditorTxtGUI interfaz2, String show) throws Exception {
+
+        initComponents();
+        //Inicializa el grafo
+        this.grafo = interfaz2.getGrafo(); 
+        
+        // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
+        this.setResizable(false);
+        
+        //Inicializa la interfaz2
+        this.interfaz2 = interfaz2;
+        
+        //Declara que la interfaz2 inicialmente no es visible 
+        interfaz2.setVisible(false);
+        
+        //Declara visible a la interfaz EditCuidadesGUI
+        this.setVisible(true);
+        
+        //Posiciona la interfaz en el centro de la pantalla
+        this.setLocationRelativeTo(null);
+        
+        //Muestra las ciudades
         this.showCities();
         this.show = show; 
     }
@@ -163,28 +245,49 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         return grafo;
     }
     
-    
+    /**
+     * Metodo para que al presionar el boton se continue a la siguiente interfaz (ValoresInicialesGUI)
+     * @param evt 
+     */
     private void ContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContinueActionPerformed
+        //Inicializa la interfaz siguiente interfaz4/ValoresInicialesGUI
         ValoresInicialesGUI interfaz4 = new ValoresInicialesGUI(this);
     }//GEN-LAST:event_ContinueActionPerformed
-
+    
+    /**
+     * Metodo para que al presionar el boton se continue a la interfazB AgregarCiudadesGUI
+     * @param evt 
+     * @exception ex
+     */
     private void agregarciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarciudadActionPerformed
         try {
+            //Inicializa interfazB/AgregarCiudadesGUI
             AgregarCiudadesGUI interfazB = new AgregarCiudadesGUI(this);
         } catch (Exception ex) {
             Logger.getLogger(EditCuidadesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_agregarciudadActionPerformed
-
+    
+    /**
+     * Metodo para que al presionar el boton se continue a la interfazA EliminarCiudades
+     * @param evt 
+     * @exception ex
+     */
     private void eliminarciudadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarciudadesActionPerformed
         try {
+            //Inicializa interfazA/EliminarCiudades
             EliminarCiudades interfazA = new EliminarCiudades(this);
         } catch (Exception ex) {
             Logger.getLogger(EditCuidadesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_eliminarciudadesActionPerformed
-
+    /**
+     * Metodo para que al presionar el boton se devuelva a la interfaz anterior (EditorTxtGUI)
+     * @param evt 
+     */
     private void gobackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gobackActionPerformed
+
+        //Inicializa la interfaz anterior interfaz2back/EditorTxtGUI
         EditorTxtGUI interfaz2back = new EditorTxtGUI(this, this.show);
     }//GEN-LAST:event_gobackActionPerformed
 

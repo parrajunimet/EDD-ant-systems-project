@@ -1,7 +1,10 @@
 package gui;
 
 import edd.Matriz;
+import edd.Vertice;
 import functions.ArchivoTxt;
+import static gui.CiclosGUI.ciudadf;
+import static gui.CiclosGUI.ciudadi;
 import static gui.EditorTxtGUI.grafo;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -9,17 +12,38 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Interfaz que permite Guardar un archivo Txt con la informacion de la
+ * simulacion
+ *
+ * @author Julene
+ * @version 24/02/2024
+ */
 public class FinalGUI extends javax.swing.JFrame {
 
-    
     public static GraphGUI interfaz7;
-    
+
+    /**
+     * Constructor que inicializa la interfaz7/GraphGUI
+     *
+     * @param interfaz7 interfaz que se encuentra en GraphGUI
+     *
+     */
     public FinalGUI(GraphGUI interfaz7) {
         initComponents();
+        // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
+
+        //Instancia la interfaz7
         this.interfaz7 = interfaz7;
+
+        //Declara no visible a la interfaz7
         interfaz7.setVisible(false);
+
+        //Declara visible a la interfaz FinalGUI
         this.setVisible(true);
+
+        //Posiciona a la interfaz en el centro de la pantalla
         this.setLocationRelativeTo(null);
     }
 
@@ -75,17 +99,26 @@ public class FinalGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Metodo Guarda Informacion de la simulacion en el Txt
+     *
+     * @exception ex
+     */
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
-        String grafoferomonas_string = grafo.grafoDistanciaString();
+        //Crea un nuevo string llamado grafoferomonas_string que tenga toda la informacion del grafo en un string organizado
+
+        String grafoferomonas_string = grafo.grafoDistanciaString2(ciudadi, ciudadf);
+
+        //Crea un nuevo archivo Txt
         ArchivoTxt func = new ArchivoTxt();
-        
+
         try {
-                func.guardar_txt(grafoferomonas_string);
-            } catch (Exception ex) {
-                Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        System.exit(0);   
+            //Guarda el string grafoferomonas_string en el archivo txt
+            func.guardar_txt(grafoferomonas_string);
+        } catch (Exception ex) {
+            Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.exit(0);
     }//GEN-LAST:event_SaveActionPerformed
 
     /**

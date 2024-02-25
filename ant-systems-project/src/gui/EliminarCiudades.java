@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
- *
+ * @author Julene
  * @author Sofia
  */
 public class EliminarCiudades extends javax.swing.JFrame {
@@ -20,16 +20,30 @@ public class EliminarCiudades extends javax.swing.JFrame {
     
     
     /**
-     * Creates new form EliminarCiudades
+     * Constructor que inicializa la interfazA de EditCuidadesGUI y la Matriz grafo
      */
     public EliminarCiudades(EditCuidadesGUI interfazA) throws Exception {
         initComponents();
+        
+        //Inicializa interfazA
         this.interfazA= interfazA;
+        
+        //Declara que la interfazA inicialmente no es visible
         interfazA.setVisible(false);
+        
+        //Declara visible a la interfaz EliminarCiudades
         this.setVisible(true);
+        
+        //Posiciona la interfaz en el centro de la pantalla
         this.setLocationRelativeTo(null);
+        
+        // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
+        
+        //Inicializa al grafo
         this.grafo = interfazA.getGrafo(); 
+        
+        
         this.eliminar.setVisible(false);
         this.start();
     }
