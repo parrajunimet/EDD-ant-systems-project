@@ -55,6 +55,10 @@ public class Simulacion {
     }
     
     
+    public String getOptimePath(){
+        return this.optimepath;
+    }
+    
     public String simulationResults() throws Exception {
         String result = "El camino mas optimo en los " + this.cycles + " ciclos fue:\n        "; 
         for (int i = 0; i < this.optimepath.length(); i++) {

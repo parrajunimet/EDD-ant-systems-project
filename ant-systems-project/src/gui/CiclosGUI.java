@@ -15,6 +15,9 @@ public class CiclosGUI extends javax.swing.JFrame {
     private Simulacion simulacion; 
     private boolean done; 
     
+    public Simulacion getSimulacion(){
+        return this.simulacion;
+    }
     
     /**
      * Creates new form CiclosGUI
