@@ -28,7 +28,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         cargararch.setVisible(false);
         noinfo.setVisible(false);
         guardado.setVisible(false);
-        next.setVisible(true);
+        next.setVisible(false);
         this.setResizable(false);
         this.interfaz2back = interfaz2back;
         interfaz2back.setVisible(false);

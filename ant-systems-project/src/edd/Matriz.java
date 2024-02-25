@@ -46,7 +46,7 @@ public class Matriz {
         return verts[i].getNombre();
     }
 
-    public void eliminarVertice(String nom) {
+    public void eliminarVertice(String nom) throws Exception {
         boolean esta = numVertice(nom) >= 0;
         if (esta) {
             Vertice v = new Vertice(nom);
@@ -73,6 +73,11 @@ public class Matriz {
             }
             matAd[MaxVerts - 1][MaxVerts - 1] = arista;
             numVerts--;
+            
+            for (int s= 0; s < getNumVerts(); s++) {
+                matAd[s][s].setDistancia(0);
+                matAd[s][s].setFeromona(0);
+            }
         }
     }
 
@@ -372,7 +377,7 @@ public class Matriz {
         String x = "";
         x += "\n\nCiudad      Aristas de conexion\n";
         String va,
-         vb;
+        vb;
         for (int i = 0; i < getNumVerts(); i++) {
             va  = vertName(i);
             x += va  + "\n";
