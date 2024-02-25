@@ -13,6 +13,7 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
     
     public static EditCuidadesGUI interfazB; 
     private Matriz grafo; 
+    private String addedcity; 
    
     /**
      * Creates new form AgregarCiudades
@@ -160,7 +161,10 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_VolverActionPerformed
     
-    
+  /**
+   * Metodo para actualizar la pantalla con las ciudades y aristas
+   * @throws Exception 
+   */  
         private void uptadeScreen() throws Exception{
         String x = "Ciudades\n"; 
         for (int i = 0; i < this.grafo.getNumVerts(); i++) {
@@ -185,10 +189,9 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
                 if (!this.grafo.isVert(vb)) {
                     this.notify.setText("Por favor ingrese una ciudad valida (Ya existente)");
                 }else {
-                    String va = String.valueOf(this.grafo.getNumVerts()); 
-                    if (this.grafo.getMatAd()[this.grafo.numVertice(va)][this.grafo.numVertice(vb)].getDistancia() == 0 && !va.equals(vb)) {
+                    if (this.grafo.getMatAd()[this.grafo.numVertice(this.addedcity)][this.grafo.numVertice(vb)].getDistancia() == 0 && !this.addedcity.equals(vb)) {
                         try {
-                            this.grafo.nuevaDistancia(va, vb, d);
+                            this.grafo.nuevaDistancia(this.addedcity, vb, d);
                             this.terminar.setVisible(true);
                         } catch (Exception ex) {
                             Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -199,7 +202,7 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
                             Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(Level.SEVERE, null, ex);
                         } 
                     } else {
-                        if (va.equals(vb)) {
+                        if (this.addedcity.equals(vb)) {
                             this.notify.setText("No puedes definir una arista consigo misma");
                         } else {
                             this.notify.setText("Esta arista ya fue definida");
@@ -240,11 +243,29 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         this.notify.setVisible(true);
         if (this.grafo.getNumVerts() == 20) {
             this.notify.setText("No se pueden agregar mas ciudades, se ha alcanzado el limite");
+            this.terminar.setVisible(true); 
         }else {
             this.texto1.setVisible(true);
             this.texto2.setVisible(true);
-            this.addcity.setVisible(false);
-            this.grafo.nuevoVertice(String.valueOf(grafo.getNumVerts()+1));
+            this.addcity.setVisible(false); 
+            boolean found,  done = false; 
+            int aux = 1; 
+            while (!done) {
+                found = false; 
+                for (int i = 0; i < grafo.getNumVerts(); i++) {
+                    if (String.valueOf(aux).equals(grafo.getVerts()[i].getNombre())) {
+                        found = true; 
+                    }
+                }
+                if (found) {
+                    aux++; 
+                } else {
+                    done = true; 
+                }
+            }    
+            
+            this.grafo.nuevoVertice(String.valueOf(aux));
+            this.addedcity = String.valueOf(aux); 
             this.ciudad.setVisible(true);
             this.distancia.setVisible(true);
             this.addpath.setVisible(true);
@@ -256,45 +277,7 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addcityActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new AgregarCiudadesGUI(interfazB).setVisible(true);
-                } catch (Exception ex) {
-                    Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Volver;
