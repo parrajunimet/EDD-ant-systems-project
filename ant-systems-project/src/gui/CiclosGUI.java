@@ -12,49 +12,33 @@ import simulation.Simulacion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Interfaz que permite mostrar informacion de cada Ciclo de la Simulacion
- * 
- * @author Sofia
- * @author Julene
- * @version 24/02/2024
- */
-
 public class CiclosGUI extends javax.swing.JFrame {
     //Se llama a  la clase IniciarSimulacionGUI/ interfaz5
     //Atributos de la interfaz
     public static IniciarSimulacionGUI interfaz5b;
     private Matriz grafos; 
-    public static String ciudadi; 
-    public static String ciudadf; 
+    private String ciudadi; 
+    private String ciudadf; 
     private int cycles, antn, counter;
     private double p, a, b;
     private Simulacion simulacion; 
     private boolean done; 
     
+    public Simulacion getSimulacion(){
+        return this.simulacion;
+    }
     
     /**
-     * Constructor que inicializa todas las variables necesarias para la clase
-     * @param interfaz5b interfaz que se encuentra en ValoresInicialesGUI
-     *
+     * Creates new form CiclosGUI
      */
+    ///Preguntar 
     public CiclosGUI(IniciarSimulacionGUI interfaz5b, String ciudadi, String ciudadf, int cycles, int antn, double a, double b, double p) throws Exception {
         initComponents();
-        // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
-        
-        //Inicializa la interfaz5b
         this.interfaz5b = interfaz5b;
-        
-        //Declara que inicialmente la interfaz5b no es visible
         interfaz5b.setVisible(false);
-        
-        //Declara que la interfaz CiclosGUI si es visible inicialmente
         this.setVisible(true);
-        
-        //Posiciona la interfaz en el centro de la pantalla
         this.setLocationRelativeTo(null);
-        
         this.grafos = interfaz5b.getGrafo();
         this.ciudadi = ciudadi;
         this.ciudadf = ciudadf;
@@ -185,7 +169,11 @@ public class CiclosGUI extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fondo ciclos.jpeg"))); // NOI18N
+<<<<<<< HEAD
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 1000, 590));
+=======
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 540));
+>>>>>>> e82b9c582d742b2450dffd47494966aec4925606
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 530));
 
@@ -216,8 +204,6 @@ public class CiclosGUI extends javax.swing.JFrame {
                     Logger.getLogger(CiclosGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }   
             }else {
-                
-                //Inicializa la interfaz siguiente interfaz6/ GraphGUI
                 GraphGUI interfaz6 = new GraphGUI(this);
             }
         }
