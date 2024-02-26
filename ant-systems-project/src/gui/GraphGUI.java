@@ -1,4 +1,5 @@
 package gui;
+import functions.GraficarGrafo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 //import functions.GraficarGrafo;
@@ -78,8 +79,8 @@ public class GraphGUI extends javax.swing.JFrame {
     private void crearGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearGrafoActionPerformed
         try {
             // TODO add your handling code here:
-           // GraficarGrafo graph = new GraficarGrafo();
-            //graph.mostrar(simulado.getgrafos());
+            GraficarGrafo graph = new GraficarGrafo();
+            graph.mostrar(simulado.getgrafos(),simulado.getSimulacion());
         } catch (Exception ex) {
             Logger.getLogger(GraphGUI.class.getName()).log(Level.SEVERE, null, ex);
         }

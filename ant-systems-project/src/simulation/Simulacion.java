@@ -71,11 +71,12 @@ public class Simulacion {
             this.ants[i] = ant; 
         }
     }
- /**
-  * Metodo para retornar los resultados totales de la simulacion, es decir, el camino mas optimo escogido por las hormigas
-  * @return String con el camino mas optimo y la distancia correspondiente
-  * @throws Exception 
-  */       
+    
+    
+    public String getOptimePath(){
+        return this.optimepath;
+    }
+    
     public String simulationResults() throws Exception {
         String result = "El camino mas optimo en los " + this.cycles + " ciclos fue:\n        "; 
         for (int i = 0; i < this.optimepath.length(); i++) {

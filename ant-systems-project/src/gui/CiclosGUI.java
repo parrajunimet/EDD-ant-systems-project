@@ -23,6 +23,9 @@ public class CiclosGUI extends javax.swing.JFrame {
     private Simulacion simulacion; 
     private boolean done; 
     
+    public Simulacion getSimulacion(){
+        return this.simulacion;
+    }
     
     /**
      * Constructor de la clase partiendo de la interfaz de iniciar simulacion
