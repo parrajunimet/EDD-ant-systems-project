@@ -58,26 +58,56 @@ public class Matriz {
                     i++;
                 }
             }
+            for (int j = 0; j < getNumVerts(); j++) {
+                if (adyacente(nom, vertName(j))) {
+                    matAd[i][j].setDistancia(0);
+                    matAd[j][i].setFeromona(0);
+                    matAd[j][i].setDistancia(0);
+                    matAd[i][j].setFeromona(0);
+                }
+            }
+            
+            print(0);
+           
             for (int j = i; j < (MaxVerts - 1); j++) {
                 verts[j] = verts[j + 1];
                 for (int k = 0; k < (MaxVerts - 1); k++) {
                     matAd[j][k] = matAd[j + 1][k];
-                    matAd[k][j] = matAd[k][j + 1];
+
                 }
             }
             verts[MaxVerts - 1] = null;
+            for (int m = i; m < (MaxVerts - 1); m++) {
+                verts[m] = verts[m + 1];
+                for (int k = 0; k < (MaxVerts - 1); k++) {
+                    if (k != m) {
+                        matAd[k][m] = matAd[k][m + 1];
+                    }
+                }
+            }
+         
+            
+            
+            /*
+                               
             Arista arista = new Arista();
             for (int j = 0; j < (MaxVerts - 1); j++) {
                 matAd[j][MaxVerts - 1] = arista;
                 matAd[MaxVerts - 1][j] = arista;
             }
             matAd[MaxVerts - 1][MaxVerts - 1] = arista;
+            */
             numVerts--;
+          
             
+            /*
             for (int s= 0; s < getNumVerts(); s++) {
-                matAd[s][s].setDistancia(0);
-                matAd[s][s].setFeromona(0);
+                matAd[s][s].setDistancia(80);
+                matAd[s][s].setFeromona();
             }
+*/
+            
+            
         }
     }
 
