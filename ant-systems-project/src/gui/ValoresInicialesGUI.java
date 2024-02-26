@@ -39,7 +39,8 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
         this.GammaValue.setText(valores[2]);
         this.antnum.setText(valores[3]);
         this.cycleValue.setText(valores[4]);
-        
+        this.startcity.setText(grafo.getVerts()[0].getNombre());
+        this.endcity.setText(grafo.getVerts()[grafo.getNumVerts()-1].getNombre());
         //Declara que la interfaz4 no es visible
         interfaz4.setVisible(false);
         

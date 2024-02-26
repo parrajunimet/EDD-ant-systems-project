@@ -26,22 +26,24 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     public static WelcomeGUI interfaz1;
     public static EditCuidadesGUI interfaz2back;
     public static Matriz grafo = new Matriz();
-    
+    public String show; 
+  
      /**
      * Constructor que inicializa la interfaz3back de ValoresInicialesGUI y la Matriz grafo
      * @param interfaz2back interfaz que se encuentra en EditCuidadesGUI
      *
      */
-    public EditorTxtGUI(EditCuidadesGUI interfaz2back) {
+    public EditorTxtGUI(EditCuidadesGUI interfaz2back, String show) {
         initComponents();
         //Declara que a los label cargararch, noinfo, guardado, selecarchivo y next no visibles
         cargararch.setVisible(false);
         noinfo.setVisible(false);
         guardado.setVisible(false);
-        next.setVisible(true);
+        next.setVisible(false);
         selecarchivo.setVisible(false);
         
         // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
+        next.setVisible(false);
         this.setResizable(false);
         
         //Instancia la interfaz2back
@@ -55,6 +57,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         
         //Posicina la interfaz en el centro de la pantalla
         this.setLocationRelativeTo(null);
+        this.Contenido.setText(show);
     }
     
     /**
@@ -71,7 +74,6 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         guardado.setVisible(false);
         next.setVisible(false);
         selecarchivo.setVisible(false);
-        
         //No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
         
@@ -95,9 +97,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
      */
     public static Matriz getGrafo() {
         return grafo;
-    }
-
-    
+    }    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -253,7 +253,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
         try {
             //Inicializa la interfaz3/EditCuidadesGUI
-            EditCuidadesGUI interfaz3 = new EditCuidadesGUI(this);
+            EditCuidadesGUI interfaz3 = new EditCuidadesGUI(this, this.show)
         } catch (Exception ex) {
             Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -282,8 +282,9 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         }
         //Muestra el mensaje "Archivo Cargado exitosamente!!"
         cargararch.setVisible(true);
-        
-        //Muestra en la interfaz el boton de continuar
+
+        this.show = this.Contenido.getText(); 
+      //Muestra en la interfaz el boton de continuar
         next.setVisible(true);
     }//GEN-LAST:event_crear_txtActionPerformed
 
@@ -338,14 +339,16 @@ public class EditorTxtGUI extends javax.swing.JFrame {
                 
                 //Muestra los elementos del txt en el text area Contenido
                 this.Contenido.setText(cadena);
-                
-            //Chequea por IOException e1    
+                this.show = cadena; 
+
+          //Chequea por IOException e1 
             }catch (IOException e1){
                 e1.printStackTrace();
             }
         }else{
             //Muestra en la interfaz un mensaje que dice "No se ha seleccionado ningun archivo"
             selecarchivo.setVisible(true);
+
         }
     }//GEN-LAST:event_abrir_archivoActionPerformed
 
@@ -389,10 +392,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
        
     }//GEN-LAST:event_GuardarInfoActionPerformed
 
-    
-   
-    public static void main(String args[]) {
-        
+    public static void main(String args[]) {        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new EditorTxtGUI(interfaz1).setVisible(true);
