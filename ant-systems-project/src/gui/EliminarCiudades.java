@@ -3,7 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gui;
-
+/**
+ *Interfaz para eliminar ciudades del grafo 
+ * @author Julene
+ * @author Sofia
+ */
 import edd.Matriz;
 import static gui.AgregarCiudadesGUI.interfazB;
 import java.util.logging.Level;
@@ -19,8 +23,9 @@ public class EliminarCiudades extends javax.swing.JFrame {
     public static EditCuidadesGUI interfazA;
     
     
-    /**
+     /**
      * Creates new form EliminarCiudades
+     * Constructor que inicializa la interfazA de EditCuidadesGUI y la Matriz grafo
      */
     public EliminarCiudades(EditCuidadesGUI interfazA) throws Exception {
         initComponents();
@@ -33,7 +38,10 @@ public class EliminarCiudades extends javax.swing.JFrame {
         this.eliminar.setVisible(false);
         this.start();
     }
-    
+    /**
+     * Metodo que retorna la matriz de adyacencia del grafo
+     * @return 
+     */
 
     public Matriz getGrafo() {
         return grafo;
@@ -132,7 +140,10 @@ public class EliminarCiudades extends javax.swing.JFrame {
     private void inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputActionPerformed
-
+    /**
+     * Metodo para eliminar una ciudad al presionar el boton
+     * @param evt 
+     */
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
        String x = this.input.getText();
        boolean found = false; 
@@ -165,7 +176,10 @@ public class EliminarCiudades extends javax.swing.JFrame {
                }
        }
     }//GEN-LAST:event_eliminarActionPerformed
-
+/**
+ * Metodo para volver a la interfaz de editar ciudades GUI
+ * @param evt 
+ */
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         try {
             EditCuidadesGUI interfazD= new EditCuidadesGUI(this);
@@ -183,6 +197,10 @@ public class EliminarCiudades extends javax.swing.JFrame {
      * @throws java.lang.Exception
      */
     
+    /**
+     * Metodo para mostrar en pantalla las posibles ciudades a borrar, si las hay. Si no las hay, se indica la razon
+     * @throws Exception 
+     */
     public void start () throws Exception {
         input.setText("");
         this.ciudades.setText("");

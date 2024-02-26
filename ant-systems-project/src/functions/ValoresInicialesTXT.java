@@ -1,5 +1,8 @@
 package functions;
-
+/**
+ * Clase para hacer el cargado del TXT de valores iniciales
+ * @author Juan Parra
+ */
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,12 +14,19 @@ import java.io.IOException;
 
 
 public class ValoresInicialesTXT {
+    //Atributos de la clase
     private String filePath;
-
+    /**
+     * Constructor
+     * @param filePath, string proviniente del txt.  
+     */
     public ValoresInicialesTXT(String filePath) {
         this.filePath = filePath;
-    }
-
+    }// constructor
+    
+    /**
+     * Metodo para crear el txt de valores iniciales
+     */
     public void createTxtFile() {
         try {
             File selectedFile = new File(filePath);
@@ -31,6 +41,14 @@ public class ValoresInicialesTXT {
             e.printStackTrace();
         }
     }
+    /**
+     * Metodo para editar el txt de valores iniciales existenctes
+     * @param alfa grado de importancia de la feromona
+     * @param beta grado de visibilizacion entre ciudades
+     * @param gamma valor de p (o,1]
+     * @param hormigas numero de hormigas
+     * @param ciclos numero de ciclos
+     */
 
     public void editTxtFile(double alfa, double beta, double gamma, int hormigas, int ciclos) {
         try {
@@ -42,6 +60,10 @@ public class ValoresInicialesTXT {
             e.printStackTrace();
         }
     }
+    /**
+     * metodo para leer el archivo TXT
+     * @return un array de string con los valores iniciales. 
+     */
 
     public String[] readTxtFile() {
         StringBuilder content = new StringBuilder();

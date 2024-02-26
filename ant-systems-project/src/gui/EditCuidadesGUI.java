@@ -1,12 +1,16 @@
 
 package gui;
-    
+/**
+ * Clase para permitir al usuario agregar el grafo recientemente cargado
+ * @author Julene
+ * @author Sofia
+ */    
 import edd.Matriz;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class EditCuidadesGUI extends javax.swing.JFrame {
-
+    //Atributos de la clase
     public static EditorTxtGUI interfaz2;
     public static AgregarCiudadesGUI interfazC;
     public static EliminarCiudades interfazD;
@@ -14,6 +18,13 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
     private Matriz grafo; 
     private String show; 
     
+    /**
+     * Constructores de la clase  dependiendo de que interfaz venga
+     * 
+     * @throws Exception 
+     */
+    
+    //Desde la interfaz de valores iniciales
     public EditCuidadesGUI(ValoresInicialesGUI interfaz3back) throws Exception {
         initComponents();
         this.interfaz3back = interfaz3back;
@@ -24,6 +35,7 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.showCities();
     }
+    //Desde la interfaz de eliminar ciudades
     public EditCuidadesGUI(EliminarCiudades interfazD) throws Exception {
         initComponents();
         this.grafo = interfazD.getGrafo(); 
@@ -34,7 +46,7 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.showCities();
     }
-    
+    // Desde la interfaz de agregar ciudades
     public EditCuidadesGUI(AgregarCiudadesGUI interfazC) throws Exception {
         initComponents();
         this.setResizable(false);
@@ -45,6 +57,7 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.showCities();
     }
+    //Desde la interfaz de editorTXT
     public EditCuidadesGUI(EditorTxtGUI interfaz2, String show) throws Exception {
         initComponents();
         this.grafo = interfaz2.getGrafo(); 
@@ -56,7 +69,8 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         this.showCities();
         this.show = show; 
     }
-
+    
+    //fin del constructor
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -154,20 +168,32 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+    /**
+     * Metodo para mostrar en pantalla todas las ciudades y aristas
+     * @throws Exception 
+     */
     public void showCities() throws Exception {
        this.ciudades.setText(this.grafo.citiesAndPaths());
     } 
-
+    /**
+     * Metodo para obtener la matriz de adyacencia del grafo
+     * @return 
+     */
     public Matriz getGrafo() {
         return grafo;
     }
     
-    
+    /**
+     * Metodo para que al presionar el boton se continue a la siguiente interfaz (ValoresInicialesGUI)
+     * @param evt 
+     */
     private void ContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContinueActionPerformed
         ValoresInicialesGUI interfaz4 = new ValoresInicialesGUI(this);
     }//GEN-LAST:event_ContinueActionPerformed
-
+    /**
+     * Metodo para que al presionar el boton se continue a la interfazB AgregarCiudadesGUI
+     * @param evt 
+     */
     private void agregarciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarciudadActionPerformed
         try {
             AgregarCiudadesGUI interfazB = new AgregarCiudadesGUI(this);
@@ -175,7 +201,10 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
             Logger.getLogger(EditCuidadesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_agregarciudadActionPerformed
-
+    /**
+     * Metodo para que al presionar el boton se continue a la interfazA EliminarCiudades
+     * @param evt 
+     */
     private void eliminarciudadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarciudadesActionPerformed
         try {
             EliminarCiudades interfazA = new EliminarCiudades(this);
@@ -183,7 +212,11 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
             Logger.getLogger(EditCuidadesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_eliminarciudadesActionPerformed
-
+    /**
+     *  Metodo para que al presionar el boton se devuelva a la interfaz anterior (EditorTxtGUI)
+     * @param evt 
+     */
+    
     private void gobackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gobackActionPerformed
         EditorTxtGUI interfaz2back = new EditorTxtGUI(this, this.show);
     }//GEN-LAST:event_gobackActionPerformed

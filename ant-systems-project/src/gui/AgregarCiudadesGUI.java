@@ -9,17 +9,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ *  Clase de la interfaz para agregar ciudades
  * @author Sofia
+ * @author Julene
  */
 public class AgregarCiudadesGUI extends javax.swing.JFrame {
-    
+    //Atributos de la classe 
     public static EditCuidadesGUI interfazB; 
     private Matriz grafo; 
     private String addedcity; 
    
     /**
-     * Creates new form AgregarCiudades
+     * Constructor
      */
     public AgregarCiudadesGUI(EditCuidadesGUI interfazB) throws Exception {
         initComponents();
@@ -36,7 +37,7 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         this.texto1.setVisible(false);
         this.texto2.setVisible(false);
         uptadeScreen(); 
-    }
+    }// fin del constructor
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,7 +156,10 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Metodo para volver a la interfaz anterior
+     * @param evt 
+     */
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         try {
             EditCuidadesGUI interfazC = new EditCuidadesGUI(this);
@@ -168,18 +172,22 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
    * Metodo para actualizar la pantalla con las ciudades y aristas
    * @throws Exception 
    */  
-        private void uptadeScreen() throws Exception{
-        String x = "Ciudades\n"; 
-        for (int i = 0; i < this.grafo.getNumVerts(); i++) {
-            x += this.grafo.vertName(i) + " - ";
-        }
-        x += "\n\n" + this.grafo.citiesAndPaths(); 
-        this.info.setText(x);
+    private void uptadeScreen() throws Exception{
+    String x = "Ciudades\n"; 
+    for (int i = 0; i < this.grafo.getNumVerts(); i++) {
+        x += this.grafo.vertName(i) + " - ";
     }
+    x += "\n\n" + this.grafo.citiesAndPaths(); 
+    this.info.setText(x);
+    }
+    
     private void ciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciudadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ciudadActionPerformed
-
+    /**
+     * Metodo para agregar una nueva arista a una ciudad 
+     * @param evt 
+     */
     private void addpathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addpathActionPerformed
         this.notify.setText(""); 
         String vb = this.ciudad.getText();
@@ -219,12 +227,19 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         this.ciudad.setText("");
         this.distancia.setText("");
     }//GEN-LAST:event_addpathActionPerformed
-
+    
+    /**
+     * Metodo para obtener la matriz de adyacencia del grafo
+     * @return 
+     */
     public Matriz getGrafo() {
         return grafo;
     }
-
     
+    /**
+     * Metodo para terminar de agregar aristas a una ciudad 
+     * @param evt 
+     */   
     private void terminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terminarActionPerformed
         this.ciudad.setVisible(false);
         this.distancia.setVisible(false);
@@ -239,7 +254,11 @@ public class AgregarCiudadesGUI extends javax.swing.JFrame {
         this.distancia.setText("");
         this.Volver.setVisible(true);
     }//GEN-LAST:event_terminarActionPerformed
-
+    
+    /**
+     * Metodo para agregar una nueva ciudad al grafo
+     * @param evt 
+     */
     private void addcityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addcityActionPerformed
         this.Volver.setVisible(false);
         this.terminar.setVisible(false);
