@@ -60,10 +60,10 @@ public class EliminarCiudades extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         input = new javax.swing.JTextField();
         eliminar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         Volver = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        notify = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -77,7 +77,7 @@ public class EliminarCiudades extends javax.swing.JFrame {
         ciudades.setRows(5);
         jScrollPane1.setViewportView(ciudades);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 60, 210));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 60, 170));
 
         jLabel2.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -89,7 +89,7 @@ public class EliminarCiudades extends javax.swing.JFrame {
                 inputActionPerformed(evt);
             }
         });
-        jPanel1.add(input, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 140, -1));
+        jPanel1.add(input, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 140, -1));
 
         eliminar.setBackground(new java.awt.Color(102, 51, 0));
         eliminar.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
@@ -101,12 +101,7 @@ public class EliminarCiudades extends javax.swing.JFrame {
                 eliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 100, -1));
-
-        jLabel3.setFont(new java.awt.Font("Adobe Devanagari", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Posibles ciudades a eliminar:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        jPanel1.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 100, -1));
 
         Volver.setBackground(new java.awt.Color(102, 51, 0));
         Volver.setFont(new java.awt.Font("Adobe Devanagari", 0, 12)); // NOI18N
@@ -118,10 +113,7 @@ public class EliminarCiudades extends javax.swing.JFrame {
                 VolverActionPerformed(evt);
             }
         });
-        jPanel1.add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 100, 30));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 380, 340));
+        jPanel1.add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 100, 30));
 
         jLabel4.setFont(new java.awt.Font("Adobe Devanagari", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,13 +124,13 @@ public class EliminarCiudades extends javax.swing.JFrame {
         notify.setFont(new java.awt.Font("Rockwell", 1, 12)); // NOI18N
         notify.setForeground(new java.awt.Color(255, 255, 255));
         notify.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jPanel1.add(notify, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 420, 40));
+        jPanel1.add(notify, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 360, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 290));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 310));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 290));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -224,11 +216,11 @@ public class EliminarCiudades extends javax.swing.JFrame {
     private javax.swing.JTextArea ciudades;
     private javax.swing.JButton eliminar;
     private javax.swing.JTextField input;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel notify;
     // End of variables declaration//GEN-END:variables
 }
