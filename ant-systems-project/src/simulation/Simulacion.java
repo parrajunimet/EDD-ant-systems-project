@@ -22,7 +22,7 @@ public class Simulacion {
     private int cycles, antn;
     private double p, a, b; 
     private Ant[] ants; 
-    private String optimepath;
+    private String[] optimepath;
     private double optimedistance;
     
     /**
@@ -46,7 +46,7 @@ public class Simulacion {
         this.b = b;
         this.ants = new Ant[antn];
         this.p = p;
-        this.optimepath = ""; 
+        this.optimepath = new String[0]; 
         this.optimedistance = 0; 
         
     }// cierre del constructor
@@ -73,17 +73,18 @@ public class Simulacion {
     }
     
     
-    public String getOptimePath(){
+    public String[] getOptimePath(){
         return this.optimepath;
     }
     
     public String simulationResults() throws Exception {
         String result = "El camino mas optimo en los " + this.cycles + " ciclos fue:\n        "; 
-        for (int i = 0; i < this.optimepath.length(); i++) {
-            if (i != this.optimepath.length() -1 ) result+=  this.optimepath.charAt(i) + " --> "; 
-            else result+=  this.optimepath.charAt(i); 
+        for (int i = 0; i < this.optimepath.length; i++) {
+            if (i != this.optimepath.length -1 ) result+=  this.optimepath[i] + " --> "; 
+            else result+=  this.optimepath[i]; 
         }
         result += "\nDistancia: " + String.format("%.2f", this.optimedistance).replace(',', '.')  + "m"; 
+        //System.out.println(result);
         return result; 
     }
     
@@ -140,32 +141,33 @@ public class Simulacion {
         if (mindistance == -1) {
             results1 += "No hay camino mas corto, puesto que ninguna hormiga llego a la ciudad destino, todas quedaron estancadas. ";
         } else {
-                   if ("".equals(this.optimepath)) {
-                    this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ""); 
+                if (this.optimepath.length == 0) {
+                    this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ",").split(","); 
                     this.optimedistance =  mindistance; 
                 } else {
-                    int optdistance = 0; 
-                    for (int i = 0; i < this.optimepath.length()-1; i++) {
-                        x=grafos.numVertice(String.valueOf(this.optimepath.charAt(i)));
-                        y=grafos.numVertice(String.valueOf(this.optimepath.charAt(i+1)));
+                    double optdistance = 0; 
+                    
+                    for (int i = 0; i < this.optimepath.length-1; i++) {
+                        x=grafos.numVertice(String.valueOf(this.optimepath[i]));
+                        y= grafos.numVertice(String.valueOf(this.optimepath[i+1]));
                         optdistance += grafos.getMatAd()[x][y].getDistancia(); 
                         }
                     if (optdistance > mindistance) {
-                        this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ""); 
+                        this.optimepath = ants[index].getCiudades().printString().replace(" -> ", ",").split(","); 
                         this.optimedistance = mindistance; 
                     }
             
                 } 
         }
      
-        //System.out.println("\n\n");
+        System.out.println("\n\n");
         //String results= "El camino mas corto fue: \n";
         results1 += ants[index].getCiudades().printString() +"\nDistancia: " + String.format("%.2f", mindistance).replace(',', '.') +"m\n";
         //results += results1; 
         for (int i = 0; i < ants.length; i++) {
             resultsc+= (i+1)+ " |          " + ants[i].getCiudades().printString()+ "\n\n"; 
             resultsd +=  (i+1)+ " | " + String.format("%.2f",distances[i] ).replace(',', '.') + " m\n\n";
-            //results += "Hormiga " + i+1 + "           " + ants[i].getCiudades().printString() + "           " + distances[i] + " m\n"; 
+            //results += "Hormiga " + (i+1) + "           " + ants[i].getCiudades().printString() + "           " + distances[i] + " m\n"; 
             
         }
         for (Ant ant : ants) {
@@ -175,8 +177,8 @@ public class Simulacion {
         
         
         //System.out.println(results);
-        String[] results = {results1, resultsc, resultsd}; 
-        return results; 
+        String[] r = {results1, resultsc, resultsd}; 
+        return r; 
     }
         
     /**

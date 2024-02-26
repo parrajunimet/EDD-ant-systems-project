@@ -55,15 +55,8 @@ public class GraficarGrafo {
         //Se le pone color al fondo de grafo a ver.
         graph.setAttribute("ui.stylesheet", "graph { fill-color: orange; }");
         
-        String recorrido = simulacion.getOptimePath();
-        int length = recorrido.length() - 1;
-        String[] caminos = new String[length];
+        String[] caminos =  simulacion.getOptimePath();
         
-        //Hago un array con cada ciudad en string de el camino &oacute;ptimo.
-        for (int i = 0; i < length; i++) {
-            int camino = (recorrido.charAt(i) - '0') * 10 + (recorrido.charAt(i + 1) - '0');
-            caminos[i] = Integer.toString(camino);
-        }
         
         //Genero cada nodo recorriendo la matriz de adyacencia
         //Es decir sus v&eacute;rtices.

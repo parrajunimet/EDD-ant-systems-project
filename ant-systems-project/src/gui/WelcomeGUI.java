@@ -1,8 +1,16 @@
 
 package gui;
+/**
+ * Interfaz Inicial del Programa
+ * 
+ * @author Julene
+ * @version 24/02/2024
+ */
 
 public class WelcomeGUI extends javax.swing.JFrame {
-
+/**
+     * Constructor
+     */
     public WelcomeGUI() {
         initComponents();
         this.setResizable(false);
@@ -57,7 +65,10 @@ public class WelcomeGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+  /**
+     * Metodo para que al presionar el boton se continue a la siguiente interfaz 
+     * @param evt 
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         EditorTxtGUI interfaz2 = new EditorTxtGUI(this);
         

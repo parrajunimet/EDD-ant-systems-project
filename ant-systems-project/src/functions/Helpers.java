@@ -1,6 +1,9 @@
 
 package functions;
-
+/**
+ * Clase para definir algunas validaciones del codigo
+ * @Author Julene
+ */
 import javax.swing.JOptionPane;
 
 public class Helpers {

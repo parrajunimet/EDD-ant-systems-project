@@ -2,13 +2,17 @@ package gui;
 import functions.GraficarGrafo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import functions.GraficarGrafo;
+//import functions.GraficarGrafo; 
+/**
+ * Interfaz para mostrar el grafico
+ * @author Luis Perez
+ */
 public class GraphGUI extends javax.swing.JFrame {
-    
+    //Atributos de la clase
     public CiclosGUI simulado;
 
     /**
-     * Creates new form GraphGUI
+     * Constructor de la clase
      * @param interfaz6
      */
     public GraphGUI(CiclosGUI interfaz6) {
@@ -18,7 +22,7 @@ public class GraphGUI extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-    }
+    }// fin del constructor
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,7 +79,10 @@ public class GraphGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Metodo para mostrar el grafo obtenido graficado
+ * @param evt 
+ */
     private void crearGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearGrafoActionPerformed
         try {
             // TODO add your handling code here:
@@ -85,7 +92,10 @@ public class GraphGUI extends javax.swing.JFrame {
             Logger.getLogger(GraphGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_crearGrafoActionPerformed
-
+    /**
+     * Metodo para ir al la interfaz FinalGUI
+     * @param evt 
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         FinalGUI interfaz7 = new FinalGUI(this);
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -1,6 +1,10 @@
 
 package gui;
-
+/**
+ * Interfaz que permite subir un archivotxt, guardar el archivo y cargar el archivo de la ultima simulacion
+ * 
+ * @author Julene
+ */
 import edd.Matriz;
 import functions.ArchivoTxt;
 import java.io.BufferedReader;
@@ -18,11 +22,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 public class EditorTxtGUI extends javax.swing.JFrame {
+    //Atributos de la interfaz
     public static WelcomeGUI interfaz1;
     public static EditCuidadesGUI interfaz2back;
     public static Matriz grafo = new Matriz();
     public String show; 
-    
+    /**
+     * Constructor que inicializa la interfaz3back de ValoresInicialesGUI y la Matriz grafo
+     * @param interfaz2back interfaz que se encuentra en EditCuidadesGUI
+     *
+     */
     public EditorTxtGUI(EditCuidadesGUI interfaz2back, String show) {
         initComponents();
         cargararch.setVisible(false);
@@ -36,7 +45,11 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.Contenido.setText(show);
     }
-    
+     /**
+     * Constructor que inicializa la interfaz3back de ValoresInicialesGUI y la Matriz grafo
+     * @param interfaz1 interfaz que se encuentra en WelcomeGUI
+     *
+     */
     public EditorTxtGUI(WelcomeGUI interfaz1) {
         initComponents();
         cargararch.setVisible(false);
@@ -49,7 +62,11 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
     }
-
+   /**
+     * Metodo que retorna el Grafo
+     * @return grafo
+     *
+     */
     public static Matriz getGrafo() {
         return grafo;
     }    
@@ -195,7 +212,10 @@ public class EditorTxtGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ /**
+     * Metodo para que al presionar el boton se continue a la siguiente interfaz3 (EditCuidadesGUI)
+     * @param evt 
+     */
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
         try {
             EditCuidadesGUI interfaz3 = new EditCuidadesGUI(this, this.show);
@@ -204,7 +224,10 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_nextActionPerformed
-
+   /**
+     * Metodo que carga el archivo creado en la ultima simulacion
+     * @param evt 
+     */
     private void crear_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_txtActionPerformed
         ArchivoTxt func = new ArchivoTxt();
         try {
@@ -221,7 +244,11 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         this.show = this.Contenido.getText(); 
         next.setVisible(true);
     }//GEN-LAST:event_crear_txtActionPerformed
-
+/**
+     * Metodo que permite bajar un archivo Txt de la computadora y leerlo
+     * @param evt 
+     * @exception IOException e1
+     */
     private void abrir_archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrir_archivoActionPerformed
         //Creo el Objeto JFileChooser
         JFileChooser fc = new JFileChooser();
@@ -264,7 +291,11 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private void routeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_routeActionPerformed
-
+/**
+     * Metodo que permite guardar los valores mostrados del Txt
+     * @param evt 
+     * @exception ex
+     */
     private void GuardarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarInfoActionPerformed
         if (Contenido.getText().length() == 0){
             noinfo.setVisible(true);

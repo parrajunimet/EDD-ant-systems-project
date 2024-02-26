@@ -172,6 +172,7 @@ public class ListaDoble implements ILista{
         return null;
         
     }
+    
 /**
  * Metodo para eliminar un nodo al inicio de la lista
  * @return el objeto  correspondiente al nodo que ha sido eliminado
@@ -193,6 +194,7 @@ public class ListaDoble implements ILista{
         return null;
         
     }
+    
 /**
  * Metodo para eliminar un nodo en una posicion especifica (index) de la lista
  * @return el objeto  correspondiente al nodo que ha sido eliminado
@@ -249,6 +251,7 @@ public class ListaDoble implements ILista{
         return null;
         
     }
+    
 /**
  * Metodo para saber si la lista no contiene ningun elemento, es decir, esta vacia
  * @return booleano, true si esta vacia, false si no lo esta
@@ -274,6 +277,7 @@ public class ListaDoble implements ILista{
             System.out.println("Empty List");
         }
     }
+    
 /**
  * Metodo para obtener un string con los elementos de la lista
  * @return String con los elementos de la lista

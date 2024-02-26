@@ -5,16 +5,18 @@
 package edd;
 
 /**
- *
+ *Clase para definir la matriz de adyacencia que representa un grafo no dirigido con aristas multiponderadas
  * @author juan-parra
  */
 public class Matriz {
-
+    //Atributos de la clase
     private int numVerts;
     private static final int MaxVerts = 20;
     private Vertice verts[];
     private Arista[][] matAd;
-
+    /**
+     * Constructor de la matriz adyacencia, creandola  como una matriz 20*20
+     */
     public Matriz() {
         matAd = new Arista[MaxVerts][MaxVerts];
         verts = new Vertice[MaxVerts];
@@ -30,8 +32,12 @@ public class Matriz {
             }
         }
         numVerts = 0;
-    }
+    }// Fin del constructor
 
+    /**
+     * Metodo para crear un nuevo vertice
+     * @param nom string nombre del nuevo vertice
+     */
     public void nuevoVertice(String nom) {
         boolean esta = numVertice(nom) >= 0;
         if (!esta) {
@@ -41,11 +47,19 @@ public class Matriz {
         }
 
     }
-
+    /**
+     * Metodo para obtener el nombre de un vertice por un indice en el array de vertices
+     * @param i indice de posicion en el array
+     * @return String nombre del vertice
+     */
     public String vertName(int i) {
         return verts[i].getNombre();
     }
-
+    /**
+     * Metodo para eliminar un vertice determinado
+     * @param nom nombre del vertice a eliminar
+     * @throws Exception 
+     */
     public void eliminarVertice(String nom) throws Exception {
         boolean esta = numVertice(nom) >= 0;
         if (esta) {
@@ -83,7 +97,12 @@ public class Matriz {
             
         }
     }
-
+    
+    /**
+     * Metodo para obtener la posicion del vertice en el array de vertices
+     * @param vs nombre del vertice
+     * @return int de index en el array de vertices
+     */
     public int numVertice(String vs) {
         Vertice v = new Vertice(vs);
         boolean encontrado = false;
@@ -98,7 +117,13 @@ public class Matriz {
         }
         return (i < numVerts) ? i : -1;
     }
-
+/**
+ * Metodo para definir un nuevo camino, distancia entre dos ciudades
+ * @param a nombre de ciudad 1
+ * @param b nombre de ciudad 2
+ * @param d distancia entre las ddos ciudades
+ * @throws Exception 
+ */
     public void nuevaDistancia(String a, String b, double d) throws Exception {
         int va,
          vb;
@@ -115,7 +140,14 @@ public class Matriz {
         //matAd[va][vb].setFeromona(valorInicial);
         //matAd[vb][va].setFeromona(valorInicial);
     }
-
+   
+    /**
+     * Metodo para definir la feromona en el camino entre dos ciudades
+     * @param a ciudad 1
+     * @param b ciudad 2
+     * @param f cantidad de feromona en el camino
+     * @throws Exception 
+     */
     public void nuevaFeromona(String a, String b, double f) throws Exception {
         int va,
          vb;
@@ -127,11 +159,22 @@ public class Matriz {
         matAd[va][vb].setFeromona(f);
         matAd[vb][va].setFeromona(f);
     }
-
+    
+    /**
+     * Metodo para obtener el numero de vertices existentes en la matriz
+     * @return 
+     */
     public int getNumVerts() {
         return numVerts;
     }
-
+    
+    /**
+     * Metodo para definir si dos ciudades comparten un camino, una distancia
+     * @param a nombre de ciudad 1
+     * @param b nombre de ciudad 2 
+     * @return boolean, true si son adyacentes, false si no lo son
+     * @throws Exception 
+     */
     public boolean adyacente(String a, String b) throws Exception {
         int va,
          vb;
@@ -142,7 +185,13 @@ public class Matriz {
         }
         return matAd[va][vb].getDistancia() != 0;
     }
-
+    
+    /**
+     * Metodo para obtener una ListaDoble con las ciudades adyacentes a una ciudad determinada
+     * @param a nombre de la ciudad pivote
+     * @return Listadoble con todas las ciudades con las que a comparte una distancia
+     * @throws Exception 
+     */
     private ListaDoble adyacentes(String a) throws Exception {
         int va;
         ListaDoble adyacentes = new ListaDoble();
@@ -157,7 +206,11 @@ public class Matriz {
         }
         return adyacentes;
     }
-
+    
+    /**
+     * Metodo para imprimir por consola a la matriz
+     * @param s tipo de informacion que sera impresa, si s = 0, se imprimen las distancias, si s = 1, se imprimen las feromonas
+     */
     public void print(int s) {
         System.out.print("|");
 
@@ -188,7 +241,11 @@ public class Matriz {
             System.out.println("|");
         }
     }
-
+    
+    /**
+     * Metodo para convertir la matriz, mostrando las distancias, en un string
+     * @return String con la matriz de distancias
+     */
     public String grafoDistanciaString() {
         String grafo = "ciudad\n";
         for (int i = 0; i < verts.length; i++) {
@@ -214,7 +271,11 @@ public class Matriz {
         }
         return grafo;
     }
-
+    
+/**
+     * Metodo para convertir la matriz, mostrando las feromonas, en un string
+     * @return String con la matriz de feromonas
+ */
     public String grafoFeromonaString() {
         String grafo = "ciudad\n";
         for (int i = 0; i < verts.length; i++) {
@@ -241,7 +302,13 @@ public class Matriz {
         }
         return grafo;
     }
-
+    
+    /**
+     * Metodo para obtener un array con los nombres de las ciudades adyacentes a una ciudad determinada
+     * @param a nombre de la ciudad pivote
+     * @return array de strings de los nombres de las ciudades adyacentes
+     * @throws Exception 
+     */
     public String[] verticesAd(String a) throws Exception {
         int va,
          counter = 0;
@@ -265,15 +332,25 @@ public class Matriz {
         }
         return adyacentes;
     }
-
+    
+    /**
+     * Metodo para obtener el array de vertices de la matriz de la adyacencia
+     * @return array de vertices
+     */
     public Vertice[] getVerts() {
         return verts;
     }
-
+    /**
+     * Metodo para obtener la matriz de adyacencia que representa al grafo
+     * @return 
+     */
     public Arista[][] getMatAd() {
         return matAd;
     }
-
+/**
+ * Metodo para setear las feromonas iniciales en todos los caminos existentes en la matriz de adyacencia
+ * @throws Exception 
+ */
     public void feromonasIniciales() throws Exception {
         int numVerts = this.getNumVerts();
         double valorInicial = 1 / (double) numVerts;
@@ -288,6 +365,13 @@ public class Matriz {
         }
     }
 
+    /**
+     * Metodo para eliminar una relacion entre dos ciudades, en feromonas y distancia, 
+     * @param a  nombre ciudad 1
+     * @param b nombre ciudad 2
+     * @return distancia eliminada entre ambas ciudades
+     * @throws Exception 
+     */
     public double eliminarArco(String a, String b) throws Exception {
         int va,
          vb;
@@ -304,7 +388,11 @@ public class Matriz {
         matAd[vb][va].setFeromona(0);
         return distance;
     }
-
+    /**
+     * Metodo para obtener el numero de ciudades adyacentes a una ciudad, dado por su index
+     * @param i index de posicion en el array de vertices 
+     * @return numero de ciudadess adyacentes a la ciudad en i
+     */
     public int numAdyacentes(int i) {
         int counter = 0;
         for (int j = 0; j < 10; j++) {
@@ -314,7 +402,14 @@ public class Matriz {
         }
         return counter;
     }
-
+    
+    /**
+     * Metodo para llevar a cabo un algoritmo FDS para recorrer todo el grafo
+     * @param numVert numero de vertices de la matriz
+     * @param visited array de booleanos, cada uno de los indices corresponde a un vertice, y si su estado es true se entiende que ya ha sido visitada
+     * @return array booleano de ciudades visitadas
+     * @throws Exception 
+     */
     public boolean[] deepFirstSearch(int numVert, boolean[] visited) throws Exception {
         visited[numVert] = true;
         String va  = vertName(numVert);
@@ -326,7 +421,11 @@ public class Matriz {
         }
         return visited;
     }
-
+/**
+ * Metodo para contar las ciudades visitadas despues de un DFS
+ * @return int de ciudades visitadas
+ * @throws Exception 
+ */
     public int countDFS() throws Exception {
         boolean[] visited = new boolean[getNumVerts()];
         visited = deepFirstSearch(0, visited);
@@ -338,7 +437,13 @@ public class Matriz {
         }
         return count;
     }
-
+    
+/**
+ * Metodo para indicar si un vertice representa un puente para el grafo
+ * @param i indice i del vertice en el array de vertices de la matriz
+ * @return true si si es un puente, false si no lo es
+ * @throws Exception 
+ */
     public boolean isBridge(int i) throws Exception {
         String va  = vertName(i);
         String[] adyacentes = verticesAd(va);
@@ -358,6 +463,11 @@ public class Matriz {
 
     }
 
+/**
+ * Metodo para retornar un array de todas las ciudades que no representan un puente
+ * @return array de ciudades no vertices
+ * @throws Exception 
+ */    
     public String[] nonBridgeds() throws Exception {
         int counter = 0;
         for (int i = 0; i < getNumVerts(); i++) {
@@ -375,7 +485,11 @@ public class Matriz {
         }
         return deletable;
     }
-
+/**
+ * Metodo para retornar un string con  todas las ciudades y sus aristas correspondientes
+ * @return String con esta informacion
+ * @throws Exception 
+ */
     public String citiesAndPaths() throws Exception {
         String x = "";
         x += "\n\nCiudad      Aristas de conexion\n";
@@ -395,7 +509,11 @@ public class Matriz {
         }
         return x;
     }
-
+/**
+ * Metodo para saber si un string corresponde al nombre de un vertice
+ * @param x nombre del posible vertice
+ * @return true si si corresponde a una ciudad
+ */
     public boolean isVert(String x) {
         for (int i = 0; i < getNumVerts(); i++) {
             if (getVerts()[i].getNombre().equalsIgnoreCase(x)) {

@@ -8,12 +8,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * Interfaz que permite Guardar un archivo Txt con la informacion de la
+ * simulacion
+ *
+ * @author Julene
+ * @version 24/02/2024
+ */
 public class FinalGUI extends javax.swing.JFrame {
-
+    
     
     public static GraphGUI interfaz7;
-    
+    /**
+     * Constructor que inicializa la interfaz7/GraphGUI
+     *
+     * @param interfaz7 interfaz que se encuentra en GraphGUI
+     *
+     */
     public FinalGUI(GraphGUI interfaz7) {
         initComponents();
         this.setResizable(false);
@@ -75,8 +86,13 @@ public class FinalGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ /**
+     * Metodo Guarda Informacion de la simulacion en el Txt
+     *
+     * @exception ex
+     */
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+           //Crea un nuevo string llamado grafoferomonas_string que tenga toda la informacion del grafo en un string organizado
         String grafoferomonas_string = grafo.grafoDistanciaString();
         ArchivoTxt func = new ArchivoTxt();
         

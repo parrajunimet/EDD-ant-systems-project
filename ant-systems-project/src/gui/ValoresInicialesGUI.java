@@ -1,17 +1,29 @@
 
 package gui;
-
+/**
+ * Interfaz que muestra valores iniciales y permite editarlo
+ * 
+ * @author Julene
+ * @author Sofia
+ * @author Juan Parra
+ * @version 24/02/2024
+ */
 import edd.Matriz;
 import functions.ValoresInicialesTXT;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ValoresInicialesGUI extends javax.swing.JFrame {
-
+    //Se llaman a las interfaces EditCuidadesGUI, IniciarSimulacionGUI y la matriz grafo
     public static EditCuidadesGUI interfaz4;
     public static IniciarSimulacionGUI interfaz4back;
     private Matriz grafo; 
-      
+    
+     /**
+     * Constructor que inicializa la interfaz4 de EditCuidadesGUI, alphavalue...
+     * @param interfaz4 interfaz que se encuentra en EditCuidadesGUI
+     *
+     */ 
     public ValoresInicialesGUI(EditCuidadesGUI interfaz4) {
         initComponents();
         this.interfaz4 = interfaz4;
@@ -30,7 +42,11 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
         this.setResizable(false);
         this.notify.setVisible(false);
     }
-    
+    /**
+     * Constructor que inicializa la interfaz4back de IniciarSimulacionGUI, alphavalue...
+     * @param interfaz4back interfaz que se encuentra en IniciarSimulacionGUI
+     *
+     */
     public ValoresInicialesGUI(IniciarSimulacionGUI interfaz4back) {
         initComponents();
         this.interfaz4back = interfaz4back;
@@ -47,11 +63,17 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
         this.setResizable(false);
         this.notify.setVisible(false);
     }
-
+    /**
+     * Metodo que retorna la matriz adyacencia del grafo
+     * @return 
+     */
     public Matriz getGrafo() {
         return grafo;
     }
-    
+    /**
+     * Metodo para obtener los valores iniciales del TXT de valores inicialess
+     * @return 
+     */
     public String[] getInitialValues() {
         ValoresInicialesTXT fileHandler = new ValoresInicialesTXT("valoresIniciales.txt");
         fileHandler.createTxtFile();
@@ -257,7 +279,10 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    
+    /**
+     * Metodo para cargar los valores iniciales para pasar a la siguiente interfaz, IniciarSimulacion GUI
+     * @param evt 
+     */
     
     private void nextGUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextGUIActionPerformed
         this.notify.setVisible(false);
