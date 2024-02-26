@@ -58,16 +58,6 @@ public class Matriz {
                     i++;
                 }
             }
-            for (int j = 0; j < getNumVerts(); j++) {
-                if (adyacente(nom, vertName(j))) {
-                    matAd[i][j].setDistancia(0);
-                    matAd[j][i].setFeromona(0);
-                    matAd[j][i].setDistancia(0);
-                    matAd[i][j].setFeromona(0);
-                }
-            }
-            
-            print(0);
            
             for (int j = i; j < (MaxVerts - 1); j++) {
                 verts[j] = verts[j + 1];
@@ -87,14 +77,6 @@ public class Matriz {
            
             numVerts--;
           
-            
-            /*
-            for (int s= 0; s < getNumVerts(); s++) {
-                matAd[s][s].setDistancia(80);
-                matAd[s][s].setFeromona();
-            }
-*/
-            
             
         }
     }
