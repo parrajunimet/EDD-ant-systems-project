@@ -1,6 +1,11 @@
 
 package functions;
-
+/**
+ * Esta clase define el Archivo Txt y sus funciones: leer_txt, eliminar_txt, cargar_txt y guardar_txt
+ *
+ * @author Julene
+ * @version 24/02/2024
+ */
 import edd.Matriz;
 import edd.Vertice;
 import java.io.File;
@@ -11,9 +16,16 @@ import java.util.Arrays;
 public class ArchivoTxt {
     
     File archivo;
-    
-    public void crear_txt() {
-        archivo = new File ("archivo.txt");
+    /**
+     * Metodo que lee el txt y retorna la informacion 
+     * @return String expresion_txt
+     *@exception ex
+     */
+    public String leer_txt() {
+        String line;
+        String expresion_txt = "";
+        String path = "test\\grafo.txt";
+        File file = new File(path);
         try{
             if(archivo.createNewFile()) {
                 System.out.println("Archivo creado con exito!");
@@ -26,6 +38,11 @@ public class ArchivoTxt {
         }
     }
     
+    
+    /**
+     * Metodo que elimina un txt 
+     *@exception IOException exepcion
+     */
     public void eliminar_txt() {
         try{
             if(archivo.createNewFile()) {
@@ -37,9 +54,12 @@ public class ArchivoTxt {
         }catch(IOException exepcion){
             exepcion.printStackTrace(System.out);
         }
-    }
-    
-    
+    } 
+      /**
+     * Metodo que carga y lee un txt 
+     *@exception 
+     * 
+     */
     public void cargar_txt(String txt, Matriz grafo) throws Exception{
         String replaceCiudad = txt.replaceFirst("ciudad", "Ω");
         String replaceArista = replaceCiudad.replaceFirst("aristas", "Ω");
@@ -65,6 +85,17 @@ public class ArchivoTxt {
         }
         
     }
-    
-    
+        /**
+     * Metodo que Guarda un txt 
+     * @exception IOException e
+     * 
+     */
+    public void guardar_txt(String grafoferomonas_string) {
+        try{
+            FileWriter writer = new FileWriter("test\\grafo.txt");
+            writer.write(grafoferomonas_string);
+            writer.close();
+        }catch( IOException e){
+        }
+    }    
 }

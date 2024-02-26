@@ -1,5 +1,11 @@
 package gui;
-
+/**
+ * Interfaz que permite Guardar un archivo Txt con la informacion de la
+ * simulacion
+ *
+ * @author Julene
+ * @version 24/02/2024
+ */
 import edd.Matriz;
 import functions.ArchivoTxt;
 import java.io.BufferedWriter;
@@ -10,7 +16,12 @@ public class FinalGUI extends javax.swing.JFrame {
 
     public static Matriz grafo = new Matriz();
     public static GraphGUI interfaz7;
-    
+    /**
+     * Constructor que inicializa la interfaz7/GraphGUI
+     *
+     * @param interfaz7 interfaz que se encuentra en GraphGUI
+     *
+     */
     public FinalGUI(GraphGUI interfaz7) {
         initComponents();
         this.setResizable(false);
@@ -72,7 +83,11 @@ public class FinalGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+  /**
+     * Metodo Guarda Informacion de la simulacion en el Txt
+     *
+     * @exception ex
+     */
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         
         String grafodistancias_string = grafo.grafoDistanciaString();
