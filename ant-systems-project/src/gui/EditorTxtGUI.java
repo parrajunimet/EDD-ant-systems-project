@@ -253,7 +253,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
         try {
             //Inicializa la interfaz3/EditCuidadesGUI
-            EditCuidadesGUI interfaz3 = new EditCuidadesGUI(this, this.show)
+            EditCuidadesGUI interfaz3 = new EditCuidadesGUI(this, this.show);
         } catch (Exception ex) {
             Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
