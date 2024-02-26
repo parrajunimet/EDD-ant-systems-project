@@ -10,7 +10,7 @@ import simulation.Simulacion;
  * Esta clase se encarga de mostrar un gr&aacute;fico utilizando GraphStream y Swing.
  * Proporciona un m&eacute;todo para mostrar el gr&aacute;fico basado en una matriz dada.
  * 
- * @author luigi perez
+ * @author luigiperez lpp0810 o llppc
  * @version 20 feb 2024
  */
 public class GraficarGrafo {
