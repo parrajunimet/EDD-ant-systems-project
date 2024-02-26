@@ -62,6 +62,8 @@ public class Matriz {
                 verts[j] = verts[j + 1];
                 for (int k = 0; k < (MaxVerts - 1); k++) {
                     matAd[j][k] = matAd[j + 1][k];
+                }
+                for (int k = 0; k < (MaxVerts - 1); k++) {
                     matAd[k][j] = matAd[k][j + 1];
                 }
             }
