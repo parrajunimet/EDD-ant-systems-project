@@ -1,20 +1,12 @@
 
 package gui;
 
-/**
- * 
- * @author Julene
- */
-
 public class WelcomeGUI extends javax.swing.JFrame {
-//Interfaz de bienvenida
-    /**
-     * COnstructor
-     */
+
     public WelcomeGUI() {
         initComponents();
         this.setResizable(false);
-    }// Fin del constructor
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

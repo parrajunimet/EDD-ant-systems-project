@@ -4,7 +4,6 @@ package gui;
 /**
  * Interfaz grafica para mostrar cada uno de los ciclos de la simulacion y sus resultados
  * @author Sofia
- * @Author Julene
  */
 
 
