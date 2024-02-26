@@ -1,17 +1,25 @@
 
 package gui;
-
+/**
+ * Interfaz de valores iniciales
+ * @author Julene
+ * @author Sofia
+ */
 import edd.Matriz;
 import functions.ValoresInicialesTXT;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ValoresInicialesGUI extends javax.swing.JFrame {
-
+    //Atributos de la interfaz
     public static EditCuidadesGUI interfaz4;
     public static IniciarSimulacionGUI interfaz4back;
     private Matriz grafo; 
-      
+    /**
+     * Constructors de la interfaz dependiendo desde que interfaz se esten moviendo. 
+     * 
+     */
+    //Desde la interfaz de editar ciudades
     public ValoresInicialesGUI(EditCuidadesGUI interfaz4) {
         initComponents();
         this.interfaz4 = interfaz4;
@@ -30,7 +38,7 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
         this.setResizable(false);
         this.notify.setVisible(false);
     }
-    
+    //Desde la interfaz de iniciar simulacion
     public ValoresInicialesGUI(IniciarSimulacionGUI interfaz4back) {
         initComponents();
         this.interfaz4back = interfaz4back;
@@ -46,12 +54,20 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.notify.setVisible(false);
-    }
-
+    }   
+    //Fin de constructores
+    
+    /**
+     * Metodo que retorna la matriz de adyacencia
+     * @return Matriz de adyacencia referente al grafo de ciudades
+     */
     public Matriz getGrafo() {
         return grafo;
     }
-    
+    /**
+     * Metodo para obtener los valores iniciales del txt
+     * @return array de string de valores
+     */
     public String[] getInitialValues() {
         ValoresInicialesTXT fileHandler = new ValoresInicialesTXT("valoresIniciales.txt");
         fileHandler.createTxtFile();
@@ -257,7 +273,9 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    
+    /***
+     * Metodo para moverse a la siguiente interfaz
+     */
     
     private void nextGUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextGUIActionPerformed
         this.notify.setVisible(false);
@@ -345,7 +363,10 @@ public class ValoresInicialesGUI extends javax.swing.JFrame {
     private void cycleValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cycleValueActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cycleValueActionPerformed
-
+/**
+ * Metodo para volver hacia la interza anterior
+ * @param evt 
+ */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             EditCuidadesGUI interfaz3back = new EditCuidadesGUI(this);

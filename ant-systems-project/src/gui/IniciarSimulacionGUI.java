@@ -3,7 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gui;
-
+/* Interfaz que permite iniciar la simulacion
+ * 
+ * @author Julene
+ * @author Sofia
+ * @version 24/02/2024
+ */
 import edd.Matriz;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,15 +18,18 @@ import java.util.logging.Logger;
  * @author User
  */
 public class IniciarSimulacionGUI extends javax.swing.JFrame {
-    
+        //Se llama a la interfaz5a/ValoresInicialesGUI, a la Matriz grafo, alpha, beta, gammma, antn, cycles, ciudadi y ciudadf
     public static ValoresInicialesGUI interfaz5a;
     private Matriz grafo; 
     private double alpha, beta, gamma; 
     private int antn, cycles; 
     private String ciudadi, ciudadf; 
 
-    /**
+     /**
      * Creates new form IniciarSimulacionGUI
+     * Constructor que inicializa la Simulacion
+     * @param interfaz5a interfaz que se encuentra en ValoresInicialesGUI
+     *
      */
     public IniciarSimulacionGUI(ValoresInicialesGUI interfaz5a, String ciudadi, String ciudadf, int cycles, int antn, double a, double b, double p) {
         initComponents();
@@ -102,7 +110,10 @@ public class IniciarSimulacionGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ /**
+     * Metodo para que al presionar el boton se continue a la siguiente interfaz5b/CiclosGUI
+     * @param evt 
+     */
     private void IniciarSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSimulacionActionPerformed
         try {
             CiclosGUI interfaz5b = new CiclosGUI(this, this.ciudadi, this.ciudadf, this.cycles, this.antn, this.alpha, this.beta, this.gamma);
@@ -110,11 +121,19 @@ public class IniciarSimulacionGUI extends javax.swing.JFrame {
             Logger.getLogger(IniciarSimulacionGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_IniciarSimulacionActionPerformed
-
+    /**
+     * Metodo para que al presionar el boton se devuelva a la interfaz4back/ValoresInicialesGUI
+     * @param evt 
+     */
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         ValoresInicialesGUI interfaz4back = new ValoresInicialesGUI(this);
     }//GEN-LAST:event_VolverActionPerformed
 
+    /**
+     * Metodo que retorna el Grafo
+     * @return grafo
+     *
+     */
     public Matriz getGrafo() {
         return grafo;
     }

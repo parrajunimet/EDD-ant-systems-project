@@ -1,6 +1,11 @@
 
 package functions;
-
+/**
+ * Esta clase define el Archivo Txt y sus funciones: leer_txt, eliminar_txt, cargar_txt y guardar_txt
+ *
+ * @author Julene
+ * @version 24/02/2024
+ */
 import edd.Matriz;
 import edd.Vertice;
 import java.io.BufferedReader;
@@ -16,7 +21,11 @@ import javax.swing.JOptionPane;
 public class ArchivoTxt {
     
     File archivo;
-    
+    /**
+     * Metodo que lee el txt y retorna la informacion 
+     * @return String expresion_txt
+     *@exception ex
+     */
     public String leer_txt() {
         String line;
         String expresion_txt = "";
@@ -44,6 +53,10 @@ public class ArchivoTxt {
     }
     
     
+    /**
+     * Metodo que elimina un txt 
+     *@exception IOException exepcion
+     */
     public void eliminar_txt() {
         try{
             if(archivo.createNewFile()) {
@@ -56,7 +69,11 @@ public class ArchivoTxt {
             exepcion.printStackTrace(System.out);
         }
     } 
-    
+      /**
+     * Metodo que carga y lee un txt 
+     *@exception 
+     * 
+     */
     public void cargar_txt(String txt, Matriz grafo) throws Exception{
         String replaceCiudad = txt.replaceFirst("ciudad", "Ω");
         String replaceArista = replaceCiudad.replaceFirst("aristas", "Ω");
@@ -83,7 +100,11 @@ public class ArchivoTxt {
         }
         
     }
-    
+        /**
+     * Metodo que Guarda un txt 
+     * @exception IOException e
+     * 
+     */
     public void guardar_txt(String grafoferomonas_string) {
         try{
             FileWriter writer = new FileWriter("test\\grafo.txt");

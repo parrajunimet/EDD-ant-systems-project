@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gui;
-
+/**Interfaz que te permite eliminar ciudades
+ * @author Sofia
+ */
 import edd.Matriz;
 import static gui.AgregarCiudadesGUI.interfazB;
 import java.util.logging.Level;
@@ -14,13 +16,14 @@ import javax.swing.JOptionPane;
  * @author Sofia
  */
 public class EliminarCiudades extends javax.swing.JFrame {
+    //Atributos de la interfaz
     private Matriz grafo;
     private String[] deletable ; 
     public static EditCuidadesGUI interfazA;
     
     
     /**
-     * Creates new form EliminarCiudades
+     * Constructor de la clase interfaz de eliminar ciudades
      */
     public EliminarCiudades(EditCuidadesGUI interfazA) throws Exception {
         initComponents();
@@ -32,9 +35,13 @@ public class EliminarCiudades extends javax.swing.JFrame {
         this.grafo = interfazA.getGrafo(); 
         this.eliminar.setVisible(false);
         this.start();
-    }
+    }// fin del constructor
     
-
+  /**
+     * Metodo que retorna el Grafo
+     * @return grafo
+     *
+     */
     public Matriz getGrafo() {
         return grafo;
     }
@@ -132,7 +139,10 @@ public class EliminarCiudades extends javax.swing.JFrame {
     private void inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputActionPerformed
-
+/**
+ * Metodo para eliminar un vertice/ciudad
+ * @param evt 
+ */
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
        String x = this.input.getText();
        boolean found = false; 
@@ -149,19 +159,27 @@ public class EliminarCiudades extends javax.swing.JFrame {
                 }
             } 
             if (found) {
+               try {
                    this.grafo.eliminarVertice(x);
                    try { 
                        start();
                    } catch (Exception ex) {
                        Logger.getLogger(EliminarCiudades.class.getName()).log(Level.SEVERE, null, ex);
                    }
+               } catch (Exception ex) {
+                   Logger.getLogger(EliminarCiudades.class.getName()).log(Level.SEVERE, null, ex);
+               }
+                   
             } else {
                    input.setText("");
                    this.notify.setText("Por favor entre una ciudad valida.");
                }
        }
     }//GEN-LAST:event_eliminarActionPerformed
-
+/***
+ * Metodo para volver a la interfaz de editar ciudades
+ * @param evt 
+ */
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         try {
             EditCuidadesGUI interfazD= new EditCuidadesGUI(this);
@@ -178,7 +196,10 @@ public class EliminarCiudades extends javax.swing.JFrame {
      * @param args the command line arguments
      * @throws java.lang.Exception
      */
-    
+ /**
+  * Metodo para mostrarle al usuario en pantalla si puede eliminar ciudades, y cuales
+  * @throws Exception 
+  */   
     public void start () throws Exception {
         input.setText("");
         this.ciudades.setText("");
