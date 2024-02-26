@@ -8,16 +8,12 @@ package gui;
 
 import edd.Matriz;
 import functions.ArchivoTxt;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
@@ -41,6 +37,10 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         noinfo.setVisible(false);
         guardado.setVisible(false);
         next.setVisible(false);
+        selecarchivo.setVisible(false);
+        
+        // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
+        next.setVisible(false);
         this.setResizable(false);
         this.interfaz2back = interfaz2back;
         interfaz2back.setVisible(false);
@@ -55,10 +55,11 @@ public class EditorTxtGUI extends javax.swing.JFrame {
      */
     public EditorTxtGUI(WelcomeGUI interfaz1) {
         initComponents();
-        cargararch.setVisible(false);
         noinfo.setVisible(false);
         guardado.setVisible(false);
         next.setVisible(false);
+        selecarchivo.setVisible(false);
+        //No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
         this.interfaz1 = interfaz1;
         interfaz1.setVisible(false);
@@ -98,7 +99,6 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         GuardarInfo = new javax.swing.JButton();
         noinfo = new javax.swing.JLabel();
         guardado = new javax.swing.JLabel();
-        cargararch = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -205,11 +205,6 @@ public class EditorTxtGUI extends javax.swing.JFrame {
         guardado.setText("Guardado exitosamente!!");
         getContentPane().add(guardado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
 
-        cargararch.setFont(new java.awt.Font("Adobe Devanagari", 0, 14)); // NOI18N
-        cargararch.setForeground(new java.awt.Color(0, 255, 0));
-        cargararch.setText("Archivo cargado con exito!!");
-        getContentPane().add(cargararch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
-
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
         jLabel6.setText("jLabel6");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 420));
@@ -222,6 +217,7 @@ public class EditorTxtGUI extends javax.swing.JFrame {
      */
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
         try {
+            //Inicializa la interfaz3/EditCuidadesGUI
             EditCuidadesGUI interfaz3 = new EditCuidadesGUI(this, this.show);
         } catch (Exception ex) {
             Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -235,17 +231,15 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private void crear_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_txtActionPerformed
         ArchivoTxt func = new ArchivoTxt();
         try {
-              
-            
-              func.cargar_txt(func.leer_txt().substring(0, func.leer_txt().length()-1), grafo);
-              System.out.println(grafo.grafoDistanciaString());
-              this.Contenido.setText(grafo.grafoDistanciaString());
-              
+                func.crear_txt();
         } catch (Exception ex) {
             Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //Muestra el mensaje "Archivo Cargado exitosamente!!"
         cargararch.setVisible(true);
+
         this.show = this.Contenido.getText(); 
+      //Muestra en la interfaz el boton de continuar
         next.setVisible(true);
     }//GEN-LAST:event_crear_txtActionPerformed
     /**
@@ -284,11 +278,15 @@ public class EditorTxtGUI extends javax.swing.JFrame {
                 }
                 this.Contenido.setText(cadena);
                 this.show = cadena; 
+
+          //Chequea por IOException e1 
             }catch (IOException e1){
                 e1.printStackTrace();
             }
         }else{
-            this.noinfo.setText("No se ha seleccionado ningún archivo.");
+            //Muestra en la interfaz un mensaje que dice "No se ha seleccionado ningun archivo"
+            selecarchivo.setVisible(true);
+
         }
     }//GEN-LAST:event_abrir_archivoActionPerformed
 
@@ -337,7 +335,6 @@ public class EditorTxtGUI extends javax.swing.JFrame {
     private javax.swing.JTextArea Contenido;
     private javax.swing.JButton GuardarInfo;
     private javax.swing.JButton abrir_archivo;
-    private javax.swing.JLabel cargararch;
     private javax.swing.JButton crear_txt;
     private javax.swing.JLabel guardado;
     private javax.swing.JLabel jLabel1;

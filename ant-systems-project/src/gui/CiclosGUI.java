@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CiclosGUI extends javax.swing.JFrame {
+    //Se llama a  la clase IniciarSimulacionGUI/ interfaz5
     //Atributos de la interfaz
     public static IniciarSimulacionGUI interfaz5b;
     private Matriz grafos; 
@@ -24,10 +25,14 @@ public class CiclosGUI extends javax.swing.JFrame {
     private Simulacion simulacion; 
     private boolean done; 
     
+    public Simulacion getSimulacion(){
+        return this.simulacion;
+    }
     
     /**
-     * Constructor de la clase partiendo de la interfaz de iniciar simulacion
+     * Creates new form CiclosGUI
      */
+    ///Preguntar 
     public CiclosGUI(IniciarSimulacionGUI interfaz5b, String ciudadi, String ciudadf, int cycles, int antn, double a, double b, double p) throws Exception {
         initComponents();
         this.setResizable(false);
@@ -165,7 +170,11 @@ public class CiclosGUI extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fondo ciclos.jpeg"))); // NOI18N
+<<<<<<< HEAD
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 1000, 590));
+=======
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 540));
+>>>>>>> e82b9c582d742b2450dffd47494966aec4925606
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 530));
 
@@ -173,7 +182,7 @@ public class CiclosGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Metodo para cambiar de ciclo, ver los ultimos resultados de la simulacion, o ir a la siguiente interfaz
+     * Metodo para cambiar de ciclo, ver los ultimos resultados de la simulacion, o ir a la siguiente interfaz (GraphGUI)
      * @param evt 
      */
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed

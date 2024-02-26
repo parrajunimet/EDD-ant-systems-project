@@ -8,14 +8,9 @@ package functions;
  */
 import edd.Matriz;
 import edd.Vertice;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import javax.swing.JOptionPane;
 
 
 public class ArchivoTxt {
@@ -32,24 +27,15 @@ public class ArchivoTxt {
         String path = "test\\grafo.txt";
         File file = new File(path);
         try{
-            if(!file.exists()){
-               file.createNewFile();
-            }else{
-                FileReader fr = new FileReader(file);
-                BufferedReader br = new BufferedReader(fr);
-                while((line = br.readLine())!= null){
-                    if(!line.isEmpty()){
-                        expresion_txt += line + "\n";
-                    }
-                }
-                
-                br.close();
-                return expresion_txt;
-            }  
-        } catch (Exception ex){
-            JOptionPane.showMessageDialog(null, "Error al leer la expresion");
+            if(archivo.createNewFile()) {
+                System.out.println("Archivo creado con exito!");
+            }
+            else{
+                System.out.println("Error al crear el archivo.");
+            }
+        }catch(IOException exepcion){
+            exepcion.printStackTrace(System.out);
         }
-        return expresion_txt;
     }
     
     
@@ -88,7 +74,6 @@ public class ArchivoTxt {
         }
 
         String aristas_txt = lines[2];
-        
         String[] aristas = aristas_txt.split("\n");
         
         for (int i = 1; i < aristas.length; i++) {
@@ -111,7 +96,6 @@ public class ArchivoTxt {
             writer.write(grafoferomonas_string);
             writer.close();
         }catch( IOException e){
-            System.out.println("Fallo");
         }
     }    
 }

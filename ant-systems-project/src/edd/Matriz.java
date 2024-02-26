@@ -18,17 +18,17 @@ public class Matriz {
  * Constructor de la clase, creando una matriz 20*20, con sus valores aij siendo objetos aristas con dos atributos principales, distancia y feromonas
  */
     public Matriz() {
-        matAd = new Arista[MaxVerts][MaxVerts];
-        verts = new Vertice[MaxVerts];
-        Arista[] aristas = new Arista[400];
-        for (int i = 0; i < aristas.length; i++) {
-            aristas[i] = new Arista();
+        matAd = new Arista [MaxVerts][MaxVerts];
+        verts = new Vertice [MaxVerts];
+        Arista [] aristas = new Arista[400]; 
+        for (int i = 0; i< aristas.length; i++) {
+            aristas[i]= new Arista();
         }
-        int counter = 0;
-        for (int i = 0; i < MaxVerts; i++) {
-            for (int j = 0; j < MaxVerts; j++) {
+        int counter = 0; 
+        for (int i=0; i< MaxVerts; i++) {
+            for (int j=0; j< MaxVerts; j++) {
                 matAd[i][j] = aristas[counter];
-                counter++;
+                counter++; 
             }
         }
         numVerts = 0;
@@ -38,13 +38,15 @@ public class Matriz {
  * @param nom string nombre del nuevo vertice
  */
     public void nuevoVertice(String nom) {
+
         boolean esta = numVertice(nom) >= 0;
-        if (!esta) {
+        if(!esta)
+        {
             Vertice v = new Vertice(nom);
             v.setNumVertice(numVerts);
             verts[numVerts++] = v;
         }
-
+        
     }
 /**
  * Metodo para retornar el nombre de un vertice en un determinado indice
@@ -61,30 +63,30 @@ public class Matriz {
  */
     public void eliminarVertice(String nom) throws Exception {
         boolean esta = numVertice(nom) >= 0;
-        if (esta) {
-            Vertice v = new Vertice(nom);
+        if(esta){
+            Vertice v = new Vertice(nom);   
             boolean encontrado = false;
             int i = 0;
-            for (; (i < numVerts) && !encontrado;) {
+            for(; (i < numVerts) && !encontrado;){
                 encontrado = verts[i].equals(v);
-                if (!encontrado) {
-                    i++;
-                }
+                if (!encontrado) i++ ;
             }
            
             for (int j = i; j < (MaxVerts - 1); j++) {
                 verts[j] = verts[j + 1];
                 for (int k = 0; k < (MaxVerts - 1); k++) {
                     matAd[j][k] = matAd[j + 1][k];
+                }
+                for (int k = 0; k < (MaxVerts - 1); k++) {
                     matAd[k][j] = matAd[k][j + 1];
 
                 }
             }
-                               
+            verts[MaxVerts-1] = null;
             Arista arista = new Arista();
-            for (int j = 0; j < (MaxVerts - 1); j++) {
-                matAd[j][MaxVerts - 1] = arista;
-                matAd[MaxVerts - 1][j] = arista;
+            for (int j = 0; j < (MaxVerts-1); j++) {
+                matAd[j][MaxVerts-1] = arista;
+                matAd[MaxVerts-1][j] = arista;
             }
             matAd[MaxVerts - 1][MaxVerts - 1] = arista;
            
@@ -102,13 +104,11 @@ public class Matriz {
         Vertice v = new Vertice(vs);
         boolean encontrado = false;
         int i = 0;
-        for (; (i < numVerts) && !encontrado;) {
-            if (verts[i] != null) {
+        for(; (i < numVerts) && !encontrado;){
+            if(verts[i] != null){            
                 encontrado = verts[i].equals(v);
             }
-            if (!encontrado) {
-                i++;
-            }
+            if (!encontrado) i++ ;
         }
         return (i < numVerts) ? i : -1;
     }
@@ -125,9 +125,7 @@ public class Matriz {
 
         va  = numVertice(a);
         vb = numVertice(b);
-        if (va  < 0 || vb < 0) {
-            throw new Exception("Vertice no existe");
-        }
+        if(va < 0 || vb <0)throw new Exception ("Vertice no existe");
         int numVerts = getNumVerts();
         //double valorInicial = 1/(double) numVerts;
         matAd[va][vb].setDistancia(d);
@@ -147,9 +145,7 @@ public class Matriz {
          vb;
         va  = numVertice(a);
         vb = numVertice(b);
-        if (va  < 0 || vb < 0) {
-            throw new Exception("Vertice no existe");
-        }
+        if(va < 0 || vb <0)throw new Exception ("Vertice no existe");
         matAd[va][vb].setFeromona(f);
         matAd[vb][va].setFeromona(f);
     }
@@ -172,9 +168,7 @@ public class Matriz {
          vb;
         va  = numVertice(a);
         vb = numVertice(b);
-        if (va  < 0 || vb < 0) {
-            throw new Exception("Vertice no existe");
-        }
+        if(va < 0 || vb <0)throw new Exception ("Vertice no existe");
         return matAd[va][vb].getDistancia() != 0;
     }
 /**
@@ -186,12 +180,10 @@ public class Matriz {
     private ListaDoble adyacentes(String a) throws Exception {
         int va;
         ListaDoble adyacentes = new ListaDoble();
-        va  = numVertice(a);
-        if (va  < 0) {
-            throw new Exception("Vertice no existe");
-        }
+        va = numVertice(a);     
+        if(va < 0)throw new Exception ("Vertice no existe");
         for (int i = 0; i < MaxVerts; i++) {
-            if (matAd[va][i].getDistancia() != 0) {
+            if(matAd[va][i].getDistancia() != 0){
                 adyacentes.insertFinal(matAd[va][i]);
             }
         }
@@ -203,33 +195,29 @@ public class Matriz {
  */
     public void print(int s) {
         System.out.print("|");
-
-        for (int y = 0; y < verts.length; y++) {
-            if (verts[y] != null) {
-                System.out.print(verts[y].getNombre());
-            }
-            if (y != 19) {
-                System.out.print("\t");
-            }
+        
+        for (int y=0; y < verts.length; y++) {
+          if (verts[y] != null){
+              System.out.print (verts[y].getNombre());          
+          }
+          if (y!=19) System.out.print("\t");
         }
         System.out.println("|");
-        for (int x = 0; x < matAd.length; x++) {
-            if (verts[x] != null) {
-                System.out.print(verts[x].getNombre());
+        for (int x=0; x < matAd.length; x++) {
+            if (verts[x] != null){
+                System.out.print (verts[x].getNombre());          
             }
             System.out.print("|");
-            for (int y = 0; y < matAd[x].length; y++) {
+            for (int y=0; y < matAd[x].length; y++) {
                 if (s == 0) {
-                    System.out.print(matAd[x][y].getDistancia());
-                } else {
-                    System.out.print(matAd[x][y].getFeromona());
+                    System.out.print (matAd[x][y].getDistancia());
+                }else {
+                    System.out.print (matAd[x][y].getFeromona());
                 }
-                if (y != matAd[x].length - 1) {
-                    System.out.print("\t");
-                }
+              if (y!=matAd[x].length-1) System.out.print("\t");
             }
-            System.out.println("|");
-        }
+        System.out.println("|");
+}
     }
 /**
  * Metodo para llevar la matriz de distancias a un string
@@ -237,19 +225,39 @@ public class Matriz {
  */
     public String grafoDistanciaString() {
         String grafo = "ciudad\n";
+        
+        //Recorre la matriz
         for (int i = 0; i < verts.length; i++) {
+            
+            //Chequea que vertices no sean nulos
             if (verts[i] != null) {
+                
+                //Añade el valor de los vertices a la variable grafo, junto con un salto de linea
                 grafo += (verts[i].getNumVertice()+1) + "\n";
             }
         }
+        // Añade la palabra aristas a la variable grafo
         grafo += "aristas\n";
-
+        
+        //Recorre la matriz, i es el numero de columnas
         for (int i = 0; i < matAd.length; i++) {
+            
+            //chequea que los vertices no sean nulos
             if (verts[i] != null) {
+                
+                //Recorre la matriz, j es el numero de filas
                 for (int j = 0; j < matAd[i].length; j++) {
+                    
+                    //
                     if (i < j) {
+                        
+                        //Chequea que la distancia de la matriz no sea 0
                         if (matAd[i][j].getDistancia() != 0) {
+                            
+                            //Crea una variable que contenga el origen, destino y la distancia, separado por comas y un salto de linea al final
                             String cadena = (verts[i].getNumVertice()+1) + "," + (verts[j].getNumVertice()+1) + "," + matAd[i][j].getDistancia() + "\n";
+                            
+                            //Añade la variable cadena a el String grafo
                             grafo += cadena;
                         }
                     }
@@ -258,6 +266,7 @@ public class Matriz {
             }
 
         }
+        //Retorna el string grafo
         return grafo;
     }
 /**
@@ -266,23 +275,53 @@ public class Matriz {
  */
     public String grafoFeromonaString() {
         String grafo = "ciudad\n";
+        
+        //Añade la ciudad inicial al string grafo
+        grafo += ciudadi + "\n";
+        
+        //Recorre la matriz
         for (int i = 0; i < verts.length; i++) {
+            
+            //Chequea que vertices no sean nulos
             if (verts[i] != null) {
-                grafo += verts[i] + "\n";
+                
+                //Chequea que el valor que estamos agregando no sea igual al de la ciudad inicial o la ciudad final
+                if(!String.valueOf(verts[i].getNumVertice()+1).equals(ciudadi) && !String.valueOf(verts[i].getNumVertice()+1).equals(ciudadf)){
+                    
+                    //Añade el valor de los vertices a la variable grafo, junto con un salto de linea
+                    grafo += (verts[i].getNumVertice()+1) + "\n";
+                }
             }
         }
-        grafo += "arista\n";
-
+        
+        //Añade la ultima ciudad al string grafo
+        grafo += ciudadf + "\n";
+        
+        // Añade la palabra aristas a la variable grafo
+        grafo += "aristas\n";
+        
+        //Recorre la matriz, i es el numero de columnas
         for (int i = 0; i < matAd.length; i++) {
+            
+            //chequea que los vertices no sean nulos
             if (verts[i] != null) {
+                
+                //Recorre la matriz, j es el numero de filas
                 for (int j = 0; j < matAd[i].length; j++) {
-                    if (i > j) {
+                    
+                    //Parte la matriz en diagonal para recorrerla y que no existan duplicados
+                    if (i < j) {
+                        
+                        //Chequea que la distancia de la matriz no sea 0
                         if (matAd[i][j].getDistancia() != 0) {
-                            String cadena = i + "," + j + "," + matAd[i][j].getDistancia() + "," + matAd[i][j].getFeromona() + "\n";
+                            
+                            //Crea una variable que contenga el origen, destino y la distancia, separado por comas y un salto de linea al final
+                            String cadena = (verts[i].getNumVertice()+1) + "," + (verts[j].getNumVertice()+1) + "," + matAd[i][j].getDistancia() + "\n";
+                            
+                            //Añade la variable cadena a el String grafo
                             grafo += cadena;
                         }
                     }
-
                 }
 
             }
@@ -300,20 +339,25 @@ public class Matriz {
         int va,
          counter = 0;
         va  = numVertice(a);
-
-        if (va  < 0) {
-            throw new Exception("Vertice no existe");
         }
+        return grafo;
+    }
+
+    public String[] verticesAd(String a)throws Exception{
+        int va, counter = 0;
+        va = numVertice(a);     
+        
+        if(va < 0)throw new Exception ("Vertice no existe");
         for (int i = 0; i < MaxVerts; i++) {
-            if (matAd[va][i].getDistancia() != 0) {
+            if(matAd[va][i].getDistancia() != 0){
                 counter++;
             }
         }
-        String[] adyacentes = new String[counter];
-        counter = 0;
+        String[] adyacentes = new String [counter];
+        counter = 0; 
         for (int i = 0; i < MaxVerts; i++) {
-            if (matAd[va][i].getDistancia() != 0) {
-                adyacentes[counter] = vertName(i);
+            if(matAd[va][i].getDistancia() != 0){
+                adyacentes[counter] = vertName(i); 
                 counter++;
             }
         }
@@ -339,12 +383,12 @@ public class Matriz {
  */
     public void feromonasIniciales() throws Exception {
         int numVerts = this.getNumVerts();
-        double valorInicial = 1 / (double) numVerts;
-        for (int x = 0; x < numVerts; x++) {
+        double valorInicial = 1/(double) numVerts;
+        for (int x=0; x < numVerts; x++) {
             String sx = this.vertName(x);
-            for (int y = 0; y < numVerts; y++) {
+            for (int y=0; y < numVerts; y++) {
                 String sy = this.vertName(y);
-                if (this.adyacente(sx, sy)) {
+                if(this.adyacente(sx, sy)){
                     this.nuevaFeromona(sx, sy, valorInicial);
                 }
             }
@@ -361,17 +405,15 @@ public class Matriz {
         int va,
          vb;
         double distance;
-        va  = numVertice(a);
+        va = numVertice(a);
         vb = numVertice(b);
-        if (va  < 0 || vb < 0) {
-            throw new Exception("Vertice no existe");
-        }
-        distance = matAd[va][vb].getDistancia();
+        if(va < 0 || vb <0)throw new Exception ("Vertice no existe");
+        distance =  matAd[va][vb].getDistancia();
         matAd[va][vb].setDistancia(0);
         matAd[vb][va].setDistancia(0);
         matAd[va][vb].setFeromona(0);
         matAd[vb][va].setFeromona(0);
-        return distance;
+        return distance; 
     }
 /**
  * Metodo para obtener el numero de ciudades adyacentes a una ciudad 
@@ -381,11 +423,11 @@ public class Matriz {
     public int numAdyacentes(int i) {
         int counter = 0;
         for (int j = 0; j < 10; j++) {
-            if (matAd[i][j].getDistancia() != 0) {
+            if(matAd[i][j].getDistancia() != 0){
                 counter++;
             }
         }
-        return counter;
+        return counter;  
     }
 /**
  * Metodo para realizar un Deep-First-Search Algorithm
@@ -396,14 +438,14 @@ public class Matriz {
  */
     public boolean[] deepFirstSearch(int numVert, boolean[] visited) throws Exception {
         visited[numVert] = true;
-        String va  = vertName(numVert);
+        String va = vertName(numVert);
         String[] adyacentes = verticesAd(va);
-        for (String x : adyacentes) {
+        for (String x: adyacentes){
             if (!visited[numVertice(x)]) {
-                deepFirstSearch(numVertice(x), visited);
+                deepFirstSearch(numVertice(x), visited); 
             }
         }
-        return visited;
+        return visited; 
     }
 /**
  * Metodo para contar las ciudades en cada uno de los DFS realizados
@@ -411,12 +453,12 @@ public class Matriz {
  * @throws Exception 
  */
     public int countDFS() throws Exception {
-        boolean[] visited = new boolean[getNumVerts()];
-        visited = deepFirstSearch(0, visited);
-        int count = 0;
-        for (boolean t : visited) {
+        boolean [] visited = new boolean[getNumVerts()];
+        visited = deepFirstSearch(0, visited); 
+        int count = 0; 
+        for (boolean t: visited) {
             if (t) {
-                count++;
+                count++; 
             }
         }
         return count;
@@ -432,14 +474,14 @@ public class Matriz {
         String[] adyacentes = verticesAd(va);
         int firstcount = countDFS(), secondcount;
         double distance;
-        if (numAdyacentes(i) != 1) {
-            for (String ver : adyacentes) {
-                distance = eliminarArco(va, ver);
-                secondcount = countDFS();
-                nuevaDistancia(ver, va, distance);
-                if (secondcount < firstcount) {
-                    return true;
-                }
+        if (numAdyacentes(i) != 1){
+            for (String ver: adyacentes) {
+            distance = eliminarArco(va, ver); 
+            secondcount = countDFS();
+            nuevaDistancia (ver, va, distance);
+            if (secondcount < firstcount) {
+                return true; 
+            }         
             }
         }
         return false;
@@ -504,5 +546,5 @@ public class Matriz {
         }
         return false;
     }
-
+    
 }

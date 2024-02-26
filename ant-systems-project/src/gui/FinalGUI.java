@@ -8,16 +8,13 @@ package gui;
  */
 import edd.Matriz;
 import functions.ArchivoTxt;
-import static gui.EditorTxtGUI.grafo;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class FinalGUI extends javax.swing.JFrame {
 
-    
+    public static Matriz grafo = new Matriz();
     public static GraphGUI interfaz7;
     /**
      * Constructor que inicializa la interfaz7/GraphGUI
@@ -92,15 +89,32 @@ public class FinalGUI extends javax.swing.JFrame {
      * @exception ex
      */
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
-        String grafoferomonas_string = grafo.grafoDistanciaString();
-        ArchivoTxt func = new ArchivoTxt();
         
-        try {
-                func.guardar_txt(grafoferomonas_string);
-            } catch (Exception ex) {
-                Logger.getLogger(EditorTxtGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        System.exit(0);   
+        String grafodistancias_string = grafo.grafoDistanciaString();
+        String grafoferomonas_string = grafo.grafoFeromonaString();
+        BufferedWriter writer = null;
+        BufferedWriter writer2 = null;
+        
+        try{
+            writer = new BufferedWriter( new FileWriter("grafodistancias.txt"));
+            writer2 = new BufferedWriter( new FileWriter("grafoferomonas.txt"));
+            writer.write( grafodistancias_string);
+            writer2.write( grafoferomonas_string);
+            }catch ( IOException e){
+            }finally {
+                try{
+                    if ( writer != null && writer2 != null){
+                        writer.close();
+                        writer2.close();
+                    }
+                }catch ( IOException e)
+            {        
+    }
+    System.exit(0);
+                
+}
+        
+        
     }//GEN-LAST:event_SaveActionPerformed
 
     /**

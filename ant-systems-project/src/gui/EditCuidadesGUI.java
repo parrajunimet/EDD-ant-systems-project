@@ -56,6 +56,7 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
     }
     //De la interfaz del editor del TXT
     public EditCuidadesGUI(EditorTxtGUI interfaz2, String show) throws Exception {
+
         initComponents();
         this.grafo = interfaz2.getGrafo(); 
         this.setResizable(false);
@@ -213,6 +214,8 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
  * @param evt 
  */
     private void gobackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gobackActionPerformed
+
+        //Inicializa la interfaz anterior interfaz2back/EditorTxtGUI
         EditorTxtGUI interfaz2back = new EditorTxtGUI(this, this.show);
     }//GEN-LAST:event_gobackActionPerformed
 
