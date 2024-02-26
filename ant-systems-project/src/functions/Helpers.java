@@ -2,11 +2,7 @@
 package functions;
 
 import javax.swing.JOptionPane;
-/**
- * Esta clase contiene las validaciones utilizadas en el programa
- *
- * @version 24/02/2024
- */
+
 public class Helpers {
     //Validaciones de todas las entradas que recibe el programa en las interfaces
     
