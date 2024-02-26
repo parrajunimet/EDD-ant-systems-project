@@ -12,49 +12,33 @@ import simulation.Simulacion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Interfaz que permite mostrar informacion de cada Ciclo de la Simulacion
- * 
- * @author Sofia
- * @author Julene
- * @version 24/02/2024
- */
-
 public class CiclosGUI extends javax.swing.JFrame {
     //Se llama a  la clase IniciarSimulacionGUI/ interfaz5
     //Atributos de la interfaz
     public static IniciarSimulacionGUI interfaz5b;
     private Matriz grafos; 
-    public static String ciudadi; 
-    public static String ciudadf; 
+    private String ciudadi; 
+    private String ciudadf; 
     private int cycles, antn, counter;
     private double p, a, b;
     private Simulacion simulacion; 
     private boolean done; 
     
+    public Simulacion getSimulacion(){
+        return this.simulacion;
+    }
     
     /**
-     * Constructor que inicializa todas las variables necesarias para la clase
-     * @param interfaz5b interfaz que se encuentra en ValoresInicialesGUI
-     *
+     * Creates new form CiclosGUI
      */
+    ///Preguntar 
     public CiclosGUI(IniciarSimulacionGUI interfaz5b, String ciudadi, String ciudadf, int cycles, int antn, double a, double b, double p) throws Exception {
         initComponents();
-        // No permite a los usuarios cambiar el tamaño de la ventana al aparecer
         this.setResizable(false);
-        
-        //Inicializa la interfaz5b
         this.interfaz5b = interfaz5b;
-        
-        //Declara que inicialmente la interfaz5b no es visible
         interfaz5b.setVisible(false);
-        
-        //Declara que la interfaz CiclosGUI si es visible inicialmente
         this.setVisible(true);
-        
-        //Posiciona la interfaz en el centro de la pantalla
         this.setLocationRelativeTo(null);
-        
         this.grafos = interfaz5b.getGrafo();
         this.ciudadi = ciudadi;
         this.ciudadf = ciudadf;
@@ -216,8 +200,6 @@ public class CiclosGUI extends javax.swing.JFrame {
                     Logger.getLogger(CiclosGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }   
             }else {
-                
-                //Inicializa la interfaz siguiente interfaz6/ GraphGUI
                 GraphGUI interfaz6 = new GraphGUI(this);
             }
         }
