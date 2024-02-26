@@ -118,7 +118,7 @@ public class IniciarSimulacionGUI extends javax.swing.JFrame {
         getContentPane().add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 180, 30));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, 0, 520, 240));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 0, 490, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
