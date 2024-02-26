@@ -60,6 +60,10 @@ public class Simulacion {
         creadoHormigas(); 
         grafos.feromonasIniciales();
     }
+
+    public String getOptimepath() {
+        return optimepath;
+    }
     
  /**
   * Metodo para crear las hormigas que participaran en la simulacion, seteando el estado de todas las hormigas en 0, es decir, recorriendo. 
