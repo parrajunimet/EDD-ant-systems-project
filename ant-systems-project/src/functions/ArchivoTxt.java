@@ -20,7 +20,7 @@ public class ArchivoTxt {
     public String leer_txt() {
         String line;
         String expresion_txt = "";
-        String path = "test\\grafo.txt";
+        String path = "archivo.txt";
         File file = new File(path);
         try{
             if(!file.exists()){

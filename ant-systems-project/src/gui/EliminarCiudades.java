@@ -149,7 +149,11 @@ public class EliminarCiudades extends javax.swing.JFrame {
                 }
             } 
             if (found) {
+               try {
                    this.grafo.eliminarVertice(x);
+               } catch (Exception ex) {
+                   Logger.getLogger(EliminarCiudades.class.getName()).log(Level.SEVERE, null, ex);
+               }
                    try { 
                        start();
                    } catch (Exception ex) {
