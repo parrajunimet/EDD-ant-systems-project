@@ -12,6 +12,7 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
     public static EliminarCiudades interfazD;
     public static ValoresInicialesGUI interfaz3back;
     private Matriz grafo; 
+    private String show; 
     
     public EditCuidadesGUI(ValoresInicialesGUI interfaz3back) throws Exception {
         initComponents();
@@ -44,7 +45,15 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.showCities();
     }
-    public EditCuidadesGUI(EditorTxtGUI interfaz2) throws Exception {
+
+    
+    /**
+     * Constructor que inicializa la interfaz2 de EditorTxtGUI y la Matriz grafo
+     * @param interfaz2 interfaz que se encuentra en EditorTxtGUI
+     *
+     */
+    public EditCuidadesGUI(EditorTxtGUI interfaz2, String show) throws Exception {
+
         initComponents();
         this.grafo = interfaz2.getGrafo(); 
         this.setResizable(false);
@@ -53,16 +62,9 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.showCities();
+        this.show = show; 
     }
-    /*
-    public EditCuidadesGUI(Matriz grafo) {
-        initComponents();
-        this.grafo = grafo;
-        this.grafoupdated = grafoupdated;
-    }
-    /*
-    
-    */
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -191,48 +193,16 @@ public class EditCuidadesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarciudadesActionPerformed
 
     private void gobackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gobackActionPerformed
-        EditorTxtGUI interfaz2back = new EditorTxtGUI(this);
+
+        //Inicializa la interfaz anterior interfaz2back/EditorTxtGUI
+        EditorTxtGUI interfaz2back = new EditorTxtGUI(this, this.show);
     }//GEN-LAST:event_gobackActionPerformed
 
     
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditCuidadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditCuidadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditCuidadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditCuidadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new EditCuidadesGUI(interfaz2).setVisible(true);
-                } catch (Exception ex) {
-                    Logger.getLogger(EditCuidadesGUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Continue;

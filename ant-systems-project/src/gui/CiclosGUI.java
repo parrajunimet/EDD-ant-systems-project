@@ -1,11 +1,20 @@
 package gui;
 
+
+/**
+ * Interfaz grafica para mostrar cada uno de los ciclos de la simulacion y sus resultados
+ * @author Sofia
+ */
+
+
 import edd.Matriz;
 import simulation.Simulacion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CiclosGUI extends javax.swing.JFrame {
+    //Se llama a  la clase IniciarSimulacionGUI/ interfaz5
+    //Atributos de la interfaz
     public static IniciarSimulacionGUI interfaz5b;
     private Matriz grafos; 
     private String ciudadi; 
@@ -67,8 +76,6 @@ public class CiclosGUI extends javax.swing.JFrame {
         caminos = new javax.swing.JTextArea();
         jScrollPane5 = new javax.swing.JScrollPane();
         distancias = new javax.swing.JTextArea();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        hormigas = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         optimo = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
@@ -88,7 +95,7 @@ public class CiclosGUI extends javax.swing.JFrame {
         ncycles.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         ncycles.setForeground(new java.awt.Color(255, 255, 255));
         ncycles.setText("1");
-        jPanel1.add(ncycles, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, 50));
+        jPanel1.add(ncycles, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, 50));
 
         jLabel3.setFont(new java.awt.Font("Adobe Devanagari", 2, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -137,7 +144,7 @@ public class CiclosGUI extends javax.swing.JFrame {
         caminos.setRows(5);
         jScrollPane4.setViewportView(caminos);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 670, 180));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 770, 180));
 
         distancias.setEditable(false);
         distancias.setBackground(new java.awt.Color(255, 204, 153));
@@ -147,15 +154,6 @@ public class CiclosGUI extends javax.swing.JFrame {
         jScrollPane5.setViewportView(distancias);
 
         jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 100, 110, 180));
-
-        hormigas.setEditable(false);
-        hormigas.setBackground(new java.awt.Color(255, 204, 153));
-        hormigas.setColumns(20);
-        hormigas.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
-        hormigas.setRows(5);
-        jScrollPane6.setViewportView(hormigas);
-
-        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 80, 180));
 
         optimo.setBackground(new java.awt.Color(255, 204, 153));
         optimo.setColumns(20);
@@ -171,13 +169,21 @@ public class CiclosGUI extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fondo ciclos.jpeg"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 540));
+<<<<<<< HEAD
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 1000, 590));
+=======
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 540));
+>>>>>>> e82b9c582d742b2450dffd47494966aec4925606
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo para cambiar de ciclo, ver los ultimos resultados de la simulacion, o ir a la siguiente interfaz (GraphGUI)
+     * @param evt 
+     */
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
 
         if (this.counter < this.cycles) {
@@ -205,24 +211,22 @@ public class CiclosGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_nextActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    
+   /**
+    * Metodo que muestra  en pantalla los resultados de un ciclo de la simulacion. 
+    * @throws Exception 
+    */ 
     public void showCycle() throws Exception {
         String[] results = simulacion.Cycle();
-        String x = ""; 
-        for (int i = 0; i < antn; i++) {
-            x += (i+1) + "\n\n";
-        }
         this.ncycles.setText(String.valueOf(counter));
-        this.hormigas.setText(x);
         this.caminos.setText(results[1]);
         this.distancias.setText(results[2]);
         this.optimo.setText(results[0]);
     }
     
-    
+   /**
+    * Metodo para iniciar la simulacion, y los datos inciciales de la simulacion. 
+    * @throws Exception 
+    */ 
     public void start() throws Exception {
         this.simulacion = new Simulacion (this.grafos, this.ciudadi, this.ciudadf, this.cycles, this.antn, this.a, this.b, this.p); 
         this.simulacion.startData();
@@ -230,6 +234,10 @@ public class CiclosGUI extends javax.swing.JFrame {
         this.showCycle();
     }
     
+    /**
+     * Metodo para obtener la matriz que representa el grafo multiponderado
+     * @return Matriz de ciudades de la simulacion 
+     */
     public Matriz getgrafos(){
         return this.grafos;
     }
@@ -238,7 +246,6 @@ public class CiclosGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea caminos;
     private javax.swing.JTextArea distancias;
-    private javax.swing.JTextArea hormigas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -251,7 +258,6 @@ public class CiclosGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel ncycles;
     private javax.swing.JButton next;
     private javax.swing.JTextArea optimo;

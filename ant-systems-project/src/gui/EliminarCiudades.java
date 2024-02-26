@@ -5,7 +5,6 @@
 package gui;
 
 import edd.Matriz;
-import static gui.AgregarCiudadesGUI.interfazB;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -129,7 +128,17 @@ public class EliminarCiudades extends javax.swing.JFrame {
         jLabel4.setText("Posibles ciudades a eliminar:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 290));
+        notify.setBackground(new java.awt.Color(153, 102, 0));
+        notify.setFont(new java.awt.Font("Rockwell", 1, 12)); // NOI18N
+        notify.setForeground(new java.awt.Color(255, 255, 255));
+        notify.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel1.add(notify, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 420, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WhatsApp Image 2024-02-18 at 12.14.25 PM.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 290));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 290));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -154,7 +163,11 @@ public class EliminarCiudades extends javax.swing.JFrame {
                 }
             } 
             if (found) {
+               try {
                    this.grafo.eliminarVertice(x);
+               } catch (Exception ex) {
+                   Logger.getLogger(EliminarCiudades.class.getName()).log(Level.SEVERE, null, ex);
+               }
                    try { 
                        start();
                    } catch (Exception ex) {
@@ -176,42 +189,7 @@ public class EliminarCiudades extends javax.swing.JFrame {
         Matriz grafoUpdated = grafo;
         
     }//GEN-LAST:event_VolverActionPerformed
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarCiudadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new AgregarCiudadesGUI(interfazA).setVisible(true);
-                } catch (Exception ex) {
-                    Logger.getLogger(EliminarCiudades.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
+  
     
     
     /**
@@ -229,7 +207,7 @@ public class EliminarCiudades extends javax.swing.JFrame {
             String show = ""; 
             int counter = 1; 
             if (this.deletable.length == 0) {
-                JOptionPane.showMessageDialog(null, "Ninguna ciudad puede ser eliminada.");
+                this.notify.setText("Ninguna otra ciudad puede ser eliminada."); 
             }else {
                 for (String c: this.deletable) {
                 show += counter + "-  " +c + "\n"; 

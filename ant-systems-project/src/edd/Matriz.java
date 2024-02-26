@@ -46,8 +46,8 @@ public class Matriz {
     public String vertName(int i){
         return verts[i].getNombre();
     }
-    
-    public void eliminarVertice(String nom){
+
+    public void eliminarVertice(String nom) throws Exception {
         boolean esta = numVertice(nom) >= 0;
         if(esta){
             Vertice v = new Vertice(nom);   
@@ -57,21 +57,32 @@ public class Matriz {
                 encontrado = verts[i].equals(v);
                 if (!encontrado) i++ ;
             }
-            for (int j = i; j < (MaxVerts-1); j++) {
-                verts[j] = verts[j+1];
-                for (int k = 0; k < (MaxVerts-1); k++) {
-                    matAd[j][k] = matAd[j+1][k];
-                    matAd[k][j] = matAd[k][j+1];
-                }                   
+           
+            for (int j = i; j < (MaxVerts - 1); j++) {
+                verts[j] = verts[j + 1];
+                for (int k = 0; k < (MaxVerts - 1); k++) {
+                    matAd[j][k] = matAd[j + 1][k];
+                }
+                for (int k = 0; k < (MaxVerts - 1); k++) {
+                    matAd[k][j] = matAd[k][j + 1];
+
+                }
             }
+<<<<<<< HEAD
+                               
+=======
             verts[MaxVerts-1] = null;
+>>>>>>> fda489c39a1be2ad6635706e2b9e2902f655ed8b
             Arista arista = new Arista();
             for (int j = 0; j < (MaxVerts-1); j++) {
                 matAd[j][MaxVerts-1] = arista;
                 matAd[MaxVerts-1][j] = arista;
             }
-            matAd[MaxVerts-1][MaxVerts-1] = arista;
-            numVerts --;
+            matAd[MaxVerts - 1][MaxVerts - 1] = arista;
+           
+            numVerts--;
+          
+            
         }
     }
     
@@ -162,9 +173,140 @@ public class Matriz {
         System.out.println("|");
 }
     }
-  
+    
+    /**
+     * Escribe string con formato de txt deseado. 
+     * Recorre Matriz y añade valores de ciudades y distancias.
+     * @return grafo
+     *
+     */
+    
     public String grafoDistanciaString() {
         String grafo = "ciudad\n";
+        
+        //Recorre la matriz
+        for (int i = 0; i < verts.length; i++) {
+            
+            //Chequea que vertices no sean nulos
+            if (verts[i] != null) {
+                
+                //Añade el valor de los vertices a la variable grafo, junto con un salto de linea
+                grafo += (verts[i].getNumVertice()+1) + "\n";
+            }
+        }
+        // Añade la palabra aristas a la variable grafo
+        grafo += "aristas\n";
+        
+        //Recorre la matriz, i es el numero de columnas
+        for (int i = 0; i < matAd.length; i++) {
+            
+            //chequea que los vertices no sean nulos
+            if (verts[i] != null) {
+                
+                //Recorre la matriz, j es el numero de filas
+                for (int j = 0; j < matAd[i].length; j++) {
+                    
+                    //
+                    if (i < j) {
+                        
+                        //Chequea que la distancia de la matriz no sea 0
+                        if (matAd[i][j].getDistancia() != 0) {
+                            
+                            //Crea una variable que contenga el origen, destino y la distancia, separado por comas y un salto de linea al final
+                            String cadena = (verts[i].getNumVertice()+1) + "," + (verts[j].getNumVertice()+1) + "," + matAd[i][j].getDistancia() + "\n";
+                            
+                            //Añade la variable cadena a el String grafo
+                            grafo += cadena;
+                        }
+                    }
+                }
+
+            }
+
+        }
+        //Retorna el string grafo
+        return grafo;
+    }
+    
+    
+    /**
+     * Escribe string con formato de txt deseado. 
+     * Recorre Matriz y añade valores de ciudades y distancias a un String con el formato deseado del txt
+     * @param ciudadi
+     * @param ciudadf
+     * @return grafo
+     * @author Julene
+     */
+    public String grafoDistanciaString2(String ciudadi, String ciudadf) {
+        
+        //Crea una variable grafo que contendra toda la informacion deseada
+        String grafo = "ciudad\n";
+        
+        //Añade la ciudad inicial al string grafo
+        grafo += ciudadi + "\n";
+        
+        //Recorre la matriz
+        for (int i = 0; i < verts.length; i++) {
+            
+            //Chequea que vertices no sean nulos
+            if (verts[i] != null) {
+                
+                //Chequea que el valor que estamos agregando no sea igual al de la ciudad inicial o la ciudad final
+                if(!String.valueOf(verts[i].getNumVertice()+1).equals(ciudadi) && !String.valueOf(verts[i].getNumVertice()+1).equals(ciudadf)){
+                    
+                    //Añade el valor de los vertices a la variable grafo, junto con un salto de linea
+                    grafo += (verts[i].getNumVertice()+1) + "\n";
+                }
+            }
+        }
+        
+        //Añade la ultima ciudad al string grafo
+        grafo += ciudadf + "\n";
+        
+        // Añade la palabra aristas a la variable grafo
+        grafo += "aristas\n";
+        
+        //Recorre la matriz, i es el numero de columnas
+        for (int i = 0; i < matAd.length; i++) {
+            
+            //chequea que los vertices no sean nulos
+            if (verts[i] != null) {
+                
+                //Recorre la matriz, j es el numero de filas
+                for (int j = 0; j < matAd[i].length; j++) {
+                    
+                    //Parte la matriz en diagonal para recorrerla y que no existan duplicados
+                    if (i < j) {
+                        
+                        //Chequea que la distancia de la matriz no sea 0
+                        if (matAd[i][j].getDistancia() != 0) {
+                            
+                            //Crea una variable que contenga el origen, destino y la distancia, separado por comas y un salto de linea al final
+                            String cadena = (verts[i].getNumVertice()+1) + "," + (verts[j].getNumVertice()+1) + "," + matAd[i][j].getDistancia() + "\n";
+                            
+                            //Añade la variable cadena a el String grafo
+                            grafo += cadena;
+                        }
+                    }
+                }
+
+            }
+
+        }
+        return grafo;
+    }
+    
+    /**
+     * Escribe string con formato de txt deseado, que guardaremos en el archivo txt. 
+     * Recorre Matriz y añade valores de ciudades y distancias.
+     * @return grafo
+     * 
+     */
+    
+    public String grafoFeromonaString() {
+        //Crea un string donde se sumara toda la informacion necesaria para el txt. Inicia con la palabra ciudad.
+        String grafo = "ciudad\n";
+        //
         for (int i = 0; i < verts.length; i++) {
             if (verts[i] != null) {
                 grafo += verts[i] + "\n";
@@ -177,29 +319,6 @@ public class Matriz {
                 for (int j = 0; j < matAd[i].length; j++) {
                     if (matAd[i][j].getDistancia() != 0) {
                         String cadena = i + "," + j + "," + matAd[i][j].getDistancia() + "\n";
-                        grafo += cadena;
-                    }
-                }
-
-            }
-
-        }
-        return grafo;
-    }
-    public String grafoFeromonaString() {
-        String grafo = "ciudad\n";
-        for (int i = 0; i < verts.length; i++) {
-            if (verts[i] != null) {
-                grafo += verts[i] + "\n";
-            }
-        }
-        grafo += "arista\n";
-
-        for (int i = 0; i < matAd.length; i++) {
-            if (verts[i] != null) {
-                for (int j = 0; j < matAd[i].length; j++) {
-                    if (matAd[i][j].getDistancia() != 0) {
-                        String cadena = i + "," + j + "," + matAd[i][j].getFeromona() + "\n";
                         grafo += cadena;
                     }
                 }
@@ -319,52 +438,55 @@ public class Matriz {
             }         
             }
         }
-         return false; 
-    
+        return false;
+
     }
-    
-    public String[] nonBridgeds() throws Exception{
-        int counter = 0; 
+
+    public String[] nonBridgeds() throws Exception {
+        int counter = 0;
         for (int i = 0; i < getNumVerts(); i++) {
             if (!isBridge(i)) {
-                counter++; 
+                counter++;
             }
         }
-        String[] deletable = new String[counter]; 
-        int h = 0; 
+        String[] deletable = new String[counter];
+        int h = 0;
         for (int i = 0; i < getNumVerts(); i++) {
             if (!isBridge(i)) {
-               deletable[h]= vertName(i); 
-               h++; 
+                deletable[h] = vertName(i);
+                h++;
             }
         }
-        return deletable; 
+        return deletable;
     }
-    
-    public String citiesAndPaths() throws Exception{
-        String x = ""; 
-        x += "\n\nCiudad      Aristas de conexion\n"; 
-        String va, vb; 
+
+    public String citiesAndPaths() throws Exception {
+        String x = "";
+        x += "\n\nCiudad      Aristas de conexion\n";
+        String va,
+        vb;
         for (int i = 0; i < getNumVerts(); i++) {
-            va = vertName(i);
-            x += va + "\n"; 
-             for (int m = 0; m < getNumVerts(); m++) {
-                 vb = vertName(m);
-                 if (adyacente(va, vb)){
-                     x += "                    " + vb + "-  " + getMatAd()[i][m].getDistancia() + "m\n";
-                 }
-             }x += "\n";
-             
-        }return x;  
-    }
-    
-    public boolean isVert(String x) {
-        for (int i =0; i < getNumVerts(); i++) {
-               if (getVerts()[i].getNombre().equalsIgnoreCase(x)) {
-                   return true; 
+            va  = vertName(i);
+            x += va  + "\n";
+            for (int m = 0; m < getNumVerts(); m++) {
+                vb = vertName(m);
+                if (adyacente(va, vb)) {
+                    x += "                    " + vb + "-  " + getMatAd()[i][m].getDistancia() + "m\n";
                 }
-            } 
-        return false; 
+            }
+            x += "\n";
+
+        }
+        return x;
+    }
+
+    public boolean isVert(String x) {
+        for (int i = 0; i < getNumVerts(); i++) {
+            if (getVerts()[i].getNombre().equalsIgnoreCase(x)) {
+                return true;
+            }
+        }
+        return false;
     }
     
 }
