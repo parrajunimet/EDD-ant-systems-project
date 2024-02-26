@@ -86,7 +86,7 @@ public class ArchivoTxt {
     
     public void guardar_txt(String grafoferomonas_string) {
         try{
-            FileWriter writer = new FileWriter("test\\grafo.txt");
+            FileWriter writer = new FileWriter("archivo.txt");
             writer.write(grafoferomonas_string);
             writer.close();
         }catch( IOException e){
