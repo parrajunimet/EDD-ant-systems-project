@@ -2,7 +2,7 @@
 package edd;
 /**
  * @author Sofia
- * Esta clase define a una listadoblemente enlazada
+ * Esta clase define a una listadoblemente enlazada.
  */
 
 

@@ -68,11 +68,7 @@ public class Matriz {
 
                 }
             }
-<<<<<<< HEAD
-                               
-=======
             verts[MaxVerts-1] = null;
->>>>>>> fda489c39a1be2ad6635706e2b9e2902f655ed8b
             Arista arista = new Arista();
             for (int j = 0; j < (MaxVerts-1); j++) {
                 matAd[j][MaxVerts-1] = arista;

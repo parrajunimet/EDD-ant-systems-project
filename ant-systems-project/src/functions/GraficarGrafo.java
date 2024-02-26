@@ -52,7 +52,7 @@ public class GraficarGrafo {
         //Se le pone color al fondo de grafo a ver.
         graph.setAttribute("ui.stylesheet", "graph { fill-color: orange; }");
         
-        String recorrido = simulacion.getOptimePath();
+        String recorrido = simulacion.getOptimepath();
         int length = recorrido.length() - 1;
         String[] caminos = new String[length];
         
