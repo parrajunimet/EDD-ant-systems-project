@@ -73,22 +73,10 @@ public class Matriz {
                 verts[j] = verts[j + 1];
                 for (int k = 0; k < (MaxVerts - 1); k++) {
                     matAd[j][k] = matAd[j + 1][k];
+                    matAd[k][j] = matAd[k][j + 1];
 
                 }
             }
-            verts[MaxVerts - 1] = null;
-            for (int m = i; m < (MaxVerts - 1); m++) {
-                verts[m] = verts[m + 1];
-                for (int k = 0; k < (MaxVerts - 1); k++) {
-                    if (k != m) {
-                        matAd[k][m] = matAd[k][m + 1];
-                    }
-                }
-            }
-         
-            
-            
-            /*
                                
             Arista arista = new Arista();
             for (int j = 0; j < (MaxVerts - 1); j++) {
@@ -96,7 +84,7 @@ public class Matriz {
                 matAd[MaxVerts - 1][j] = arista;
             }
             matAd[MaxVerts - 1][MaxVerts - 1] = arista;
-            */
+           
             numVerts--;
           
             
