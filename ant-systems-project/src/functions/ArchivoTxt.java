@@ -1,7 +1,7 @@
 
 package functions;
 /**
- * Esta clase define el Archivo Txt y sus funciones: leer_txt, eliminar_txt, cargar_txt y guardar_txt
+ * Esta clase define el Archivo Txt y sus funciones: leer_txt, eliminar_txt, cargar_txt y guardar_txt.
  *
  * @author Julene
  * @version 24/02/2024
