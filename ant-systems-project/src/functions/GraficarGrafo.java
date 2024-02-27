@@ -6,6 +6,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.view.Viewer;
 import simulation.Simulacion;
 
 /**
@@ -74,8 +75,15 @@ public class GraficarGrafo {
             for(int y =0;y<matriz.getNumVerts();y++){
                 if(matriz.getMatAd()[k][y].getDistancia()>0.0){
                   String id = Integer.toString(k+1)+Integer.toString(y+1);
-                  Edge camino = graph.addEdge(id, matriz.getVerts()[k].getNombre(), matriz.getVerts()[y].getNombre());
+                    System.out.println(id);
+                    Edge camino = graph.addEdge(id, matriz.getVerts()[k].getNombre(), matriz.getVerts()[y].getNombre());
                   if(camino!=null){
+                        //Se ponen en verde los del optimepath.
+                        for(int o =0;o<caminos.length-1;o++){
+                           if(camino.getId().equals(caminos[o]+caminos[o+1])){
+                               camino.addAttribute("ui.style", "fill-color: blue;");
+                        }
+                    }
                     DecimalFormat df = new DecimalFormat("#.##");
                     df.setRoundingMode(RoundingMode.HALF_UP);
                     camino.addAttribute("ui.label", Double.valueOf(df.format(matriz.getMatAd()[k][y].getFeromona())));
@@ -86,16 +94,10 @@ public class GraficarGrafo {
             }
         }
         
-        //Se ponen en verde los del optimepath.
-        for (String camino1 : caminos) {
-            Edge camino = graph.getEdge(camino1);
-            camino.addAttribute("ui.style", "fill-color: green;");
-        }
-        
-
         
         //Se muestra el grafo como un anueva ventana.
-        graph.display();
+        //Si se cierra, no se cerrar&aacute; el programa.
+        graph.display().setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
         
     }
 }
