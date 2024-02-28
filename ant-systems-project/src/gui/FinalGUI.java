@@ -6,6 +6,8 @@ import static gui.EditorTxtGUI.grafo;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import static gui.CiclosGUI.ciudadf;
+import static gui.CiclosGUI.ciudadi;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -93,7 +95,7 @@ public class FinalGUI extends javax.swing.JFrame {
      */
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
            //Crea un nuevo string llamado grafoferomonas_string que tenga toda la informacion del grafo en un string organizado
-        String grafoferomonas_string = grafo.grafoDistanciaString();
+        String grafoferomonas_string = grafo.grafoDistanciaString2(ciudadi, ciudadf);
         ArchivoTxt func = new ArchivoTxt();
         
         try {

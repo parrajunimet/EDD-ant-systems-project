@@ -16,8 +16,8 @@ public class CiclosGUI extends javax.swing.JFrame {
     //Atributos de la interfaz
     public static IniciarSimulacionGUI interfaz5b;
     private Matriz grafos; 
-    private String ciudadi; 
-    private String ciudadf; 
+    public static String ciudadi; 
+    public static String ciudadf; 
     private int cycles, antn, counter;
     private double p, a, b;
     private Simulacion simulacion; 
