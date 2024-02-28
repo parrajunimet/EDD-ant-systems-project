@@ -271,6 +271,42 @@ public class Matriz {
         }
         return grafo;
     }
+    /**
+     * Metodo para convertir la matriz, mostrando las distancias organizadas, en un string
+     * @return String con la matriz de distancias
+     */
+    public String grafoDistanciaString2(String ciudadi, String ciudadf) {
+        
+        String grafo = "ciudad\n";
+        grafo += ciudadi + "\n";
+        for (int i = 0; i < verts.length; i++) {
+            if (verts[i] != null) {
+                
+                if(!String.valueOf(verts[i].getNumVertice()+1).equals(ciudadi) && !String.valueOf(verts[i].getNumVertice()+1).equals(ciudadf)){
+                    grafo += (verts[i].getNumVertice()+1) + "\n";
+                }
+            }
+        }
+        
+        grafo += ciudadf + "\n";
+        grafo += "aristas\n";
+        for (int i = 0; i < matAd.length; i++) {
+            if (verts[i] != null) {
+                for (int j = 0; j < matAd[i].length; j++) {
+                    if (i < j) {
+                        
+                        if (matAd[i][j].getDistancia() != 0) {
+                            String cadena = (verts[i].getNumVertice()+1) + "," + (verts[j].getNumVertice()+1) + "," + matAd[i][j].getDistancia() + "\n";
+                            grafo += cadena;
+                        }
+                    }
+                }
+
+            }
+
+        }
+        return grafo;
+    }
     
 /**
      * Metodo para convertir la matriz, mostrando las feromonas, en un string
